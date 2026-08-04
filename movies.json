@@ -9,6 +9,16 @@
             "iconUrl": "https://123av.com/assets/123av/favicon.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
+
+        {
+            "id": "nguonVS",
+            "name": "Nguồn VSxx",
+            "version": "1.2.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/nguonVS.js",
+            "iconUrl": "https://nguon.vsphim.com/vsphim.png",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+        
         {
             "id": "1porn",
             "name": "1Porn",
