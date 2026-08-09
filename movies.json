@@ -163,21 +163,21 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
+        {
+            "id": "trannyone",
+            "name": "Tranny One (ALL)",
+            "version": "2.3.5",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/trannyone_plugin.js",
+            "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
           {
             "id": "whoreshub",
             "name": "XXX Whoreshub 4K",
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/whoreshub_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
-        
-        {
-            "id": "trannyone",
-            "name": "Tranny One",
-            "version": "2.3.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/trannyone_plugin.js",
-            "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
        
