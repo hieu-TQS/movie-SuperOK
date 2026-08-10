@@ -340,7 +340,7 @@ function parseDetailResponse(apiResponseJson) {
             var firstServer = episodes[0];
             if (firstServer.server_data && firstServer.server_data.length > 0) {
                 var firstEp = firstServer.server_data[0];
-                streamUrl = firstEp.link_embed || firstEp.link_m3u8 || "";
+                streamUrl = firstEp.link_m3u8 || firstEp.link_embed || "";
             }
         }
 
