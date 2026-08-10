@@ -172,6 +172,15 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
+         {
+            "id": "topxx",
+            "name": "TopXX (ALL) ",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/topxx_plugin.js",
+            "iconUrl": "https://topxx.vip/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
           {
             "id": "whoreshub",
             "name": "XXX Whoreshub 4K",
@@ -482,17 +491,10 @@
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sieutamphim_plugin.js",
             "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
+        }
 
         
-        {
-            "id": "topxx",
-            "name": "TopXX",
-            "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/topxx_plugin.js",
-            "iconUrl": "https://topxx.vip/favicon.ico",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        }
+       
        
     ]
 }
