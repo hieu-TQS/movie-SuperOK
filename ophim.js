@@ -247,7 +247,7 @@ function parseMovieDetail(apiResponseJson) {
                 for (var e = 0; e < server.server_data.length; e++) {
                     var ep = server.server_data[e];
                     episodes.push({
-                        id: ep.link_embed || ep.link_m3u8 || "",
+                        id: ep.link_m3u8 || ep.link_embed || "",
                         name: ep.name,
                         slug: ep.slug
                     });
