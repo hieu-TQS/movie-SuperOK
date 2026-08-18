@@ -3,7 +3,7 @@ BASEURL = "https://krx18.com";
 function getManifest() {
     return JSON.stringify({
         "id": "krx18",
-        "name": "Phim 18+ Hàn (WEB)",
+        "name": "Phim 18+ Hàn",
         "description": "Nguồn XXX hàn quốc Hay",
         "version": "1.0",
         "BASEURL": "https://krx18.com",
