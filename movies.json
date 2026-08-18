@@ -101,6 +101,15 @@
         },
 
          {
+            "id": "krx18",
+            "name": "Phim 18+ Hàn (WEB)",
+            "version": "1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/krx18_plugin.js",
+            "iconUrl": "https://krx18.com/wp-content/uploads/2022/10/krx18B.png",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+         {
             "id": "koreaporn",
             "name": "Sex Hàn (EXO)",
             "version": "1.7.2",
@@ -320,14 +329,7 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
        
-        {
-            "id": "krx18",
-            "name": "Phim 18+ Hàn",
-            "version": "1.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/krx18_plugin.js",
-            "iconUrl": "https://krx18.com/wp-content/uploads/2022/10/krx18B.png",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
+       
        
         {
             "id": "missav",
