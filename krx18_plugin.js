@@ -279,7 +279,6 @@ function parseDetailResponse(html, url) {
         if (typeof html === "string" && html.indexOf("embed_url") > -1) {
             var $embed = JSON.parse(html);
             var link = $embed.embed_url || "";
-            var customjs = textJS(html, link);
 
             return JSON.stringify({
                 "url": link,
@@ -287,8 +286,7 @@ function parseDetailResponse(html, url) {
                 "headers": {
                     "Referer": BASEURL + "/",
                     "Origin": BASEURL,
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    "Custom-Js": customjs.trim()
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 },
                 "subtitles": []
             });
@@ -326,16 +324,13 @@ function parseEmbedResponse(html, sourceUrl) {
         }
 
         if (link) {
-            var customjs = textJS(html, link);
-
             return JSON.stringify({
                 "url": link,
                 "isEmbed": false, // Kết thúc đệ quy, đây là link player cuối để mở qua WebView/WebPlayerActivity
                 "headers": {
                     "Referer": BASEURL + "/",
                     "Origin": BASEURL,
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    "Custom-Js": customjs.trim()
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 }
             });
         }
