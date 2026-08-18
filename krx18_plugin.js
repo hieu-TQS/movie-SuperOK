@@ -3,7 +3,7 @@ BASEURL = "https://krx18.com";
 function getManifest() {
     return JSON.stringify({
         "id": "krx18",
-        "name": "Phim 18+ Hàn",
+        "name": "Phim 18+ Hàn (WEB)",
         "description": "Nguồn XXX hàn quốc Hay",
         "version": "1.0",
         "BASEURL": "https://krx18.com",
@@ -74,17 +74,22 @@ function getUrlList(slug, filtersJson) {
         }
         
         
-        // 4. Chuẩn hóa path (Xóa dấu gạch chéo thừa ở đầu/cuối để tránh nhân đôi dấu //)        
-        // 5. Nối chuỗi URL kết quả
-        let resultUrl = BASEURL;
-        if (path) {
-            resultUrl += path;
+        // 4. Chuẩn hóa path
+        if (!path) {
+            path = "/movies/";
         }
-        // https://www.tranny.one/recent/?mix=true&pageId=2&_=1783573720196
-        if (page > 1 && resultUrl.indexOf("filter=latest") == -1) {
+        if (path.indexOf("/") !== 0) {
+            path = "/" + path;
+        }
+        if (path.lastIndexOf("/") !== path.length - 1) {
+            path = path + "/";
+        }
+        
+        // 5. Nối chuỗi URL kết quả
+        let resultUrl = BASEURL + path;
+        if (page > 1) {
             resultUrl += "page/" + page + "/";
         }
-        // Trả về kết quả, chỉ gộp dấu // ở phần path, giữ nguyên https://
         return resultUrl.replace(/([^:]\/)\/+/g, "$1");
         
     } catch (e) {
@@ -124,8 +129,7 @@ function getUrlYears() { return ""; }
 function parseListResponse(html, $url) {
     try {
         var items = [];
-        //.thumb_rel item
-        // 
+        var seenIds = {};
         var regexList = `
 class[^>]+movies[\\s\\S]*?
 src=["']([^"']+)["'][\\s\\S]*?
@@ -133,20 +137,23 @@ alt=["']([^"']+)["'][\\s\\S]*?
 href=["']([^"']+)["']
 `;
         regexList = regexList.replace(/\r|\n|\t/g, "");
-        regmath = new RegExp(regexList, "g");
-//regmath.exec(html)
+        var regmath = new RegExp(regexList, "g");
         var matchList;
-        // regexList.exec(html)
         while ((matchList = regmath.exec(html)) !== null) {
-            if (matchList[3] && matchList[3].indexOf("http") > -1) {
+            var itemUrl = matchList[3] ? matchList[3].trim() : "";
+            if (itemUrl && itemUrl.indexOf("http") > -1) {
+                // Bỏ qua trang chủ, feed hoặc logo
+                if (itemUrl === BASEURL || itemUrl === BASEURL + "/" || itemUrl === BASEURL + "/movies" || itemUrl === BASEURL + "/movies/" || itemUrl.indexOf("/feed") > -1) {
+                    continue;
+                }
+                if (seenIds[itemUrl]) {
+                    continue;
+                }
+                seenIds[itemUrl] = true;
+
                 var cleanThumb = matchList[1].replace(/&amp;/g, '&');
-                // var imgorigin = matchList[0].match(/data-webp=["']([^"']+)["']/i);
-                //if(imgorigin && imgorigin[1]){
-                //   cleanThumb = imgorigin[1];
-                //}
-                
                 items.push({
-                    "id": matchList[3],
+                    "id": itemUrl,
                     "title": matchList[2].trim(),
                     "posterUrl": cleanThumb,
                     "backdropUrl": cleanThumb
@@ -185,46 +192,69 @@ function parseSearchResponse(html) {
 }
 
 
-function parseMovieDetail(html,$url) {
-    var lurl = "";
+function parseMovieDetail(html, $url) {
+    var lurl = $url || "";
     var limg = "";
     var lname = "Đang cập nhật...";
     var ldes = "Không có mô tả.";
-    var streamUrl = ""; // ĐÃ SỬA: Khai báo rõ ràng biến streamUrl tránh lỗi Global leak
 
     var rmatch = html.match(/link\s+rel="canonical"\s+href=["']([^"']+)["']/i);
-    if (rmatch && rmatch[1]) { lurl = rmatch[1] }
+    if (rmatch && rmatch[1]) { lurl = rmatch[1]; }
 
     rmatch = html.match(/property=["']og:image["']\s+content=["']([^"']+)["']/i);
     if (rmatch && rmatch[1]) { limg = rmatch[1]; }
 
     rmatch = html.match(/<title>([^<]+)/i);
-    if (rmatch && rmatch[1]) { lname = rmatch[1]; }
+    if (rmatch && rmatch[1]) { lname = rmatch[1].replace(/ - Xem Phim.*$/i, "").trim(); }
 
     rmatch = html.match(/meta\s+property=["']og:description["']\s+content=["']([^"']+)["']/i);
     if (rmatch && rmatch[1]) { ldes = rmatch[1]; }
-    // https://krx18.com/wp-json/dooplayer/v2/85671/movie/1
-    // <meta id="dooplay-ajax-counter" data-postid="85671" />
+
     var idvideo = "";
     var $linkser = "";
     rmatch = html.match(/id=["']dooplay-ajax-counter["']\s+data-postid=["']([^"']+)["']/i);
     if (rmatch && rmatch[1]) { 
         idvideo = rmatch[1];
-        $linkser = "https://krx18.com/wp-json/dooplayer/v2/"+idvideo+"/movie/";
+        $linkser = BASEURL + "/wp-json/dooplayer/v2/" + idvideo + "/movie/";
+    } else {
+        rmatch = html.match(/data-post=['"](\d+)['"]/i);
+        if (rmatch && rmatch[1]) {
+            idvideo = rmatch[1];
+            $linkser = BASEURL + "/wp-json/dooplayer/v2/" + idvideo + "/movie/";
+        }
     }
-    var $stream = "";
+
     var epi = [];
-    
-     epi.push({ id: $linkser + "1", name: "Server 1", slug: "full" });
-    epi.push({ id: $linkser + "2", name: "Server 2", slug: "full" });
-    epi.push({ id: $linkser + "3", name: "Server 3", slug: "full" });
-    // var stream = 'https://agokda.cdnlab.live/stream/X9mBBkyCNC1euSox903wew/1783632790/0/431/431.m3u8';
+    var optRegex = /<li[^>]+class=['"][^'"]*dooplay_player_option[^'"]*['"][^>]*data-type=['"]([^'"]+)['"][^>]*data-post=['"]([^'"]+)['"][^>]*data-nume=['"]([^'"]+)['"][^>]*>([\s\S]*?)<\/li>/gi;
+    var match;
+    while ((match = optRegex.exec(html)) !== null) {
+        var dtype = match[1];
+        var dpost = match[2];
+        var dnume = match[3];
+        var inner = match[4];
+        var titleMatch = inner.match(/<span class=['"]title['"]>([^<]+)<\/span>/i);
+        var serverMatch = inner.match(/<span class=['"]server['"]>([^<]+)<\/span>/i);
+        var sTitle = titleMatch ? titleMatch[1].trim() : ("Server " + dnume);
+        var sName = serverMatch ? (" (" + serverMatch[1].trim() + ")") : "";
+        epi.push({
+            id: BASEURL + "/wp-json/dooplayer/v2/" + dpost + "/" + dtype + "/" + dnume,
+            name: sTitle + sName,
+            slug: "full"
+        });
+    }
+
+    if (epi.length === 0 && idvideo) {
+        epi.push({ id: $linkser + "1", name: "Server 1", slug: "full" });
+        epi.push({ id: $linkser + "2", name: "Server 2", slug: "full" });
+        epi.push({ id: $linkser + "3", name: "Server 3", slug: "full" });
+    }
+
     var $return = {
         id: $url,
         title: lname,
         posterUrl: limg,
         backdropUrl: limg,
-        description: "",
+        description: ldes,
         servers: [
             {
                 name: "Servers: ",
@@ -239,79 +269,79 @@ function parseMovieDetail(html,$url) {
         casts: "N/A",
         director: "N/A",
         category: "18+"
-    }
-    var $objreturn = $return;
-    $return.description = ldes + "\r\n\r\n\r\n\r\n\r\n\r\n" + JSON.stringify($objreturn);
+    };
     return JSON.stringify($return);
 }
 
-/*
-BASEURL = "https://www.justporn.com";
-var html = $("html")[0].outerHTML;
-var $url = "https://www.justporn.com/video/18058/hot-babe-remy-cheats-with-bbc/";
-JSON.parse(parseMovieDetail(html,$url))
-*/
-
-function parseDetailResponse(html,url) {
+function parseDetailResponse(html, url) {
     try {
-        var link = url;
-        //if(html.indexOf("embed_url") > -1){
+        // Nếu html đã là chuỗi JSON dooplayer trả về (chứa embed_url)
+        if (typeof html === "string" && html.indexOf("embed_url") > -1) {
             var $embed = JSON.parse(html);
-            link = $embed.embed_url;
-       // }
-        
-        
-        var customjs = textJS(html, url);
+            var link = $embed.embed_url || "";
+            var customjs = textJS(html, link);
 
-    // {"embed_url":"https:\/\/play.playkrx18.site\/play\/6a4f1c63ee633ccb0191a32f","type":"iframe"}
-    // Đọc trực tiếp từ thuộc tính của BaseJSON đã lưu ở bước đầu tiên
+            return JSON.stringify({
+                "url": link,
+                "isEmbed": true,
+                "headers": {
+                    "Referer": BASEURL + "/",
+                    "Origin": BASEURL,
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                    "Custom-Js": customjs.trim()
+                },
+                "subtitles": []
+            });
+        }
+
+        // Bước 1: App gọi parseDetailResponse với mã HTML trang detail và URL của server (link dooplayer API)
+        // Trả về isEmbed: true để App tiến hành fetch API dooplayer dạng GET
         return JSON.stringify({
-    "url": link,
-    "headers": {
-        "Referer": BASEURL,
-        "Origin": BASEURL,
-        isEmbed: true,
-        "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-        // Đánh lừa thuật toán Client Hints của tường lửa
-        "Sec-Ch-Ua": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-        "Sec-Ch-Ua-Mobile": "?1",
-        "Sec-Ch-Ua-Platform": '"Android"',
-        
-        // Khai báo kiểu dữ liệu được chấp nhận giống như trình duyệt thật
-        "Accept": "*/*",
-        "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
-        "X-Requested-With": "com.android.chrome",
-        "Custom-Js": customjs.trim()
-    },
-    "subtitles": []
-});
-
+            "url": url,
+            "isEmbed": true,
+            "headers": {
+                "Referer": BASEURL + "/",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            },
+            "subtitles": []
+        });
     } catch (e) {
-        return JSON.stringify({ "url": "", "headers": {} });
+        return JSON.stringify({ "url": url || "", "isEmbed": false, "headers": {} });
     }
 }
 
 function parseEmbedResponse(html, sourceUrl) {
-        
-        var link = sourceUrl;
-       // if (html.indexOf("embed_url") > -1) {
-            var $embed = JSON.parse(html);
-            link = $embed.embed_url;
-       // }
+    try {
+        var link = "";
+        if (typeof html === "string" && html.indexOf("embed_url") > -1) {
+            try {
+                var $embed = JSON.parse(html);
+                link = $embed.embed_url || "";
+            } catch (jsonErr) {
+                var m = html.match(/"embed_url"\s*:\s*"([^"]+)"/i);
+                if (m) link = m[1].replace(/\\/g, "");
+            }
+        } else if (typeof html === "string" && html.indexOf("http") === 0) {
+            link = html.trim();
+        }
 
-        var customjs = textJS(html, sourceUrl);
+        if (link) {
+            var customjs = textJS(html, link);
 
-        return JSON.stringify({
-            url: link,
-            isEmbed: false, // Kết thúc, đây là link stream cuối
-            mimeType: "application/x-mpegURL", // Báo App đây là HLS
-            headers: { "Referer": BASEURL,
-            "Custom-Js": customjs.trim()
-                
-            },
-        });
-    
-    return JSON.stringify({ url: "", isEmbed: false });
+            return JSON.stringify({
+                "url": link,
+                "isEmbed": false, // Kết thúc đệ quy, đây là link player cuối để mở qua WebView/WebPlayerActivity
+                "headers": {
+                    "Referer": BASEURL + "/",
+                    "Origin": BASEURL,
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                    "Custom-Js": customjs.trim()
+                }
+            });
+        }
+    } catch (e) {}
+
+    return JSON.stringify({ "url": "", "isEmbed": false, "headers": {} });
 }
 
 function textJS(html, $url) {
