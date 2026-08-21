@@ -6,7 +6,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "topxx",
         "name": "TopXX",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "baseUrl": "https://topxx.vip",
         "iconUrl": "https://topxx.vip/favicon.ico",
         "isEnabled": true,
@@ -254,12 +254,7 @@ function parseMovieDetail(apiResponseJson) {
         if (movie.sources && movie.sources.length > 0) {
             var episodes = [];
             movie.sources.forEach(function (src, index) {
-                var link = src.link;
-                // Convert embed to m3u8
-                if (src.type === 'embed' && link && link.indexOf('/player/') > -1) {
-                    var id = link.split('/player/')[1];
-                    link = "https://embed.streamxx.net/stream/" + id + "/main.m3u8";
-                }
+                var link = src.link || "";
 
                 episodes.push({
                     id: link,
@@ -301,20 +296,14 @@ function parseDetailResponse(apiResponseJson) {
     try {
         var streamUrl = "";
 
-        // Nếu input là direct URL m3u8 thay vì json
+        // Nếu input là direct URL thay vì json
         if (apiResponseJson.indexOf("http") === 0) {
             streamUrl = apiResponseJson;
         } else {
             var response = JSON.parse(apiResponseJson);
             if (response.data && response.data.sources && response.data.sources.length > 0) {
                 var src = response.data.sources[0];
-                var link = src.link;
-                if (src.type === 'embed' && link && link.indexOf('/player/') > -1) {
-                    var id = link.split('/player/')[1];
-                    streamUrl = "https://embed.streamxx.net/stream/" + id + "/main.m3u8";
-                } else {
-                    streamUrl = link;
-                }
+                streamUrl = src.link || "";
             }
         }
 
