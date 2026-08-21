@@ -2,7 +2,6 @@
     "version": 1,
     "plugins": [
 
-
          {
             "id": "tvhay",
             "name": "TVHay (EXO)",
@@ -40,6 +39,14 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
+         {
+            "id": "phimhayok",
+            "name": "Phim hay OK (All)",
+            "version": "1.0.5",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhayok_plugin.js",
+            "iconUrl": "https://tvhay.buzz/favicon.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
            {
             "id": "gamomephim",
             "name": "Gà Mờ Mê Phim (WEB)",
