@@ -47,6 +47,24 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
+           {
+            "id": "phimchill",
+            "name": "Phim Chill (EXO)",
+            "version": "3.7.9",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimchill_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/motherless_logo.jpgphimchill.ico",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
+                {
+            "id": "onflix",
+            "name": "Onflix (ALL)",
+            "version": "1.7.8",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/onflix_plugin.js",
+            "iconUrl": "https://onflix.lat/app/asset/logo.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
          {
             "id": "nguonVS",
             "name": "Nguồn VSxx (WEB)",
@@ -127,14 +145,7 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
-         {
-            "id": "onflix",
-            "name": "Onflix (ALL)",
-            "version": "1.7.8",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/onflix_plugin.js",
-            "iconUrl": "https://onflix.lat/app/asset/logo.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
+ 
 
          {
             "id": "superporn",
@@ -187,6 +198,15 @@
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/topxx_plugin.js",
             "iconUrl": "https://topxx.vip/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+         {
+            "id": "haysex",
+            "name": "HaySex (ALL)",
+            "version": "1.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/haysex_plugin.js",
+            "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
@@ -252,14 +272,7 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
      
-        {
-            "id": "haysex",
-            "name": "HaySex (all)",
-            "version": "1.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/haysex_plugin.js",
-            "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
+       
 
         {
             "id": "hh3d",
@@ -290,33 +303,7 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-  
-        {
-            "id": "phimchill",
-            "name": "Phim Chill",
-            "version": "3.7.9",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimchill_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/motherless_logo.jpgphimchill.ico",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
-
      
-        {
-            "id": "shortflix",
-            "name": "Phim Ngắn Shortflix",
-            "version": "1.2.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/shortflix_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/shortflix.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
-        {
-            "id": "sieutamphim",
-            "name": "Sưu Tầm Phim",
-            "version": "1.1.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sieutamphim_plugin.js",
-            "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        }
 
         
        
