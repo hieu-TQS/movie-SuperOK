@@ -7,7 +7,7 @@ function getManifest() {
         "id": "vlxx",
         "name": "VLXX",
         "version": "1.0.4",
-        "baseUrl": "https://vlxx.moi",
+        "baseUrl": "https://vlxx.ms",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico",
         "isEnabled": true,
         "isAdult": true,
