@@ -1,4 +1,4 @@
-BASEURL = "https://phimchillhdf.im";
+BASEURL = "https://phimchillhdx.im/";
 
 function getManifest() {
     return JSON.stringify({
@@ -6,7 +6,7 @@ function getManifest() {
         "name": "Phim Chill",
         "description": "Phim online",
         "version": "3.7.9",             
-        "baseUrl": "https://phimchillhdf.im",
+        "baseUrl": "https://phimchillhdx.im/",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/motherless_logo.jpgphimchill.ico", 
         "isEnabled": true,
         "type": "MOVIE",
