@@ -6,7 +6,7 @@
             "id": "ophim",
             "name": "OPhim (ALL)",
             "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/ophim.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -15,7 +15,7 @@
             "id": "kkphim",
             "name": "KKPhim (ALL)",
             "version": "1.0.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/kkphim.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/kkphim.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -24,7 +24,7 @@
             "id": "bilutv",
             "name": "Nguồn Bilutv (EXO)",
             "version": "1.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/bilutv_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/bilutv_plugin.js",
             "iconUrl": "https://bilutv.asia/img/bilutvlogo-ngang.jpg",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -33,7 +33,7 @@
             "id": "nguoncnew",
             "name": "NguonC (WEB)",
             "version": "1.29",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/nguoncnew.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguoncnew.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -42,7 +42,7 @@
             "id": "gamomephim",
             "name": "Gà Mờ Mê Phim (WEB)",
             "version": "1.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/gamomephim_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/gamomephim_plugin.js",
             "iconUrl": "https://cdn.gamomephim.com/site/logo-1784305321242.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -51,7 +51,7 @@
             "id": "nguonVS",
             "name": "Nguồn VSxx (WEB)",
             "version": "1.2.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/nguonVS.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguonVS.js",
             "iconUrl": "https://nguon.vsphim.com/vsphim.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -60,7 +60,7 @@
             "id": "avdbapi",
             "name": "AVDB JAV (WEB)",
             "version": "1.0.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/avdbapi_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/avdbapi_plugin.js",
             "iconUrl": "https://avdbapi.com/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -69,7 +69,7 @@
             "id": "bemyhole",
             "name": "Bemyhole XXX (ALL)",
             "version": "1.7.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/bemyhole_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/bemyhole_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -78,7 +78,7 @@
             "id": "chinesporn",
             "name": "Sex Trung (EXO)",
             "version": "1.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/chinesporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/chinesporn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/chinesporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -87,7 +87,7 @@
             "id": "javhd",
             "name": "JavHD (WEB)",
             "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/javhd_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/javhd_plugin.js",
             "iconUrl": "https://javhdz.today/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -95,7 +95,7 @@
             "id": "justporn ",
             "name": "Just Porn (WEB)",
             "version": "1.5.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/justporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/justporn_plugin.js",
             "iconUrl": "https://c847a9a666.mjedge.net/contents/pkehlvuovbaw/theme/logo.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -104,7 +104,7 @@
             "id": "krx18",
             "name": "Phim 18+ Hàn (WEB)",
             "version": "1.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/krx18_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/krx18_plugin.js",
             "iconUrl": "https://krx18.com/wp-content/uploads/2022/10/krx18B.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -113,7 +113,7 @@
             "id": "koreaporn",
             "name": "Sex Hàn (EXO)",
             "version": "1.7.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/koreaporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/koreaporn_plugin.js",
             "iconUrl": "https://koreanpornmovie.com/wp-content/uploads/2025/01/sadasdasdasdas.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -122,7 +122,7 @@
             "id": "letsporn",
             "name": "Lets Porn (WEB)",
             "version": "1.7.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/letsporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/letsporn_plugin.js",
             "iconUrl": "https://static.letsporn.com/static/img/logo.png?v=1.2",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -131,7 +131,7 @@
             "id": "onflix",
             "name": "Onflix (ALL)",
             "version": "1.7.8",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/onflix_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/onflix_plugin.js",
             "iconUrl": "https://onflix.lat/app/asset/logo.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -140,7 +140,7 @@
             "id": "superporn",
             "name": "SuperPorn (WEB)",
             "version": "3.6.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/superporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/superporn_plugin.js",
             "iconUrl": "https://superporn.com/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -149,7 +149,7 @@
             "id": "trannymovs",
             "name": "Trannymovs (ALL)",
             "version": "1.6",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/trannymovs_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/trannymovs_plugin.js",
             "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -158,7 +158,7 @@
             "id": "xhamster",
             "name": "Xhamster (ALL)",
             "version": "1.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/xhamster_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xhamster_plugin.js",
             "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -167,7 +167,7 @@
             "id": "xxxfiles",
             "name": "xxxfiles (ALL)",
             "version": "1.9.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/xxxfiles_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xxxfiles_plugin.js",
             "iconUrl": "https://www.xxxfiles.com/favicon-32x32.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -176,7 +176,7 @@
             "id": "trannyone",
             "name": "Tranny One (ALL)",
             "version": "2.3.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/trannyone_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/trannyone_plugin.js",
             "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -185,7 +185,7 @@
             "id": "topxx",
             "name": "TopXX (ALL) ",
             "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/topxx_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/topxx_plugin.js",
             "iconUrl": "https://topxx.vip/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -194,7 +194,7 @@
             "id": "whoreshub",
             "name": "XXX Whoreshub 4K",
             "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/whoreshub_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/whoreshub_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -204,7 +204,7 @@
             "id": "xasiat",
             "name": "XXX Châu Á",
             "version": "1.3.8",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/xasiat_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xasiat_plugin.js",
             "iconUrl": "https://static.xascdn.li/contents/fgegaiwnykjf/theme/logo.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -213,7 +213,7 @@
             "id": "xsexsub",
             "name": "Phim XXX Vietsub",
             "version": "1.3.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/xsexsub_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xsexsub_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -222,7 +222,7 @@
             "id": "yanhh3d",
             "name": "Yanhh3d",
             "version": "1.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/yanhh3d_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/refs/heads/main/main/yanhh3d_plugin.js",
             "iconUrl": "https://bilutv.asia/img/bilutvlogo-ngang.jpg",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -231,7 +231,7 @@
             "id": "viet69",
             "name": "Viet69",
             "version": "1.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/viet69_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/viet69_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/viet69.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -239,7 +239,7 @@
             "id": "vlxx",
             "name": "VLXX",
             "version": "1.0.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/vlxx_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/vlxx_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/vlxx.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -248,7 +248,7 @@
             "id": "123av",
             "name": "123AV",
             "version": "1.0.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/123av_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/123av_plugin.js",
             "iconUrl": "https://123av.com/assets/123av/favicon.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -257,7 +257,7 @@
             "id": "1porn",
             "name": "1Porn",
             "version": "1.2.7",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/1porn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/1porn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -265,7 +265,7 @@
             "id": "4kporn",
             "name": "Phim XXX 4K",
             "version": "1.5.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/4kporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kporn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -273,7 +273,7 @@
             "id": "animehay",
             "name": "Nguồn Animehay",
             "version": "1.0.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/animehay_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
             "iconUrl": "https://animehay09.site/themes/img/logo.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -281,7 +281,7 @@
             "id": "animevietsub",
             "name": "AnimeVietSub",
             "version": "1.0.8",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/animevietsub_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
             "iconUrl": "https://animevietsub.wiki/statics/default/images/logo.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -291,7 +291,7 @@
             "id": "clbpx",
             "name": "CLB Phim Xưa",
             "version": "1.0.7",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/clbpx_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/clbpx_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/clbpx.ico",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -299,7 +299,7 @@
             "id": "cnporn",
             "name": "Porn Gái Trung",
             "version": "1.6",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/cnporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/cnporn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -308,7 +308,7 @@
             "id": "haysex",
             "name": "HaySex",
             "version": "1.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/haysex_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/haysex_plugin.js",
             "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -316,7 +316,7 @@
             "id": "heovl",
             "name": "Heovl",
             "version": "1.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/heovl_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/heovl_plugin.js",
             "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -324,7 +324,7 @@
             "id": "hh3d",
             "name": "HH3D - Hoạt Hình 3D",
             "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/hh3d_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hh3d_plugin.js",
             "iconUrl": "https://hoathinh3d.st/wp-content/uploads/2023/09/favicon.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -335,7 +335,7 @@
             "id": "missav",
             "name": "MissAV",
             "version": "1.1.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/missav_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/missav_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/missav.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -343,7 +343,7 @@
             "id": "misskon",
             "name": "MissKon",
             "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/misskon_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/misskon_plugin.js",
             "iconUrl": "https://misskon.com/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -351,7 +351,7 @@
             "id": "motchill",
             "name": "Nguồn Phim Motchill",
             "version": "1.0.9",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/motchill_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motchill_plugin.js",
             "iconUrl": "https://motchille.cx/motchill.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -359,7 +359,7 @@
             "id": "motherless",
             "name": "Motherless",
             "version": "1.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/motherless_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motherless_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/motherless.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -367,7 +367,7 @@
             "id": "nartodrama",
             "name": "Phim Ngắn Narto",
             "version": "1.1.6",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/nartodrama_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nartodrama_plugin.js",
             "iconUrl": "https://narto-drama.com/narto-drama-logo-compressed.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -375,7 +375,7 @@
             "id": "newporn",
             "name": "18porn",
             "version": "1.3.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/newporn_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/newporn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/18porn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -384,7 +384,7 @@
             "id": "njav",
             "name": "NJAV",
             "version": "1.0.6",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/njav_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/njav_plugin.js",
             "iconUrl": "https://www.njav.com/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -394,7 +394,7 @@
             "id": "phimchill",
             "name": "Phim Chill",
             "version": "3.7.9",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/phimchill_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimchill_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/motherless_logo.jpgphimchill.ico",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -402,7 +402,7 @@
             "id": "phimhayok",
             "name": "phimhayok",
             "version": "1.1.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/phimhayok_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhayok_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/phimhayok.jpg",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -410,7 +410,7 @@
             "id": "phimhdcs",
             "name": "PhimHDCS",
             "version": "1.1.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/phimhdcs_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhdcs_plugin.js",
             "iconUrl": "https://phimhdcss.com/favicon.ico",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -418,7 +418,7 @@
             "id": "phimnganhdc",
             "name": "Phim Ngắn HDC",
             "version": "1.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/phimnganhdc_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimnganhdc_plugin.js",
             "iconUrl": "https://phimnganhdc.com/storage/files/logo-phimnganhdc.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -426,7 +426,7 @@
             "id": "pimpbunny",
             "name": "Pimpbunny",
             "version": "1.1.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/pimpbunny_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/pimpbunny_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -434,7 +434,7 @@
             "id": "porn00",
             "name": "Porn00",
             "version": "1.8",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/porn00_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/porn00_plugin.js",
             "iconUrl": "https://www.porn00.tv/static/images/logo.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -442,7 +442,7 @@
             "id": "sayhentai",
             "name": "SayHentai",
             "version": "1.0.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sayhentai_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sayhentai_plugin.js",
             "iconUrl": "https://sayhentai.sh/favicon-32x32.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -450,7 +450,7 @@
             "id": "sexdep",
             "name": "sexdep",
             "version": "1.4.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sexdep_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexdep_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -458,7 +458,7 @@
             "id": "sexmup",
             "name": "sexmup",
             "version": "1.3",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sexmup_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexmup_plugin.js",
             "iconUrl": "https://sexmupxinh.net/favicon.ico",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -466,7 +466,7 @@
             "id": "sextop1",
             "name": "Sextop1",
             "version": "1.1.6",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sextop1_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sextop1_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/sextop1.webp",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -474,7 +474,7 @@
             "id": "sextop2",
             "name": "Sextop2",
             "version": "1.1.6",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sextop2_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sextop2_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/sextop1.webp",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
@@ -482,7 +482,7 @@
             "id": "shortflix",
             "name": "Phim Ngắn Shortflix",
             "version": "1.2.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/shortflix_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/shortflix_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/shortflix.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
@@ -490,7 +490,7 @@
             "id": "sieutamphim",
             "name": "Sưu Tầm Phim",
             "version": "1.1.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/main/sieutamphim_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sieutamphim_plugin.js",
             "iconUrl": "https://www.sieutamphim.pro/posts/2024/06/cropped-logosieutamphim-192x192.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         }
