@@ -94,6 +94,23 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
+              {
+            "id": "animehay",
+            "name": "Nguồn Animehay (WEB)",
+            "version": "1.0.2",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
+            "iconUrl": "https://animehay09.site/themes/img/logo.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+        {
+            "id": "animevietsub",
+            "name": "AnimeVietSub (ALL)",
+            "version": "1.0.8",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
+            "iconUrl": "https://animevietsub.wiki/statics/default/images/logo.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
 
 
          {
@@ -284,23 +301,8 @@
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kporn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
-        {
-            "id": "animehay",
-            "name": "Nguồn Animehay (WEB)",
-            "version": "1.0.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
-            "iconUrl": "https://animehay09.site/themes/img/logo.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
-        {
-            "id": "animevietsub",
-            "name": "AnimeVietSub (ALL)",
-            "version": "1.0.8",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
-            "iconUrl": "https://animevietsub.wiki/statics/default/images/logo.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         }
+  
        
 
        
