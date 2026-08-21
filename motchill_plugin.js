@@ -1,5 +1,5 @@
 // https://bilutv.asia
-BASEURL = "https://motchille.cx";
+BASEURL = "https://motchillu.app";
 
 function getManifest() {
     return JSON.stringify({
@@ -7,8 +7,8 @@ function getManifest() {
         "name": "Nguồn Phim Motchill",
         "description": "Mochill Trang Xem Phim.",
         "version": "1.0.9",
-        "BASEURL": "https://motchille.cx",
-        "iconUrl": "https://motchille.cx/motchill.png",
+        "BASEURL": "https://motchillu.app",
+        "iconUrl": "https://motchillu.app/motchill.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer"
