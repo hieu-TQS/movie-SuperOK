@@ -2,25 +2,7 @@
     "version": 1,
     "plugins": [
 
-         {
-            "id": "tvhay",
-            "name": "TVHay (EXO)",
-            "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/TVhay_plugin.js",
-            "iconUrl": "https://tvhay.buzz/favicon.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
-
-         {
-            "id": "ophim",
-            "name": "OPhim (ALL)",
-            "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
-            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
-
-          {
+             {
             "id": "kkphim",
             "name": "KKPhim (ALL)",
             "version": "1.0.3",
@@ -38,6 +20,24 @@
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
+        
+         {
+            "id": "tvhay",
+            "name": "TVHay (EXO)",
+            "version": "1.0.5",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/TVhay_plugin.js",
+            "iconUrl": "https://tvhay.buzz/favicon.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
+         {
+            "id": "ophim",
+            "name": "OPhim (ALL)",
+            "version": "1.0.5",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
+            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        }, 
 
          {
             "id": "phimhayok",
