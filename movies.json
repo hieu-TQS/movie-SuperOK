@@ -311,6 +311,16 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         }
 
+          {
+            "id": "porn00",
+            "name": "porn00 (EXO)",
+            "version": "1.5.4",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/porn00_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        }
+        
+
     
     ]
 }
