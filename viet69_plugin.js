@@ -1,4 +1,4 @@
-BASEURL = "https://viet69z.me";
+BASEURL = "https://viet69.be/";
 
 function getManifest() {
     return JSON.stringify({
@@ -6,7 +6,7 @@ function getManifest() {
         "name": "Viet69",
         "description": "XXX Hay",
         "version": "1.4",             
-        "baseUrl": "https://viet69z.me",
+        "baseUrl": "https://viet69.be/",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/viet69.png", 
         "isEnabled": true,
         "isAdult": true,
