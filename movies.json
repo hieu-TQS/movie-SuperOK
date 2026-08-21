@@ -22,7 +22,7 @@
 
          {
             "id": "bilutv",
-            "name": "Nguồn Bilutv (EXO)",
+            "name": "Nguồn Bilutv (WEB)",
             "version": "1.5",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/bilutv_plugin.js",
             "iconUrl": "https://bilutv.asia/img/bilutvlogo-ngang.jpg",
@@ -94,14 +94,6 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-          {
-            "id": "narutodrama",
-            "name": "NARUTO DRAMA (EXO)",
-            "version": "1.0.9",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nartodrama_plugin.js",
-            "iconUrl": "https://motchille.cx/motchill.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
 
 
          {
