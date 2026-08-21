@@ -20,14 +20,6 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-         {
-            "id": "bilutv",
-            "name": "Nguồn Bilutv (WEB)",
-            "version": "1.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/bilutv_plugin.js",
-            "iconUrl": "https://bilutv.asia/img/bilutvlogo-ngang.jpg",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
 
           {
             "id": "nguoncnew",
