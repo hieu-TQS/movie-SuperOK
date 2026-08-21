@@ -169,7 +169,7 @@
 
          {
             "id": "koreaporn",
-            "name": "Sex Hàn (EXO)",
+            "name": "Sex Hàn (ALL)",
             "version": "1.7.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/koreaporn_plugin.js",
             "iconUrl": "https://koreanpornmovie.com/wp-content/uploads/2025/01/sadasdasdasdas.png",
@@ -285,6 +285,25 @@
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
+
+
+         {
+            "id": "xsexsub",
+            "name": "XSEX sub (EXO)",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xsexsub_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+         {
+            "id": "heovl",
+            "name": "Heo VL (ALL)",
+            "version": "1.5.4",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/heovl_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        }
        
         {
             "id": "4kporn",
