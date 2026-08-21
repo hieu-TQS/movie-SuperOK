@@ -2,6 +2,16 @@
     "version": 1,
     "plugins": [
 
+
+         {
+            "id": "tvhay",
+            "name": "TVHay (EXO)",
+            "version": "1.0.5",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/TVhay_plugin.js",
+            "iconUrl": "https://tvhay.buzz/favicon.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
          {
             "id": "ophim",
             "name": "OPhim (ALL)",
@@ -309,7 +319,8 @@
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kporn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
-        }
+        },
+
 
           {
             "id": "porn00",
