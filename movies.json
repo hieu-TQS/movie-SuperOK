@@ -74,7 +74,36 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-        
+
+           {
+            "id": "hh3d",
+            "name": "Hoạt Hình 3D (ALL)",
+            "version": "1.0.9",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hh3d_plugin.js",
+            "iconUrl": "https://motchille.cx/motchill.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
+
+              {
+            "id": "yanhh3d",
+            "name": "YAN Hoạt Hình 3D (ALL)",
+            "version": "1.0.9",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/yanhh3d_plugin.js",
+            "iconUrl": "https://motchille.cx/motchill.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
+          {
+            "id": "narutodrama",
+            "name": "NARUTO DRAMA (EXO)",
+            "version": "1.0.9",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nartodrama_plugin.js",
+            "iconUrl": "https://motchille.cx/motchill.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
+
          {
             "id": "nguonVS",
             "name": "Nguồn VSxx (WEB)",
