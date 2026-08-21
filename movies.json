@@ -23,7 +23,7 @@
 
           {
             "id": "film4k",
-            "name": "Phim 4K (ALL)",
+            "name": "Phim 4K (EXO)",
             "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/film4k_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
@@ -67,7 +67,7 @@
 
          {
             "id": "phimnganhdc",
-            "name": "Phim ngắn HDC (WEB)",
+            "name": "Phim ngắn HDC (EXO)",
             "version": "1.29",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimnganhdc_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
