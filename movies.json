@@ -4,7 +4,7 @@
 
              {
             "id": "kkphim",
-            "name": "KKPhim (ALL)",
+            "name": "KK Phim (ALL)",
             "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/kkphim.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
@@ -14,16 +14,25 @@
 
           {
             "id": "nguoncnew",
-            "name": "NguonC (WEB)",
+            "name": "Nguon C (WEB)",
             "version": "1.29",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguoncnew.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
+
+          {
+            "id": "film4k",
+            "name": "Phim 4K (ALL)",
+            "version": "1.0.3",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/film4k_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
         
          {
             "id": "tvhay",
-            "name": "TVHay (EXO)",
+            "name": "TV Hay (EXO)",
             "version": "1.0.5",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/TVhay_plugin.js",
             "iconUrl": "https://tvhay.buzz/favicon.png",
@@ -32,7 +41,7 @@
 
          {
             "id": "ophim",
-            "name": "OPhim (ALL)",
+            "name": "Ổ Phim (ALL)",
             "version": "1.0.5",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
@@ -56,6 +65,15 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
+         {
+            "id": "phimnganhdc",
+            "name": "Phim ngắn HDC (WEB)",
+            "version": "1.29",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimnganhdc_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
            {
             "id": "phimchill",
             "name": "Phim Chill (EXO)",
@@ -76,7 +94,7 @@
 
             {
             "id": "motchill",
-            "name": "Nguồn Phim Motchill (ALL)",
+            "name": "Motchill (ALL)",
             "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motchill_plugin.js",
             "iconUrl": "https://motchille.cx/motchill.png",
@@ -104,7 +122,7 @@
 
               {
             "id": "animehay",
-            "name": "Nguồn Animehay (WEB)",
+            "name": "Anime hay (WEB)",
             "version": "1.0.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
             "iconUrl": "https://animehay09.site/themes/img/logo.png",
@@ -112,7 +130,7 @@
         },
         {
             "id": "animevietsub",
-            "name": "AnimeVietSub (ALL)",
+            "name": "Anime Vietsub (ALL)",
             "version": "1.0.8",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
             "iconUrl": "https://animevietsub.wiki/statics/default/images/logo.png",
