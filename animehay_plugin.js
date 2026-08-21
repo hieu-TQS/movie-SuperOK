@@ -1,5 +1,4 @@
-var BASEURL = "https://animehay09.site"; 
-// https://www.whoreshub.com/categories/4k-porn/
+var BASEURL = "https://animehay11.site"; 
 function getManifest() {
     return JSON.stringify({
       "id": "animehay",
@@ -7,8 +6,8 @@ function getManifest() {
       "description": "Anime siêu hay.",
       "version": "1.0.2",
       "info": "Nguồn phim anime chất lượng cao. Cập nhật khá nhanh.",
-      "baseUrl": "https://animehay09.site",
-      "iconUrl": "https://animehay09.site/themes/img/logo.png",
+      "baseUrl": "https://animehay11.site",
+      "iconUrl": "https://animehay11.site/themes/img/logo.png",
       "isEnabled": true,
       "type": "MOVIE",
       "playerTpye": "exoplayer"
