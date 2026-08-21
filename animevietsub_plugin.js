@@ -1,15 +1,15 @@
 // =============================================================================
 // CONFIGURATION & METADATA
 // =============================================================================
-BASEURL = "https://animevietsub.wiki"
+BASEURL = "https://animevietsub.vc"
 
 function getManifest() {
     return JSON.stringify({
         "id": "animevietsub",
         "name": "AnimeVietSub",
         "version": "1.0.8",
-        "baseUrl": "https://animevietsub.wiki",
-        "iconUrl": "https://animevietsub.wiki/statics/default/images/logo.png",
+        "baseUrl": "https://animevietsub.vc",
+        "iconUrl": "https://animevietsub.vc/statics/default/images/logo.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "embed"
