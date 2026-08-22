@@ -167,6 +167,35 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
+
+          {
+            "id": "trannyone",
+            "name": "TrannyONE (WEB)",
+            "version": "1.1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/tranny_plugin.js",
+            "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+         {
+            "id": "spankbang",
+            "name": "Spankbang (ALL)",
+            "version": "1.1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/spankbang_plugin.js",
+            "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+           {
+            "id": "porntrex",
+            "name": "PorntreX (ALL)",
+            "version": "1.1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/porntrex_plugin.js",
+            "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+        
         {
             "id": "nguonVS",
             "name": "Nguồn VSxx (WEB)",
