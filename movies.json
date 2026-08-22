@@ -158,6 +158,15 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
+         {
+            "id": "Xvideos",
+            "name": "Xvideos (ALL)",
+            "version": "1.1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xvideos_plugin.js",
+            "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
         {
             "id": "nguonVS",
             "name": "Nguồn VSxx (WEB)",
