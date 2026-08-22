@@ -39,14 +39,7 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-         {
-            "id": "ophim",
-            "name": "Ổ Phim (ALL)",
-            "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
-            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        }, 
+         
 
          {
             "id": "phimhayok",
@@ -113,7 +106,7 @@
         
               {
             "id": "yanhh3d",
-            "name": "YAN Hoạt Hình 3D (ALL)",
+            "name": "YAN HH3D (ALL)",
             "version": "1.0.9",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/yanhh3d_plugin.js",
             "iconUrl": "https://motchille.cx/motchill.png",
@@ -135,6 +128,25 @@
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
             "iconUrl": "https://animevietsub.wiki/statics/default/images/logo.png",
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
+
+        {
+            "id": "ophim",
+            "name": "Ổ Phim (ALL)",
+            "version": "1.0.5",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
+            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        }, 
+
+
+         {
+            "id": "archivebate",
+            "name": "LIVE record (ALL)",
+            "version": "1.1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/archivebate_plugin.js",
+            "iconUrl": "https://nguon.vsphim.com/vsphim.png",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
         {
