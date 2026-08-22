@@ -150,6 +150,15 @@
         },
 
         {
+            "id": "pornhub",
+            "name": "PornHUB (ALL)",
+            "version": "1.1.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/pornhub_plugin.js",
+            "iconUrl": "https://ci.phncdn.com/www-static/favicon.ico",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+        {
             "id": "nguonVS",
             "name": "Nguồn VSxx (WEB)",
             "version": "1.2.0",
