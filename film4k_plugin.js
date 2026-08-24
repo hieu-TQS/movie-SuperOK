@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 // Film4K Plugin (Tương thích 100% Rhino JS & Android TV)
 // https://film4k.net/
 // =============================================================================
@@ -11,7 +11,7 @@ function getManifest() {
         "id": "film4k",
         "name": "Film4K",
         "description": "Kho phim lẻ và phim bộ chất lượng 4K",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://film4k.net/logo-64.png",
         "isEnabled": true,
@@ -131,23 +131,38 @@ function getUrlSearch(keyword, filtersJson) {
         }
         if (filters && filters.page) page = parseInt(filters.page, 10) || 1;
     }
-    return BASEURL + "/api/home?q=" + encodeURIComponent(keyword || "") + "&page=" + page;
+    return BASEURL + "/api/home?q=" + encodeURIComponent(keyword || "") + (page > 1 ? "&page=" + page : "");
 }
 
 function getUrlDetail(slug) {
     if (!slug) return "";
     var id = slug;
-    if (slug.indexOf("http") === 0) {
-        var parts = slug.split("/");
-        id = parts[parts.length - 1];
-    } else if (slug.indexOf("/") > -1) {
-        var parts = slug.split("/");
-        id = parts[parts.length - 1];
+    if (id.indexOf("http") === 0) {
+        if (id.indexOf("/watch/") > -1) {
+            id = id.split("/watch/")[1];
+        } else if (id.indexOf("/movie/") > -1) {
+            id = id.split("/movie/")[1];
+        } else if (id.indexOf("/api/watch/") > -1) {
+            id = id.split("/api/watch/")[1];
+        } else {
+            var parts = id.split("/");
+            id = parts[parts.length - 1];
+        }
     }
     if (id.indexOf("?") > -1) {
         id = id.split("?")[0];
     }
+    if (id.indexOf("#") > -1) {
+        id = id.split("#")[0];
+    }
+    if (id.indexOf("/") > -1) {
+        id = id.split("/")[0];
+    }
     return BASEURL + "/api/watch/" + id;
+}
+
+function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
+    return getUrlDetail(slug);
 }
 
 function getUrlCategories() { return BASEURL + "/api/genres"; }
@@ -172,6 +187,7 @@ function parseListResponse(jsonStr, url) {
             var posterUrl = item.poster ? (item.poster.vi || item.poster.en || item.poster) : "";
             if (typeof posterUrl !== "string") posterUrl = "";
             var backdropUrl = item.backdrop || posterUrl;
+            if (typeof backdropUrl !== "string") backdropUrl = posterUrl;
             
             var quality = "4K";
             if (item.mediaType === "tv") quality = "Phim Bộ";
@@ -214,6 +230,7 @@ function parseMovieDetail(jsonStr, url) {
         var posterUrl = movie.poster ? (movie.poster.vi || movie.poster.en || movie.poster) : "";
         if (typeof posterUrl !== "string") posterUrl = "";
         var backdropUrl = movie.backdrop || posterUrl;
+        if (typeof backdropUrl !== "string") backdropUrl = posterUrl;
         
         var description = movie.overview ? (movie.overview.vi || movie.overview.en || movie.overview) : "";
         if (typeof description !== "string") description = "";
@@ -233,11 +250,22 @@ function parseMovieDetail(jsonStr, url) {
 
         if (hasEpisodes) {
             var serverMap = {};
+            var maxSeason = 1;
+            for (var k = 0; k < json.episodes.length; k++) {
+                var sNum = json.episodes[k].season || 1;
+                if (sNum > maxSeason) maxSeason = sNum;
+            }
+
             for (var i = 0; i < json.episodes.length; i++) {
                 var ep = json.episodes[i];
                 var epNum = ep.episode || (i + 1);
-                var epName = ep.title ? ep.title : ("Tập " + epNum);
-                var epSlug = "s" + (ep.season || 1) + "e" + epNum;
+                var epSeason = ep.season || 1;
+                var epPrefix = maxSeason > 1 ? ("S" + epSeason + " · ") : "";
+                var epName = epPrefix + "Tập " + epNum;
+                if (ep.title && ep.title !== ("Tập " + epNum) && ep.title !== String(epNum)) {
+                    epName += ": " + ep.title;
+                }
+                var epSlug = "s" + epSeason + "e" + epNum;
                 
                 if (ep.sources && ep.sources.length > 0) {
                     for (var j = 0; j < ep.sources.length; j++) {
@@ -256,7 +284,7 @@ function parseMovieDetail(jsonStr, url) {
                 } else {
                     var sName = "Server Film4K";
                     if (!serverMap[sName]) serverMap[sName] = [];
-                    var epWatchUrl = BASEURL + "/watch/" + movieSlug + "?e=" + epSlug;
+                    var epWatchUrl = BASEURL + "/api/hls/tiktok/" + movieSlug + "-" + epSlug + "/master.m3u8";
                     serverMap[sName].push({
                         "id": epWatchUrl,
                         "name": epName,
@@ -299,7 +327,7 @@ function parseMovieDetail(jsonStr, url) {
                 }];
             } else if (movieSlug) {
                 serverMap["Server Film4K"] = [{
-                    "id": BASEURL + "/watch/" + movieSlug,
+                    "id": BASEURL + "/api/hls/tiktok/" + movieSlug + "/master.m3u8",
                     "name": "Full",
                     "slug": "full"
                 }];
