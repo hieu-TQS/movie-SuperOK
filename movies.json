@@ -168,7 +168,7 @@
 
          {
             "id": "videoceleb",
-            "name": "videocelebs_plugin.js (ALL)",
+            "name": "video celebs (ALL)",
             "version": "1.1.0",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/videocelebs_plugin.js",
             "iconUrl": "https://nguon.vsphim.com/vsphim.png",
