@@ -1,4 +1,4 @@
-BASEURL = "https://motchillu.app";
+BASEURL = "https://motchillm.fm";
 
 function getManifest() {
     return JSON.stringify({
@@ -6,7 +6,7 @@ function getManifest() {
         "name": "Nguồn Phim Motchill",
         "description": "Motchill Trang Xem Phim.",
         "version": "1.1.1",
-        "baseUrl": "https://motchillu.app",
+        "baseUrl": "https://motchillm.fm",
         "iconUrl": "https://motchillu.app/motchill.png",
         "isEnabled": true,
         "type": "MOVIE",
