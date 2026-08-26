@@ -3,8 +3,8 @@
 // Tương thích 100% Mozilla Rhino JS & Android TV (SuperOK / SmartTube)
 // =============================================================================
 
-var BASE_URL = "https://phimhayok4.site";
-var API_URL = "https://phimhayok4.site/api/proxy/movies";
+var BASE_URL = "https://phimhayok5.site";
+var API_URL = "https://phimhayok5.site/api/proxy/movies";
 
 function getManifest() {
     return JSON.stringify({
@@ -13,7 +13,7 @@ function getManifest() {
         "description": "Nguồn xem phim Online ổn định",
         "version": "1.3.1",
         "baseUrl": BASE_URL,
-        "iconUrl": "https://phimhayok4.site/icons/icon-192x192.png",
+        "iconUrl": "https://phimhayok5.site/icons/icon-192x192.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "auto"
