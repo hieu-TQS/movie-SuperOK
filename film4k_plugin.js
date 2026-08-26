@@ -23,7 +23,9 @@ function getManifest() {
 
 function getHomeSections() {
     return JSON.stringify([
-        { "slug": "/api/home", "title": "Phim Mới", "type": "Grid" },
+        { "slug": "/api/home?section=top", "title": "Top Phim Nổi Bật", "type": "Grid" },
+        { "slug": "/api/home?section=hero", "title": "Phim Đề Xuất", "type": "Grid" },
+        { "slug": "/api/home", "title": "Phim Mới Cập Nhật", "type": "Grid" },
         { "slug": "/api/home?type=movie", "title": "Phim Lẻ", "type": "Grid" },
         { "slug": "/api/home?type=tv", "title": "Phim Bộ", "type": "Grid" },
         { "slug": "/api/home?genre=Phim%20H%C3%A0nh%20%C4%90%E1%BB%99ng", "title": "Hành Động", "type": "Grid" },
@@ -40,6 +42,7 @@ function getFilterConfig() {
     return JSON.stringify({
         sort: [
             { name: "Tất cả", value: "" },
+            { name: "Top Nổi Bật", value: "top" },
             { name: "Phim Lẻ", value: "movie" },
             { name: "Phim Bộ", value: "tv" }
         ],
@@ -89,7 +92,9 @@ function getUrlList(slug, filtersJson) {
                 if (filters.page) page = parseInt(filters.page, 10) || 1;
                 if (filters.sort) {
                     var sVal = typeof filters.sort === "string" ? filters.sort : (filters.sort[0] ? filters.sort[0].value : "");
-                    if (sVal === "movie" || sVal === "tv") {
+                    if (sVal === "top") {
+                        path = "/api/home?section=top";
+                    } else if (sVal === "movie" || sVal === "tv") {
                         path = "/api/home?type=" + sVal;
                     }
                 }
@@ -177,7 +182,15 @@ function parseListResponse(jsonStr, url) {
     try {
         var json = JSON.parse(jsonStr);
         var items = [];
-        var list = json.list || json.top || json.hero || [];
+        var list = [];
+
+        if (url && (url.indexOf("section=top") > -1 || url.indexOf("type=top") > -1 || url.indexOf("sort=top") > -1)) {
+            list = json.top || json.list || [];
+        } else if (url && url.indexOf("section=hero") > -1) {
+            list = json.hero || json.list || [];
+        } else {
+            list = json.list || json.top || json.hero || [];
+        }
 
         for (var i = 0; i < list.length; i++) {
             var item = list[i];
