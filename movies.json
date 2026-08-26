@@ -148,14 +148,7 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-        {
-            "id": "ophim",
-            "name": "Ổ Phim (ALL)",
-            "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ophim.js",
-            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/ophim.ico",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        }, 
+
 
           {
             "id": "aznude",
@@ -221,14 +214,6 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
-         {
-            "id": "spankbang",
-            "name": "Spankbang (ALL)",
-            "version": "1.1.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/spankbang_plugin.js",
-            "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
 
            {
             "id": "porntrex",
@@ -275,6 +260,17 @@
             "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/chinesporn.jpg",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
+
+         {
+            "id": "chineseav",
+            "name": "Chinese AV (EXO)",
+            "version": "1.3",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/chineseav_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/chinesporn.jpg",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
+        chineseav_plugin.js
 
          {
             "id": "javhd",
