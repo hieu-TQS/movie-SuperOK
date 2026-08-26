@@ -4,7 +4,7 @@
 // Tương thích tối ưu Rhino JS Engine & ExoPlayer
 // =============================================================================
 
-var BASEURL = "https://spankbang.com";
+var BASEURL = "https://jp.spankbang.com/";
 var DEV = "true";
 
 function log(msg) {
