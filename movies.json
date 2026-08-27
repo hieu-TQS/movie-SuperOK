@@ -218,7 +218,7 @@
 
           {
             "id": "trannyone",
-            "name": "TrannyONE (WEB)",
+            "name": "TrannyONE (ALL)",
             "version": "1.1.0",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/tranny_plugin.js",
             "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",
@@ -370,15 +370,6 @@
             "version": "1.9.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xxxfiles_plugin.js",
             "iconUrl": "https://www.xxxfiles.com/favicon-32x32.png",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
-
-        {
-            "id": "trannyone",
-            "name": "Tranny One (ALL)",
-            "version": "2.3.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/trannyone_plugin.js",
-            "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
