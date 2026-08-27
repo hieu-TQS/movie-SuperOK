@@ -1,10 +1,10 @@
 // =============================================================================
-// VAAPP Plugin - PhimHayOK (Active API: https://phimhayok4.site)
+// VAAPP Plugin - PhimHayOK (Active API: https://api-client.phimhayok.net/api/movies)
 // Tương thích 100% Mozilla Rhino JS & Android TV (SuperOK / SmartTube)
 // =============================================================================
 
 var BASE_URL = "https://phimhayok5.site";
-var API_URL = "https://phimhayok5.site/api/proxy/movies";
+var API_URL = "https://api-client.phimhayok.net/api/movies";
 
 function getManifest() {
     return JSON.stringify({
