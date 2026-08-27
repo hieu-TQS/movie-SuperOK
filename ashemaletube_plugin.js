@@ -9,8 +9,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "ashemaletube",
         "name": "AShemaleTube / AshemaleTV",
-        "description": "Kho video Trans, Shemale & Ladyboy (Stream HD trực tiếp, Không bị chặn)",
-        "version": "1.0.2",
+        "description": "Bản v1.1: Cập nhật danh mục Channels & Sửa lỗi Tìm kiếm, Giải mã MP4",
+        "version": "1.1.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://ashemaletv.com/favicon.ico",
         "isEnabled": true,
@@ -24,8 +24,8 @@ function getHomeSections() {
     return JSON.stringify([
         { "slug": "/", "title": "Mới Nhất (Latest)", "type": "Grid" },
         { "slug": "/top-rated/", "title": "Đánh Giá Cao (Top Rated)", "type": "Grid" },
-        { "slug": "/most-popular/", "title": "Xem Nhiều Nhất (Most Popular)", "type": "Grid" },
-        { "slug": "/categories/", "title": "Thể Loại (Categories)", "type": "Grid" }
+        { "slug": "/most-viewed/", "title": "Xem Nhiều Nhất (Most Popular)", "type": "Grid" },
+        { "slug": "/channels/", "title": "Thể Loại (Categories)", "type": "Grid" }
     ]);
 }
 
@@ -38,7 +38,8 @@ function getFilterConfig() {
         sort: [
             { name: "Mới Nhất", value: "/" },
             { name: "Đánh Giá Cao", value: "/top-rated/" },
-            { name: "Xem Nhiều Nhất", value: "/most-popular/" }
+            { name: "Xem Nhiều Nhất", value: "/most-viewed/" },
+            { name: "Dài Nhất", value: "/longest/" }
         ],
         category: getCachedCategories()
     });
@@ -46,25 +47,39 @@ function getFilterConfig() {
 
 function getCachedCategories() {
     return [
-        { name: "Ladyboy", slug: "/categories/ladyboy/" },
-        { name: "Amateur", slug: "/categories/amateur/" },
-        { name: "Anal", slug: "/categories/anal/" },
-        { name: "Asian", slug: "/categories/asian/" },
-        { name: "Bareback", slug: "/categories/bareback/" },
-        { name: "Big Cock", slug: "/categories/big-cock/" },
-        { name: "Big Tits", slug: "/categories/big-tits/" },
-        { name: "Blowjob", slug: "/categories/blowjob/" },
-        { name: "Cumshot", slug: "/categories/cumshot/" },
-        { name: "Ebony", slug: "/categories/ebony/" },
-        { name: "Group", slug: "/categories/group/" },
-        { name: "Hardcore", slug: "/categories/hardcore/" },
-        { name: "Interracial", slug: "/categories/interracial/" },
-        { name: "Latina", slug: "/categories/latina/" },
-        { name: "POV", slug: "/categories/pov/" },
-        { name: "Solo", slug: "/categories/solo/" },
-        { name: "Shemale Fuck Guy", slug: "/categories/shemale-fuck-guy/" },
-        { name: "Guy Fuck Shemale", slug: "/categories/guy-fuck-shemale/" },
-        { name: "Transgender", slug: "/categories/transgender/" }
+        { name: "Amateur", slug: "/channels/1/amateur/" },
+        { name: "Asian Ladyboy", slug: "/channels/26/asian-ladyboy/" },
+        { name: "Bareback", slug: "/channels/8/bareback/" },
+        { name: "BDSM Domination", slug: "/channels/16/bdsm-domination/" },
+        { name: "Big Cock", slug: "/channels/9/big-cock/" },
+        { name: "Big tits", slug: "/channels/4/big-tits/" },
+        { name: "Blonde", slug: "/channels/10/blonde/" },
+        { name: "Brune", slug: "/channels/48/brune/" },
+        { name: "Crossdresser", slug: "/channels/13/crossdresser/" },
+        { name: "Cum In Mouth", slug: "/channels/14/cum-in-mouth/" },
+        { name: "Deep Throat", slug: "/channels/11/deep-throat/" },
+        { name: "Double Anal", slug: "/channels/17/double-anal/" },
+        { name: "Ebony", slug: "/channels/18/ebony/" },
+        { name: "Gangbang", slug: "/channels/21/gangbang/" },
+        { name: "Girl Fucks Shemale", slug: "/channels/47/girl-fucks-shemale/" },
+        { name: "Guy Fucks Shemale", slug: "/channels/23/guy-fucks-shemale/" },
+        { name: "Hentai", slug: "/channels/12/hentai/" },
+        { name: "Interracial", slug: "/channels/25/interracial/" },
+        { name: "Masturbation", slug: "/channels/29/masturbation/" },
+        { name: "Mature", slug: "/channels/30/mature/" },
+        { name: "Outdoor", slug: "/channels/31/outdoor/" },
+        { name: "POV", slug: "/channels/32/pov/" },
+        { name: "Redhead", slug: "/channels/34/redhead/" },
+        { name: "Self Sucking", slug: "/channels/35/self-sucking/" },
+        { name: "Sex Toys", slug: "/channels/36/sex-toys/" },
+        { name: "Shemale and Shemale", slug: "/channels/37/shemale-and-shemale/" },
+        { name: "Shemale Fucks Girl", slug: "/channels/38/shemale-fucks-girl/" },
+        { name: "Shemale Fucks Guy", slug: "/channels/39/shemale-fucks-guy/" },
+        { name: "Shemale Operated", slug: "/channels/52/shemale-operated/" },
+        { name: "Teen", slug: "/channels/42/teen/" },
+        { name: "Threesome Orgy", slug: "/channels/43/threesome-orgy/" },
+        { name: "Vintage", slug: "/channels/45/vintage/" },
+        { name: "Webcams", slug: "/channels/46/webcams/" }
     ];
 }
 
@@ -126,12 +141,7 @@ function getUrlList(slug, filtersJson) {
         }
 
         if (page > 1) {
-            if (url.indexOf("?") > -1) {
-                url += "&page=" + page;
-            } else {
-                if (url.charAt(url.length - 1) !== "/") url += "/";
-                url += page + "/";
-            }
+            url += (url.indexOf("?") > -1 ? "&" : "?") + "page=" + page;
         }
 
         return url;
@@ -152,9 +162,9 @@ function getUrlSearch(keyword, filtersJson) {
         if (filters && filters.page) page = parseInt(filters.page, 10) || 1;
     }
     var safeKeyword = encodeURIComponent(keyword || "").replace(/%20/g, "+");
-    var url = BASEURL + "/search/" + safeKeyword + "/";
+    var url = BASEURL + "/?s=" + safeKeyword;
     if (page > 1) {
-        url += page + "/";
+        url += "&page=" + page;
     }
     return url;
 }
@@ -173,7 +183,7 @@ function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
     return getUrlDetail(slug);
 }
 
-function getUrlCategories() { return BASEURL + "/categories/"; }
+function getUrlCategories() { return BASEURL + "/channels/"; }
 function getUrlCountries() { return ""; }
 function getUrlYears() { return ""; }
 
@@ -186,14 +196,15 @@ function parseListResponse(html, url) {
         var items = [];
         var seen = {};
 
-        // Pattern 1: Splitting by video item containers (div/a with item/video/thumb/box classes)
-        var blocks = html.split(/<div[^>]*class=["'][^"']*(?:item|video|thumb|box)[^"']*["']/i);
+        // Pattern 1: Split by main__video or video containers
+        var blocks = html.split(/<div[^>]*class=["'][^"']*(?:main__video|video_item|video-item|item|thumb)[^"']*["']/i);
         if (blocks.length > 1) {
             for (var i = 1; i < blocks.length; i++) {
                 var block = blocks[i];
 
-                var linkMatch = block.match(/href=["']([^"']+\/(?:videos?|watch)\/[^"']+)["']/i) ||
-                                block.match(/href=["'](\/video\/[^"']+|\/videos\/[^"']+)["']/i);
+                var linkMatch = block.match(/href=["']([^"']+\/video\/[^"']+)["']/i) ||
+                                block.match(/href=["']([^"']+\/videos?\/[^"']+)["']/i) ||
+                                block.match(/href=["'](\/video\/[^"']+)["']/i);
                 var link = linkMatch ? linkMatch[1] : "";
                 if (!link || link.indexOf("javascript") === 0) continue;
 
@@ -204,20 +215,16 @@ function parseListResponse(html, url) {
 
                 if (seen[link]) continue;
 
-                var imgMatch = block.match(/data-src=["']([^"']+)["']/i) ||
-                               block.match(/data-original=["']([^"']+)["']/i) ||
-                               block.match(/data-thumb=["']([^"']+)["']/i) ||
-                               block.match(/src=["']([^"']+)["']/i);
+                var imgMatch = block.match(/src=["']([^"']+\.(?:jpg|png|webp|jpeg)[^"']*)["']/i) ||
+                               block.match(/data-src=["']([^"']+)["']/i) ||
+                               block.match(/data-original=["']([^"']+)["']/i);
                 var poster = imgMatch ? imgMatch[1] : "";
 
-                var titleMatch = block.match(/alt=["']([^"']+)["']/i) ||
+                var titleMatch = block.match(/class=["']main__videoTitle["'][^>]*>([\s\S]*?)<\/span>/i) ||
+                                 block.match(/alt=["']Video:\s*([^"']+)["']/i) ||
                                  block.match(/title=["']([^"']+)["']/i) ||
-                                 block.match(/class=["'][^"']*(?:title|name)[^"']*["'][^>]*>([\s\S]*?)<\/(?:a|span|div)>/i);
+                                 block.match(/alt=["']([^"']+)["']/i);
                 var title = titleMatch ? cleanTitle(titleMatch[1]) : "";
-
-                var durationMatch = block.match(/class=["'][^"']*(?:duration|time|length)[^"']*["'][^>]*>([\s\S]*?)<\/span>/i) ||
-                                  block.match(/<span>(\d{1,2}:\d{2}(?::\d{2})?)<\/span>/i);
-                var duration = durationMatch ? durationMatch[1].replace(/<[^>]+>/g, '').trim() : "HD";
 
                 if (link && (title || poster)) {
                     seen[link] = true;
@@ -226,16 +233,16 @@ function parseListResponse(html, url) {
                         "title": title || "AShemaleTV Video",
                         "posterUrl": poster,
                         "backdropUrl": poster,
-                        "quality": duration,
+                        "quality": "HD",
                         "year": 0
                     });
                 }
             }
         }
 
-        // Pattern 2: Fallback regex scanning all <a> tags pointing to /videos/ or /video/
+        // Pattern 2: Fallback scanning <a> tags pointing to /video/ or /videos/
         if (items.length === 0) {
-            var regex = /<a[^>]+href=["']((?:https?:\/\/[^\s"']*)?\/(?:videos?|watch)\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+            var regex = /<a[^>]+href=["']((?:https?:\/\/[^\s"']*)?\/(?:video|videos)\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
             var match;
 
             while ((match = regex.exec(html)) !== null) {
@@ -249,8 +256,10 @@ function parseListResponse(html, url) {
 
                 if (seen[href] || href.indexOf("/embed/") > -1) continue;
 
-                var imgM = inner.match(/data-src=["']([^"']+)["']/i) || inner.match(/data-original=["']([^"']+)["']/i) || inner.match(/src=["']([^"']+)["']/i);
-                var titleM = inner.match(/alt=["']([^"']+)["']/i) || inner.match(/title=["']([^"']+)["']/i);
+                var imgM = inner.match(/src=["']([^"']+)["']/i) || inner.match(/data-src=["']([^"']+)["']/i);
+                var titleM = inner.match(/class=["']main__videoTitle["'][^>]*>([\s\S]*?)<\/span>/i) ||
+                             inner.match(/alt=["']([^"']+)["']/i) ||
+                             inner.match(/title=["']([^"']+)["']/i);
 
                 var t = titleM ? cleanTitle(titleM[1]) : cleanTitle(inner);
                 var p = imgM ? imgM[1] : '';
@@ -273,23 +282,18 @@ function parseListResponse(html, url) {
         var totalPages = 1;
 
         if (url) {
-            var pM = url.match(/\/(\d+)\/?$/) || url.match(/[?&]page=(\d+)/);
+            var pM = url.match(/[?&]page=(\d+)/) || url.match(/\/(\d+)\/?$/);
             if (pM) currentPage = parseInt(pM[1], 10);
         }
 
-        var maxPMatch = html.match(/\/(\d+)\/?["']/g) || html.match(/[?&]page=(\d+)/g) || [];
-        for (var j = 0; j < maxPMatch.length; j++) {
-            var num = parseInt(maxPMatch[j].replace(/\D/g, ''), 10);
-            if (num && num > totalPages && num < 5000) totalPages = num;
-        }
-        if (currentPage > totalPages) totalPages = currentPage;
+        if (items.length > 0) totalPages = currentPage + 1;
 
         return JSON.stringify({
             "items": items,
             "pagination": {
                 "currentPage": currentPage,
                 "totalPages": totalPages,
-                "hasNext": currentPage < totalPages
+                "hasNext": items.length > 0
             }
         });
     } catch (e) {
