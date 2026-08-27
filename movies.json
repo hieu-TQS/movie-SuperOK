@@ -68,24 +68,6 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
-         {
-            "id": "vicdn",
-            "name": "VI CDN (WEB)",
-            "version": "1.1.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/vicdn_plugin.js",
-            "iconUrl": "https://nguon.vsphim.com/vsphim.png",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
-         
-
-         {
-            "id": "phimhayok",
-            "name": "Phim hay OK (All)",
-            "version": "1.0.5",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhayok_plugin.js",
-            "iconUrl": "https://tvhay.buzz/favicon.png",
-            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
-        },
            {
             "id": "gamomephim",
             "name": "Gà Mờ Mê Phim (WEB)",
@@ -113,14 +95,6 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
 
-         {
-            "id": "shortmax",
-            "name": "Shortmax (EXO)",
-            "version": "1.5.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/shortmax_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
 
            {
             "id": "phimchill",
