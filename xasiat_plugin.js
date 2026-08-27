@@ -1,15 +1,13 @@
-// https://www.xasiat.com
-
-// https://bilutv.asia
-BASEURL = "https://www.xasiat.com";
+// https://www.xasiat.ws
+var BASEURL = "https://www.xasiat.ws";
 
 function getManifest() {
     return JSON.stringify({
         "id": "xasiat",
         "name": "XXX Châu Á",
         "description": "XXX Hay",
-        "version": "1.3.8",
-        "BASEURL": "https://www.xasiat.com",
+        "version": "1.3.9",
+        "baseUrl": BASEURL,
         "iconUrl": "https://static.xascdn.li/contents/fgegaiwnykjf/theme/logo.png",
         "isEnabled": true,
         "isAdult": true,
@@ -410,6 +408,18 @@ function parseDetailResponse(html, url) {
 	} catch (e) {
 		return JSON.stringify({ "url": url || "", "headers": {} });
 	}
+}
+
+function parseEpisodePlayer(response, fetchedUrl) {
+    return parseDetailResponse(response, fetchedUrl);
+}
+
+function parsePlayerUrl(response) {
+    return parseDetailResponse(response, "");
+}
+
+function parseEmbedPlayer(html, url) {
+    return parseDetailResponse(html, url);
 }
 /*
 var html = outerHTML;
