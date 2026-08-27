@@ -200,7 +200,7 @@ function getUrlDetail(slug) {
     if (!slug) return "";
     var cleanSlug = extractSlug(slug);
     if (!cleanSlug) return BASEURL;
-    return BASEURL + "/api/videos/" + cleanSlug;
+    return BASEURL + "/api/videos/" + cleanSlug + "?language=vi_VN&lang=vi_VN";
 }
 
 function getUrlCategories() { return BASEURL; }
@@ -350,21 +350,39 @@ function parseMovieDetail(html, url) {
                         var epTitle = "Tập " + epNum;
                         var epSlug = ep.episodeNumberStr || ("episode-" + epNum);
 
-                        // Tìm videoUrl HLS từ versions (1080p, 720p...)
+                        // Tìm videoUrl HLS và phụ đề VTT từ versions (vi_VN hoặc version đầu tiên)
                         var videoM3u8 = "";
+                        var subVtt = "";
                         if (ep.versions && Array.isArray(ep.versions) && ep.versions.length > 0) {
+                            var targetVersion = null;
                             for (var v = 0; v < ep.versions.length; v++) {
-                                if (ep.versions[v] && ep.versions[v].videoUrl) {
-                                    videoM3u8 = ep.versions[v].videoUrl;
+                                if (ep.versions[v] && ep.versions[v].lang === 'vi_VN' && ep.versions[v].videoUrl) {
+                                    targetVersion = ep.versions[v];
                                     break;
+                                }
+                            }
+                            if (!targetVersion) {
+                                targetVersion = ep.versions[0];
+                            }
+                            if (targetVersion) {
+                                videoM3u8 = targetVersion.videoUrl || "";
+                                var subs = targetVersion.subtitles || targetVersion.subtitlesList;
+                                if (subs && Array.isArray(subs) && subs.length > 0) {
+                                    for (var s = 0; s < subs.length; s++) {
+                                        if (subs[s] && subs[s].fileUrl) {
+                                            subVtt = subs[s].fileUrl;
+                                            break;
+                                        }
+                                    }
                                 }
                             }
                         }
 
                         if (videoM3u8) {
+                            var streamWithSub = subVtt ? (videoM3u8 + "#sub=" + encodeURIComponent(subVtt)) : videoM3u8;
                             directEpisodes.push({
                                 name: epTitle,
-                                id: videoM3u8,
+                                id: streamWithSub,
                                 slug: epSlug,
                                 thumbnailUrl: ep.thumbnailUrl || limg,
                                 duration: ep.duration ? String(ep.duration) + "s" : ""
@@ -463,6 +481,12 @@ function parseDetailResponse(html, url) {
     try {
         if (!url) return JSON.stringify({ url: "", isEmbed: false });
 
+        var streamUrl = url;
+        if (url.indexOf("#sub=") > -1) {
+            // Keep the #sub= param attached so ExoPlayer/WebPlayer can extract and render the VTT subtitle
+            streamUrl = url;
+        }
+
         // Nếu url là link HLS trực tiếp (.m3u8 hoặc cdn nsstorage) -> Phát bằng ExoPlayer
         if (url.indexOf(".m3u8") > -1 || url.indexOf("nsstorage.space") > -1 || url.indexOf("/hls/") > -1) {
             return JSON.stringify({
@@ -477,6 +501,12 @@ function parseDetailResponse(html, url) {
 
         var pureWebviewJs = `
             (function() {
+                try {
+                    document.cookie = "NEXT_LOCALE=vi_VN; path=/; max-age=31536000";
+                    localStorage.setItem("language", "vi_VN");
+                    localStorage.setItem("lang", "vi_VN");
+                    localStorage.setItem("NEXT_LOCALE", "vi_VN");
+                } catch(e) {}
                 // Vô hiệu hóa tính năng Fullscreen của Web Player để Android không bốc ra ngoài
                 try {
                     var noop = function() { return Promise.resolve(); };
