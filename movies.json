@@ -85,6 +85,15 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
+         {
+            "id": "shortflix",
+            "name": "shortflix (EXO)",
+            "version": "1.5.4",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/shortflix_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
+            "info": "XXX dành để tu luyện. Xem ít thôi."
+        },
+
            {
             "id": "phimchill",
             "name": "Phim Chill (EXO)",
@@ -446,14 +455,7 @@
             "info": "XXX dành để tu luyện. Xem ít thôi."
         },
        
-        {
-            "id": "4kporn",
-            "name": "Phim XXX 4K (ALL)",
-            "version": "1.5.4",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kporn_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
-            "info": "XXX dành để tu luyện. Xem ít thôi."
-        },
+       
 
 
           {
