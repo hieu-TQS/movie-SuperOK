@@ -11,6 +11,16 @@
             "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
         },
 
+
+        
+             {
+            "id": "rophim",
+            "name": "Rổ phim (WEB)",
+            "version": "1.0.3",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/rophim_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
+            "info": "Nguồn phim hay, xem mượt. Báo tác giả ngay khi có lỗi."
+        },
         
              {
             "id": "vsmov",
