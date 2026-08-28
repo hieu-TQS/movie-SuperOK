@@ -10,7 +10,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "porn00",
         "name": "Porn00",
-        "description": "Nguồn XXX Hay",
+        "description": "Nguồn video Porn00 trực tuyến tốc độ cao.",
+        "info": "Nguồn video Porn00 trực tuyến tốc độ cao.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://www.porn00.tv/static/images/logo.png",

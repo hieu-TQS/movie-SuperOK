@@ -3,7 +3,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "trannymovs",          
         "name": "Trannymovs",
-        "description": "XXX dành cho người có sở thích đặc biệt",
+        "description": "Kho video Trannymovs chất lượng cao.",
+        "info": "Kho video Trannymovs chất lượng cao.",
         "version": "1.0.0",             
         "baseUrl": "https://www.trannymovs.com",
         "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png", 

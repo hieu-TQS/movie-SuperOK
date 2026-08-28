@@ -6,7 +6,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "haysex",          
         "name": "HaySex",
-        "description": "XXX Hay",
+        "description": "Nguồn video HaySex giải trí chất lượng cao.",
+        "info": "Nguồn video HaySex giải trí chất lượng cao.",
         "version": "1.0.0",             
         "baseUrl": "https://phimsexsuong3x.net",
         "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico", 

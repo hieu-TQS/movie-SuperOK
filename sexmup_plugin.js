@@ -7,7 +7,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "sexmup",          
         "name": "Sex Múp",
-        "description": "Nguồn XXX Hay",
+        "description": "Kho video Sex Múp chọn lọc hấp dẫn.",
+        "info": "Kho video Sex Múp chọn lọc hấp dẫn.",
         "version": "1.0.0",             
         "BASEURL": "https://sexmupxinh.net",
         "iconUrl": "https://sexmupxinh.net/favicon.ico", 

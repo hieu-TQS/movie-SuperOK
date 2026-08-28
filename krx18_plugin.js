@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "krx18",
         "name": "Phim 18+ Hàn",
-        "description": "Nguồn XXX hàn quốc Hay",
+        "description": "Kho phim 18+ Hàn Quốc đặc sắc, tuyển chọn.",
+        "info": "Kho phim 18+ Hàn Quốc đặc sắc, tuyển chọn.",
         "version": "1.0.0",
         "BASEURL": "https://krx18.com",
         "iconUrl": "https://krx18.com/wp-content/uploads/2022/10/krx18B.png",

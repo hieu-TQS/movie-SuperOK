@@ -7,6 +7,8 @@ function getManifest() {
         "id": "nguoncnew",
         "name": "Phim NguonC Xoá Quảng Cáo",
         "version": "1.0.0",
+        "description": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo.",
+        "info": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo.",
         "baseUrl": "https://phim.nguonc.com",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
         "isEnabled": true,

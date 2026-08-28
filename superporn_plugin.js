@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "superporn",          
         "name": "SuperPorn",
-        "description": "XXX Hay",
+        "description": "Nguồn SuperPorn video giải trí đỉnh cao.",
+        "info": "Nguồn SuperPorn video giải trí đỉnh cao.",
         "version": "1.0.0",             
         "baseUrl": "https://www.superporn.com",
         "iconUrl": "https://superporn.com/favicon.ico", 

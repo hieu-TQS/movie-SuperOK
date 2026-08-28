@@ -7,9 +7,9 @@ function getManifest() {
     return JSON.stringify({
         "id": "animehay",
         "name": "Nguồn Animehay",
-        "description": "Anime siêu hay.",
+        "description": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà.",
         "version": "1.0.0",
-        "info": "Nguồn phim anime chất lượng cao. Cập nhật khá nhanh.",
+        "info": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà.",
         "baseUrl": "https://animehay11.site",
         "iconUrl": "https://animehay11.site/themes/img/logo.png",
         "isEnabled": true,

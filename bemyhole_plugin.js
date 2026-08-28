@@ -4,11 +4,11 @@ function getManifest() {
     return JSON.stringify({
         "id": "bemyhole",
         "name": "Bemyhole XXX",
-        "description": "XXX Độc Lạ.",
+        "description": "Kho video Bemyhole XXX chất lượng cao.",
         "version": "1.0.0",
         "BASEURL": "https://www.bemyhole.com",
         "iconUrl": "https://bemyhole.com/favicon.ico",
-      "info":"Nguồn phim chất lượng 4K nên load hơi lâu, bạn chịu khó đợi tí nha.",
+      "info": "Kho video Bemyhole XXX chất lượng cao.",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

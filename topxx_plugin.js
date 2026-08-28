@@ -7,6 +7,8 @@ function getManifest() {
         "id": "topxx",
         "name": "TopXX",
         "version": "1.0.0",
+        "description": "Nguồn video TopXX tốc độ cao Full HD.",
+        "info": "Nguồn video TopXX tốc độ cao Full HD.",
         "baseUrl": "https://topxx.vip",
         "iconUrl": "https://topxx.vip/favicon.ico",
         "isEnabled": true,

@@ -5,7 +5,8 @@ function getManifest() {
 	return JSON.stringify({
 		"id": "onflix",
 		"name": "Onflix",
-		"description": "Trang xem phim siêu hay.",
+		"description": "Kho phim trực tuyến Onflix đa dạng, xem mượt.",
+        "info": "Kho phim trực tuyến Onflix đa dạng, xem mượt.",
 		"version": "1.0.0",
 		"BASEURL": "https://onflix.lat",
 		"iconUrl": "https://onflix.lat/app/asset/logo.png",

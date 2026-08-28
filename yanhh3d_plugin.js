@@ -7,7 +7,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "yanhh3d",
         "name": "Hoạt Hình 3D Trung Quốc",
-        "description": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng cao FHD.",
+        "description": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
+        "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
         "version": "1.0.0",
         "baseUrl": "https://phimapi.com",
         "iconUrl": "https://phimimg.com/favicon.ico",

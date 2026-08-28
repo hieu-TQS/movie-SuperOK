@@ -11,7 +11,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "vsmov",
         "name": "VSMOV",
-        "description": "Kho phim API VSMOV.com (HD/4K, Vietsub, Lồng Tiếng)",
+        "description": "Kho phim API VSMOV chất lượng cao (HD/4K, Vietsub, Lồng Tiếng).",
+        "info": "Kho phim API VSMOV chất lượng cao (HD/4K, Vietsub, Lồng Tiếng).",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://vsmov.com/VSmov.png",

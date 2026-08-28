@@ -4,9 +4,9 @@ function getManifest() {
     return JSON.stringify({
         "id": "whoreshub",
         "name": "XXX Whoreshub 4K",
-        "description": "XXX 4K",
+        "description": "Phim chất lượng cao 4K / 1080p Whoreshub.",
         "version": "1.0.0",
-        "info": "Phim chất lượng cao 4K / 1080p.",
+        "info": "Phim chất lượng cao 4K / 1080p Whoreshub.",
         "baseUrl": "https://www.whoreshub.com",
         "iconUrl": "https://www.whoreshub.com/favicon.ico",
         "isEnabled": true,

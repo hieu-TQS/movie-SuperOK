@@ -9,7 +9,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "videocelebs",
         "name": "VideoCelebs",
-        "description": "Kho cảnh nhạy cảm & người nổi tiếng VideoCelebs.net (HD Stream)",
+        "description": "Kho cảnh người nổi tiếng VideoCelebs HD Stream.",
+        "info": "Kho cảnh người nổi tiếng VideoCelebs HD Stream.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://videocelebs.net/images/new2/logo.png",

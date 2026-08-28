@@ -10,7 +10,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "film4k",
         "name": "Film4K",
-        "description": "Kho phim lẻ và phim bộ chất lượng 4K",
+        "description": "Nguồn phim Film4K độ nét cao, tốc độ phát nhanh.",
+        "info": "Nguồn phim Film4K độ nét cao, tốc độ phát nhanh.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://film4k.net/logo-64.png",

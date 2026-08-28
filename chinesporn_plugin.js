@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "chinesporn",          
         "name": "Sex Trung",
-        "description": "Nguồn XXX trung quốc Hay",
+        "description": "Nguồn phim Sex Trung chất lượng cao.",
+        "info": "Nguồn phim Sex Trung chất lượng cao.",
         "version": "1.0.0",             
         "BASEURL": "https://ppp.porn",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/chinesporn.jpg", 

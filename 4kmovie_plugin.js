@@ -57,7 +57,8 @@ function getManifest() {
         return JSON.stringify({
             "id": "4kmovie",
             "name": "Nguồn 4K Movie",
-            "description": "Nguồn phim 4K Movie & TV Shows chất lượng cao kèm Vietsub",
+            "description": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao.",
+        "info": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao.",
             "version": "1.0.0",
             "author": "Alokillgtv",
             "baseUrl": BASEURL,

@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "heovl",
         "name": "Heovl",
-        "description": "Kho phim người lớn HD chất lượng cao - Heovl",
+        "description": "Kho phim HeoVL phong phú, xem trực tuyến mượt mà.",
+        "info": "Kho phim HeoVL phong phú, xem trực tuyến mượt mà.",
         "version": "1.0.0",
         "BASEURL": "https://heovl.im",
         "iconUrl": "https://heovl.cc/favicon.ico",

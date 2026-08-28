@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "motchill",
         "name": "Nguồn Phim Motchill",
-        "description": "Motchill Trang Xem Phim.",
+        "description": "Trang xem phim Motchill phim mới cập nhật liên tục.",
+        "info": "Trang xem phim Motchill phim mới cập nhật liên tục.",
         "version": "1.0.0",
         "baseUrl": "https://motchillm.fm",
         "iconUrl": "https://motchillu.app/motchill.png",

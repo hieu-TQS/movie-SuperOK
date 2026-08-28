@@ -32,7 +32,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "tranny",
         "name": "Tranny.one",
-        "description": "Kho video người lớn Trans / Shemale chất lượng cao, hỗ trợ xem trực tiếp MP4 HD/SD.",
+        "description": "Kho video Trans / Shemale chất lượng cao Tranny.one hỗ trợ MP4 HD.",
+        "info": "Kho video Trans / Shemale chất lượng cao Tranny.one hỗ trợ MP4 HD.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",

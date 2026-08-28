@@ -14,7 +14,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "xhamster",          
         "name": "Xhamster",
-        "description": "XXX Hay",
+        "description": "Nguồn video Xhamster trực tuyến mượt mà.",
+        "info": "Nguồn video Xhamster trực tuyến mượt mà.",
         "version": "1.0.0",             
         "baseUrl": "https://xhwide.com",
         "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico", 

@@ -5,7 +5,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "xasiat",
         "name": "XXX Châu Á",
-        "description": "XXX Hay",
+        "description": "Kho video XXX Châu Á tổng hợp đa dạng.",
+        "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://static.xascdn.li/contents/fgegaiwnykjf/theme/logo.png",

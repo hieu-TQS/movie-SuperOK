@@ -9,7 +9,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "aznude",
         "name": "AZNude",
-        "description": "Kho cảnh nhạy cảm & người nổi tiếng AZNude.com (HD/4K Stream)",
+        "description": "Kho video giải trí nghệ thuật AZNude.",
+        "info": "Kho video giải trí nghệ thuật AZNude.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://cdn.aznude.com/images/favicons/favicon.ico",

@@ -31,7 +31,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "xvideos",
         "name": "XVideos",
-        "description": "Kho video người lớn lớn nhất thế giới, hỗ trợ HLS Full HD đa chất lượng.",
+        "description": "Kho video người lớn XVideos hỗ trợ HLS Full HD đa chất lượng.",
+        "info": "Kho video người lớn XVideos hỗ trợ HLS Full HD đa chất lượng.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://static-cdn77.xvideos-cdn.com/v3/img/skins/default/ico/favicon.ico",

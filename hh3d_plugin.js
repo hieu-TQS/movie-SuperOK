@@ -8,6 +8,8 @@ function getManifest() {
         "id": "hh3d",
         "name": "HH3D - Hoạt Hình 3D",
         "version": "1.0.0",
+        "description": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng FHD.",
+        "info": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng FHD.",
         "baseUrl": "https://phimapi.com",
         "iconUrl": "https://phimimg.com/favicon.ico",
         "isEnabled": true,

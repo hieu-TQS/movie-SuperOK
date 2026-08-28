@@ -8,6 +8,8 @@ function getManifest() {
         "id": "animevietsub",
         "name": "AnimeVietSub",
         "version": "1.0.0",
+        "description": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất.",
+        "info": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất.",
         "baseUrl": "https://animevietsub.gg",
         "iconUrl": "https://animevietsub.gg/logo.png",
         "isEnabled": true,

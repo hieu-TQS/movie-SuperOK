@@ -8,6 +8,8 @@ function getManifest() {
         "id": "vsphim",
         "name": "VSPhim",
         "version": "1.0.0",
+        "description": "Nguồn phim VSPhim tương thích MacCMS/OPhim.",
+        "info": "Nguồn phim VSPhim tương thích MacCMS/OPhim.",
         "baseUrl": "https://nguon.vsphim.com",
         "iconUrl": "https://nguon.vsphim.com/vsphim.png",
         "isEnabled": true,

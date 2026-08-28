@@ -7,6 +7,8 @@ function getManifest() {
         "id": "avdbapi",
         "name": "AVDB JAV",
         "version": "1.0.0",
+        "description": "Kho phim AVDB JAV Nhật Bản cập nhật mới nhất.",
+        "info": "Kho phim AVDB JAV Nhật Bản cập nhật mới nhất.",
         "baseUrl": "https://avdbapi.com/api.php/provide/vod",
         "iconUrl": "https://avdbapi.com/favicon.ico",
         "isEnabled": true,

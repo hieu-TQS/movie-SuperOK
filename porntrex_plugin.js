@@ -38,7 +38,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "porntrex",
         "name": "PornTrex",
-        "description": "Kho video người lớn 4K / Full HD chất lượng cao không quảng cáo.",
+        "description": "Nguồn video PornTrex HD xem mượt mà.",
+        "info": "Nguồn video PornTrex HD xem mượt mà.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://ptx.cdntrex.com/favicon.ico",

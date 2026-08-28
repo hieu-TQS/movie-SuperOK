@@ -13,7 +13,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "chineseav",
         "name": "強國AV (ChineseAV)",
-        "description": "2026 最新國產AV | 麻豆傳媒, 精東傳媒, SWAG, 91制片厂",
+        "description": "Nguồn phim Chinese AV tuyển chọn đặc sắc.",
+        "info": "Nguồn phim Chinese AV tuyển chọn đặc sắc.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://chineseav.xyz/images/logo.png",

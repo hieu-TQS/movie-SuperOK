@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "koreaporn",          
         "name": "Sex Hàn",
-        "description": "Nguồn XXX Hay",
+        "description": "Nguồn video Sex Hàn Quốc chất lượng cao.",
+        "info": "Nguồn video Sex Hàn Quốc chất lượng cao.",
         "version": "1.0.0",             
         "BASEURL": "https://koreanpornmovie.com",
         "iconUrl": "https://koreanpornmovie.com/wp-content/uploads/2025/01/sadasdasdasdas.png", 

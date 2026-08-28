@@ -29,7 +29,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "pornhub",
         "name": "Pornhub",
-        "description": "Kho video người lớn lớn nhất thế giới, hỗ trợ HLS Full HD đa chất lượng.",
+        "description": "Nguồn video giải trí người lớn Pornhub Full HD.",
+        "info": "Nguồn video giải trí người lớn Pornhub Full HD.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://ci.phncdn.com/www-static/favicon.ico",

@@ -9,7 +9,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "ashemaletube",
         "name": "AShemaleTube / AshemaleTV",
-        "description": "Bản v1.0.0: Cập nhật danh mục Channels & Sửa lỗi Tìm kiếm, Giải mã MP4",
+        "description": "Bản v1.0.0: Cập nhật danh mục Channels & Sửa lỗi Tìm kiếm, Giải mã MP4.",
+        "info": "Bản v1.0.0: Cập nhật danh mục Channels & Sửa lỗi Tìm kiếm, Giải mã MP4.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://ashemaletv.com/favicon.ico",

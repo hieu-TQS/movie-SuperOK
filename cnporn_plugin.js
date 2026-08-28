@@ -5,7 +5,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "cnporn",
         "name": "Porn Gái Trung",
-        "description": "Nguồn XXX Hay",
+        "description": "Nguồn Porn Gái Trung chất lượng HD.",
+        "info": "Nguồn Porn Gái Trung chất lượng HD.",
         "version": "1.0.0",
         "BASEURL": "https://cnporn.org",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",

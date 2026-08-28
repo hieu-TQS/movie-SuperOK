@@ -10,7 +10,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "phimhayok",
         "name": "PhimHayOK",
-        "description": "Nguồn xem phim Online ổn định",
+        "description": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại.",
+        "info": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại.",
         "version": "1.0.0",
         "baseUrl": BASE_URL,
         "iconUrl": "https://phimhayok5.site/icons/icon-512x512.png",

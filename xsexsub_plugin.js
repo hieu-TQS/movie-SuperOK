@@ -5,6 +5,7 @@ function getManifest() {
         "id": "xsexsub",
         "name": "Phim XXX Vietsub",
         "description": "Kho phim Sex Vietsub HD cập nhật liên tục.",
+        "info": "Kho phim Sex Vietsub HD cập nhật liên tục.",
         "version": "1.0.0",
         "BASEURL": "https://xsexsub.online",
         "iconUrl": "https://xsexsub.online/favicon.ico",

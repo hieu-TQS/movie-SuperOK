@@ -65,7 +65,8 @@ function getManifest() {
         return JSON.stringify({
             "id": "rophim",
             "name": "Nguồn RoPhim",
-            "description": "Kho phim RoPhim HD/FHD/4K (Vietsub, Lồng Tiếng, Thuyết Minh)",
+            "description": "Kho phim RoPhim HD/FHD/4K (Vietsub, Lồng Tiếng, Thuyết Minh).",
+        "info": "Kho phim RoPhim HD/FHD/4K (Vietsub, Lồng Tiếng, Thuyết Minh).",
             "version": "1.0.0",
             "author": "Alokillgtv",
             "baseUrl": BASEURL,

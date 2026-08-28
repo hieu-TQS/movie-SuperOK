@@ -4,7 +4,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "phimchill",          
         "name": "Phim Chill",
-        "description": "Phim online",
+        "description": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh.",
+        "info": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh.",
         "version": "1.0.0",             
         "baseUrl": "https://phimchillhdm.im",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/phimchill.ico", 

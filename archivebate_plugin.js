@@ -164,7 +164,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "archivebate",
         "name": "Archivebate",
-        "description": "Kho lưu trữ video webcam, người mẫu livestream lớn nhất thế giới.",
+        "description": "Kho lưu trữ livestream và video Archivebate lớn nhất.",
+        "info": "Kho lưu trữ livestream và video Archivebate lớn nhất.",
         "version": "1.0.0",
         "baseUrl": BASE_URL,
         "iconUrl": "https://archivebate.com/favicon.ico",

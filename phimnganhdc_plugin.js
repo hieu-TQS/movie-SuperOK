@@ -9,7 +9,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "phimnganhdc",
         "name": "Phim Ngắn HDC",
-        "description": "Phim ngắn Trung Quốc thuyết minh, vietsub HDC.",
+        "description": "Kho phim ngắn, drama ngắn HDC phụ đề tiếng Việt.",
+        "info": "Kho phim ngắn, drama ngắn HDC phụ đề tiếng Việt.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://phimnganhdc.com/static/icons/apple-touch-icon-180x180.png",

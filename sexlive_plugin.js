@@ -10,7 +10,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "sexlive",
         "name": "SexLive",
-        "description": "Kho video SexLive.cc (MMLive, QQLive, Stripchat, YYLive, FullLiveHot)",
+        "description": "Nguồn livestream và video trực tuyến SexLive.",
+        "info": "Nguồn livestream và video trực tuyến SexLive.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://sexlive.cc/wp-content/uploads/2022/07/cropped-favicon-192x192.png",

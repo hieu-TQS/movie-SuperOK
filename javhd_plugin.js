@@ -7,6 +7,8 @@ function getManifest() {
         "id": "javhd",
         "name": "JavHD",
         "version": "1.0.0",
+        "description": "Kho phim JavHD Nhật Bản độ nét cao xem mượt.",
+        "info": "Kho phim JavHD Nhật Bản độ nét cao xem mượt.",
         "baseUrl": "https://javhdz.today",
         "iconUrl": "https://javhdz.today/favicon.ico",
         "isEnabled": true,

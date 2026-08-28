@@ -12,7 +12,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "vicdn",
         "name": "ViCDN",
-        "description": "Kho phim Thuyết Minh, Phụ Đề Song Ngữ ViCDN.cc",
+        "description": "Kho phim Thuyết Minh, Phụ Đề Song Ngữ ViCDN tốc độ cao.",
+        "info": "Kho phim Thuyết Minh, Phụ Đề Song Ngữ ViCDN tốc độ cao.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://vicdn.cc/vicdn.png",

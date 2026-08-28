@@ -6,7 +6,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "gamomephim",
         "name": "Gà Mờ Mê Phim",
-        "description": "Phim Ngắn Hay",
+        "description": "Nguồn phim Gà Mờ Mê Phim xem trực tuyến mượt mà.",
+        "info": "Nguồn phim Gà Mờ Mê Phim xem trực tuyến mượt mà.",
         "version": "1.0.0",
         "BASEURL": "https://gamomephim.com",
         "iconUrl": "https://cdn.gamomephim.com/site/logo-1784305321242.png",

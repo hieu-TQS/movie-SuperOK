@@ -9,7 +9,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "tvhay",
         "name": "TVHAY",
-        "description": "Xem phim thuyết minh lồng tiếng TVHAY",
+        "description": "Xem phim thuyết minh, lồng tiếng TVHay hay nhất.",
+        "info": "Xem phim thuyết minh, lồng tiếng TVHay hay nhất.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://tvhay.buzz/favicon.png",

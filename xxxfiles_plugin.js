@@ -6,7 +6,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "xxxfiles",
         "name": "xxxfiles",
-        "description": "XXX Hay",
+        "description": "Kho video xxxfiles lưu trữ đa dạng thể loại.",
+        "info": "Kho video xxxfiles lưu trữ đa dạng thể loại.",
         "version": "1.0.0",
         "BASEURL": "https://www.xxxfiles.com",
         "iconUrl": "https://www.xxxfiles.com/favicon-32x32.png",

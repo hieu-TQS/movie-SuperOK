@@ -5,7 +5,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "letsporn",
         "name": "Lets Porn",
-        "description": "XXX Hay.",
+        "description": "Kho video Lets Porn phong phú, xem mượt mà.",
+        "info": "Kho video Lets Porn phong phú, xem mượt mà.",
         "version": "1.0.0",
         "BASEURL": "https://letsporn.com",
         "iconUrl": "https://static.letsporn.com/static/img/logo.png?v=1.2",
