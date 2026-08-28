@@ -4,7 +4,7 @@
         {
             "id": "kkphim",
             "name": "KKPhim (ALL)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/kkphim.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/kkphim.png",
             "info": "Nguồn phim KKPhim tổng hợp Full HD/4K, cập nhật liên tục, xem mượt."
