@@ -57,14 +57,7 @@
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/tvhay.png",
             "info": "Xem phim thuyết minh, lồng tiếng TVHay hay nhất."
         },
-        {
-            "id": "vicdn",
-            "name": "viCDN (WEB)",
-            "version": "1.0.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/vicdn_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/vicdn.png",
-            "info": "Kho phim Thuyết Minh, Phụ Đề Song Ngữ ViCDN tốc độ cao."
-        },
+
         {
             "id": "phimhayok",
             "name": "PhimHayOK (ALL)",
