@@ -6,7 +6,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "kkphim",
         "name": "KKPhim",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Nguồn phim KKPhim tổng hợp Full HD/4K, cập nhật liên tục, xem mượt.",
         "info": "Nguồn phim KKPhim tổng hợp Full HD/4K, cập nhật liên tục, xem mượt.",
         "baseUrl": "https://phimapi.com",
