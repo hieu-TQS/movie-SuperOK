@@ -7,7 +7,7 @@ function getManifest() {
         "info": "Kho video Trannymovs chất lượng cao.",
         "version": "1.0.0",             
         "baseUrl": "https://www.trannymovs.com",
-        "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png", 
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/trannymovs.png", 
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

@@ -16,7 +16,7 @@ function getManifest() {
         "info": "Kho phim Thuyết Minh, Phụ Đề Song Ngữ ViCDN tốc độ cao.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://vicdn.cc/vicdn.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/vicdn.png",
         "isEnabled": true,
         "isAdult": false,
         "type": "MOVIE",

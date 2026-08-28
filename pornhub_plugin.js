@@ -33,7 +33,7 @@ function getManifest() {
         "info": "Nguồn video giải trí người lớn Pornhub Full HD.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://ci.phncdn.com/www-static/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/pornhub.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

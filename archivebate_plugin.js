@@ -168,7 +168,7 @@ function getManifest() {
         "info": "Kho lưu trữ livestream và video Archivebate lớn nhất.",
         "version": "1.0.0",
         "baseUrl": BASE_URL,
-        "iconUrl": "https://archivebate.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/archivebate.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

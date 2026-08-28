@@ -10,7 +10,7 @@ function getManifest() {
         "info": "Nguồn phim Gà Mờ Mê Phim xem trực tuyến mượt mà.",
         "version": "1.0.0",
         "BASEURL": "https://gamomephim.com",
-        "iconUrl": "https://cdn.gamomephim.com/site/logo-1784305321242.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/gamomephim.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer"

@@ -9,7 +9,7 @@ function getManifest() {
         "info": "Kho video XXX Châu Á tổng hợp đa dạng.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://static.xascdn.li/contents/fgegaiwnykjf/theme/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

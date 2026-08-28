@@ -10,7 +10,7 @@ function getManifest() {
         "description": "Kho phim JavHD Nhật Bản độ nét cao xem mượt.",
         "info": "Kho phim JavHD Nhật Bản độ nét cao xem mượt.",
         "baseUrl": "https://javhdz.today",
-        "iconUrl": "https://javhdz.today/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/javhd.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

@@ -13,7 +13,7 @@ function getManifest() {
         "info": "Kho video giải trí nghệ thuật AZNude.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://cdn.aznude.com/images/favicons/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/aznude.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

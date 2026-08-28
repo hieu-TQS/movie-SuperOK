@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Kho phim 18+ Hàn Quốc đặc sắc, tuyển chọn.",
         "version": "1.0.0",
         "BASEURL": "https://krx18.com",
-        "iconUrl": "https://krx18.com/wp-content/uploads/2022/10/krx18B.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/krx18.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

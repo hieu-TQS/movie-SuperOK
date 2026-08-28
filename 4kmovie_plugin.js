@@ -62,7 +62,7 @@ function getManifest() {
             "version": "1.0.0",
             "author": "Alokillgtv",
             "baseUrl": BASEURL,
-            "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/4kmovie.png",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/film4k.png",
             "isEnabled": true,
             "isAdult": false,
             "type": "MOVIE",

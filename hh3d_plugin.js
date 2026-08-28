@@ -11,7 +11,7 @@ function getManifest() {
         "description": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng FHD.",
         "info": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng FHD.",
         "baseUrl": "https://phimapi.com",
-        "iconUrl": "https://phimimg.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hh3d.png",
         "isEnabled": true,
         "isAdult": false,
         "type": "MOVIE",

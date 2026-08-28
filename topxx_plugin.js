@@ -10,7 +10,7 @@ function getManifest() {
         "description": "Nguồn video TopXX tốc độ cao Full HD.",
         "info": "Nguồn video TopXX tốc độ cao Full HD.",
         "baseUrl": "https://topxx.vip",
-        "iconUrl": "https://topxx.vip/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/topxx.ico",
         "isEnabled": true,
         "isAdult": true,
         "layoutType": "HORIZONTAL",

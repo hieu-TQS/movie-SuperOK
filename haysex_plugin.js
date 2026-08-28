@@ -10,7 +10,7 @@ function getManifest() {
         "info": "Nguồn video HaySex giải trí chất lượng cao.",
         "version": "1.0.0",             
         "baseUrl": "https://phimsexsuong3x.net",
-        "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico", 
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/haysex.ico", 
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

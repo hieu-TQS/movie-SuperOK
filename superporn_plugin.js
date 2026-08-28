@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Nguồn SuperPorn video giải trí đỉnh cao.",
         "version": "1.0.0",             
         "baseUrl": "https://www.superporn.com",
-        "iconUrl": "https://superporn.com/favicon.ico", 
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/superporn.ico", 
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

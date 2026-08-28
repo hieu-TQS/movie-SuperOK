@@ -10,7 +10,7 @@ function getManifest() {
         "description": "Nguồn phim KKPhim tổng hợp Full HD/4K, cập nhật liên tục, xem mượt.",
         "info": "Nguồn phim KKPhim tổng hợp Full HD/4K, cập nhật liên tục, xem mượt.",
         "baseUrl": "https://phimapi.com",
-        "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/kkphim.png",
         "isEnabled": true,
         "type": "MOVIE"
     });

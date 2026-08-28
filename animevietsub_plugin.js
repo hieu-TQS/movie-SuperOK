@@ -11,7 +11,7 @@ function getManifest() {
         "description": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất.",
         "info": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất.",
         "baseUrl": "https://animevietsub.gg",
-        "iconUrl": "https://animevietsub.gg/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer"

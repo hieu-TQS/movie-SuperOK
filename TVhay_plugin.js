@@ -13,7 +13,7 @@ function getManifest() {
         "info": "Xem phim thuyết minh, lồng tiếng TVHay hay nhất.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://tvhay.buzz/favicon.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/tvhay.png",
         "isEnabled": true,
         "isAdult": false,
         "type": "VIDEO",

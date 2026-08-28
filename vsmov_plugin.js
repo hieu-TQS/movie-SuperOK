@@ -15,7 +15,7 @@ function getManifest() {
         "info": "Kho phim API VSMOV chất lượng cao (HD/4K, Vietsub, Lồng Tiếng).",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://vsmov.com/VSmov.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/vsmov.png",
         "isEnabled": true,
         "isAdult": false,
         "type": "MOVIE",

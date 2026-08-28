@@ -17,7 +17,7 @@ function getManifest() {
         "info": "Nguồn phim Chinese AV tuyển chọn đặc sắc.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://chineseav.xyz/images/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/chineseav.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

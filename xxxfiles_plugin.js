@@ -10,7 +10,7 @@ function getManifest() {
         "info": "Kho video xxxfiles lưu trữ đa dạng thể loại.",
         "version": "1.0.0",
         "BASEURL": "https://www.xxxfiles.com",
-        "iconUrl": "https://www.xxxfiles.com/favicon-32x32.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xxxfiles.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

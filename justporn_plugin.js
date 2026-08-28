@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Nguồn video Just Porn tốc độ cao.",
     "version": "1.0.0",
     "baseUrl": "https://www.justporn.com",
-    "iconUrl": "https://c847a9a666.mjedge.net/contents/pkehlvuovbaw/theme/logo.png",
+    "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/justporn.png",
     "isEnabled": true,
     "isAdult": true,
     "type": "VIDEO",

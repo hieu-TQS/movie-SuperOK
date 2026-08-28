@@ -36,7 +36,7 @@ function getManifest() {
         "info": "Kho video Trans / Shemale chất lượng cao Tranny.one hỗ trợ MP4 HD.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/trannyone.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

@@ -9,7 +9,7 @@ function getManifest() {
         "info": "Kho phim trực tuyến Onflix đa dạng, xem mượt.",
 		"version": "1.0.0",
 		"BASEURL": "https://onflix.lat",
-		"iconUrl": "https://onflix.lat/app/asset/logo.png",
+		"iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/onflix.png",
 		"isEnabled": true,
 		"type": "VIDEO",
 		"playerType": "auto"

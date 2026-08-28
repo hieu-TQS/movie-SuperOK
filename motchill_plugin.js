@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Trang xem phim Motchill phim mới cập nhật liên tục.",
         "version": "1.0.0",
         "baseUrl": "https://motchillm.fm",
-        "iconUrl": "https://motchillu.app/motchill.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer"

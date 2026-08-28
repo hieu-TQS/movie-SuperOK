@@ -9,7 +9,7 @@ function getManifest() {
         "info": "Kho video Lets Porn phong phú, xem mượt mà.",
         "version": "1.0.0",
         "BASEURL": "https://letsporn.com",
-        "iconUrl": "https://static.letsporn.com/static/img/logo.png?v=1.2",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/letsporn.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

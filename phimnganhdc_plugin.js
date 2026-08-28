@@ -13,7 +13,7 @@ function getManifest() {
         "info": "Kho phim ngắn, drama ngắn HDC phụ đề tiếng Việt.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://phimnganhdc.com/static/icons/apple-touch-icon-180x180.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimnganhdc.ico",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer",

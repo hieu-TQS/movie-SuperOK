@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Nguồn video Sex Hàn Quốc chất lượng cao.",
         "version": "1.0.0",             
         "BASEURL": "https://koreanpornmovie.com",
-        "iconUrl": "https://koreanpornmovie.com/wp-content/uploads/2025/01/sadasdasdasdas.png", 
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/koreaporn.png", 
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

@@ -42,7 +42,7 @@ function getManifest() {
         "info": "Nguồn video PornTrex HD xem mượt mà.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://ptx.cdntrex.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/porntrex.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

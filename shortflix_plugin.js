@@ -20,7 +20,7 @@ function getManifest() {
         "info": "Phim ngắn Shortflix bản v1.0.0 phát mượt mà hỗ trợ phụ đề tiếng Việt.",
         "version": "1.0.0", 
         "baseUrl": BASEURL,
-        "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/shortflix.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/shortflix.png",
         "isEnabled": true,
         "hasLogin": true,                     
         "loginUrl": BASEURL + "/vi/login",    

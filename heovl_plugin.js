@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Kho phim HeoVL phong phú, xem trực tuyến mượt mà.",
         "version": "1.0.0",
         "BASEURL": "https://heovl.im",
-        "iconUrl": "https://heovl.cc/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/heovl.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

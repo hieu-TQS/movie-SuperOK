@@ -7,7 +7,7 @@ function getManifest() {
         "description": "Kho video Bemyhole XXX chất lượng cao.",
         "version": "1.0.0",
         "BASEURL": "https://www.bemyhole.com",
-        "iconUrl": "https://bemyhole.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/bemyhole.ico",
       "info": "Kho video Bemyhole XXX chất lượng cao.",
         "isEnabled": true,
         "isAdult": true,

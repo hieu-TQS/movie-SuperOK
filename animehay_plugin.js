@@ -11,7 +11,7 @@ function getManifest() {
         "version": "1.0.0",
         "info": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà.",
         "baseUrl": "https://animehay11.site",
-        "iconUrl": "https://animehay11.site/themes/img/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animehay.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer"

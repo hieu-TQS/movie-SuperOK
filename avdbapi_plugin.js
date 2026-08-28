@@ -10,7 +10,7 @@ function getManifest() {
         "description": "Kho phim AVDB JAV Nhật Bản cập nhật mới nhất.",
         "info": "Kho phim AVDB JAV Nhật Bản cập nhật mới nhất.",
         "baseUrl": "https://avdbapi.com/api.php/provide/vod",
-        "iconUrl": "https://avdbapi.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/avdbapi.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

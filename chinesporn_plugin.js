@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Nguồn phim Sex Trung chất lượng cao.",
         "version": "1.0.0",             
         "BASEURL": "https://ppp.porn",
-        "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/chinesporn.jpg", 
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/chinesporn.png", 
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

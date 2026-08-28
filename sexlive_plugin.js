@@ -14,7 +14,7 @@ function getManifest() {
         "info": "Nguồn livestream và video trực tuyến SexLive.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://sexlive.cc/wp-content/uploads/2022/07/cropped-favicon-192x192.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

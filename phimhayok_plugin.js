@@ -14,7 +14,7 @@ function getManifest() {
         "info": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại.",
         "version": "1.0.0",
         "baseUrl": BASE_URL,
-        "iconUrl": "https://phimhayok5.site/icons/icon-512x512.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimhayok.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "auto"

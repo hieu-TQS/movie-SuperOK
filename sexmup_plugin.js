@@ -11,7 +11,7 @@ function getManifest() {
         "info": "Kho video Sex Múp chọn lọc hấp dẫn.",
         "version": "1.0.0",             
         "BASEURL": "https://sexmupxinh.net",
-        "iconUrl": "https://sexmupxinh.net/favicon.ico", 
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexmup.ico", 
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

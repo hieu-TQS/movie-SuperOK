@@ -11,7 +11,7 @@ function getManifest() {
         "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
         "version": "1.0.0",
         "baseUrl": "https://phimapi.com",
-        "iconUrl": "https://phimimg.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/yanhh3d.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "exoplayer"

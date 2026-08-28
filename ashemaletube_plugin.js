@@ -13,7 +13,7 @@ function getManifest() {
         "info": "Bản v1.0.0: Cập nhật danh mục Channels & Sửa lỗi Tìm kiếm, Giải mã MP4.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://ashemaletv.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/ashemaletube.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

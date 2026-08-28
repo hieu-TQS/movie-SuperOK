@@ -9,7 +9,7 @@ function getManifest() {
         "info": "Nguồn Porn Gái Trung chất lượng HD.",
         "version": "1.0.0",
         "BASEURL": "https://cnporn.org",
-        "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/cnporn.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

@@ -8,7 +8,7 @@ function getManifest() {
         "version": "1.0.0",
         "info": "Phim chất lượng cao 4K / 1080p Whoreshub.",
         "baseUrl": "https://www.whoreshub.com",
-        "iconUrl": "https://www.whoreshub.com/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/whoreshub.ico",
         "isEnabled": true,
         "type": "MOVIE",
         "isAdult": true,

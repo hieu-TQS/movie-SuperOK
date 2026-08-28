@@ -13,7 +13,7 @@ function getManifest() {
         "info": "Kho cảnh người nổi tiếng VideoCelebs HD Stream.",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://videocelebs.net/images/new2/logo.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/videoceleb.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",

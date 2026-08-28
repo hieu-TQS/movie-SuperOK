@@ -10,7 +10,7 @@ function getManifest() {
         "description": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo.",
         "info": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo.",
         "baseUrl": "https://phim.nguonc.com",
-        "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "embed"

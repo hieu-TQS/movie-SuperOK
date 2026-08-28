@@ -8,7 +8,7 @@ function getManifest() {
         "info": "Kho phim Sex Vietsub HD cập nhật liên tục.",
         "version": "1.0.0",
         "BASEURL": "https://xsexsub.online",
-        "iconUrl": "https://xsexsub.online/favicon.ico",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xsexsub.png",
         "isEnabled": true,
         "isAdult": true,
         "type": "VIDEO",

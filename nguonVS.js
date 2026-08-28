@@ -11,7 +11,7 @@ function getManifest() {
         "description": "Nguồn phim VSPhim tương thích MacCMS/OPhim.",
         "info": "Nguồn phim VSPhim tương thích MacCMS/OPhim.",
         "baseUrl": "https://nguon.vsphim.com",
-        "iconUrl": "https://nguon.vsphim.com/vsphim.png",
+        "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguonVS.png",
         "isEnabled": true,
         "type": "MOVIE"
     });
