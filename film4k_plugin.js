@@ -11,7 +11,7 @@ function getManifest() {
         "id": "film4k",
         "name": "Film4K",
         "description": "Kho phim lẻ và phim bộ chất lượng 4K",
-        "version": "1.2.0",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://film4k.net/logo-64.png",
         "isEnabled": true,

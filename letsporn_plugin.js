@@ -6,7 +6,7 @@ function getManifest() {
         "id": "letsporn",
         "name": "Lets Porn",
         "description": "XXX Hay.",
-        "version": "1.7.2",
+        "version": "1.0.0",
         "BASEURL": "https://letsporn.com",
         "iconUrl": "https://static.letsporn.com/static/img/logo.png?v=1.2",
         "isEnabled": true,

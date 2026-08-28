@@ -11,9 +11,9 @@ function getManifest() {
         "id": "phimhayok",
         "name": "PhimHayOK",
         "description": "Nguồn xem phim Online ổn định",
-        "version": "1.3.1",
+        "version": "1.0.0",
         "baseUrl": BASE_URL,
-        "iconUrl": "https://phimhayok5.site/icons/icon-192x192.png",
+        "iconUrl": "https://phimhayok5.site/icons/icon-512x512.png",
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "auto"

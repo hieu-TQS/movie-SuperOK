@@ -11,7 +11,7 @@ function getManifest() {
         "id": "porn00",
         "name": "Porn00",
         "description": "Nguồn XXX Hay",
-        "version": "2.1.0",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://www.porn00.tv/static/images/logo.png",
         "isEnabled": true,

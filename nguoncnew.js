@@ -6,7 +6,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "nguoncnew",
         "name": "Phim NguonC Xoá Quảng Cáo",
-        "version": "1.29",
+        "version": "1.0.0",
         "baseUrl": "https://phim.nguonc.com",
         "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
         "isEnabled": true,
@@ -317,7 +317,7 @@ var customcss = 'body { background: black; overflow: hidden; }body * {background
 style.innerHTML = customcss;
 //document.head.appendChild(style);
 /* BUILD VIDEO BEGIN*/
-// "version": "1.8"
+// "version": "1.0.0"
 
 function runVideo(){
     'use strict';

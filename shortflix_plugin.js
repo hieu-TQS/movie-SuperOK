@@ -16,8 +16,8 @@ function getManifest() {
     return JSON.stringify({
         "id": "shortflix",
         "name": "Phim Ngắn Shortflix",
-        "description": "Bản v2.0: Giải mã link HLS trực tiếp phát bằng ExoPlayer + Server Webview dự phòng VIP",
-        "version": "2.0.0", 
+        "description": "Bản v1.0.0: Giải mã link HLS trực tiếp phát bằng ExoPlayer + Server Webview dự phòng VIP",
+        "version": "1.0.0", 
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/shortflix.png",
         "isEnabled": true,

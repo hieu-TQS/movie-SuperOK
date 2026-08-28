@@ -11,7 +11,7 @@ function getManifest() {
         "id": "sexlive",
         "name": "SexLive",
         "description": "Kho video SexLive.cc (MMLive, QQLive, Stripchat, YYLive, FullLiveHot)",
-        "version": "1.1.0",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://sexlive.cc/wp-content/uploads/2022/07/cropped-favicon-192x192.png",
         "isEnabled": true,

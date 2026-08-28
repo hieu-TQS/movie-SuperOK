@@ -7,7 +7,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hh3d",
         "name": "HH3D - Hoạt Hình 3D",
-        "version": "2.0.1",
+        "version": "1.0.0",
         "baseUrl": "https://phimapi.com",
         "iconUrl": "https://phimimg.com/favicon.ico",
         "isEnabled": true,

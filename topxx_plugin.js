@@ -6,7 +6,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "topxx",
         "name": "TopXX",
-        "version": "1.0.2",
+        "version": "1.0.0",
         "baseUrl": "https://topxx.vip",
         "iconUrl": "https://topxx.vip/favicon.ico",
         "isEnabled": true,

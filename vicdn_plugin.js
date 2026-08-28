@@ -13,7 +13,7 @@ function getManifest() {
         "id": "vicdn",
         "name": "ViCDN",
         "description": "Kho phim Thuyết Minh, Phụ Đề Song Ngữ ViCDN.cc",
-        "version": "1.0.1",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://vicdn.cc/vicdn.png",
         "isEnabled": true,

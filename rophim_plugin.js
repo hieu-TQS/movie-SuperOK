@@ -66,7 +66,7 @@ function getManifest() {
             "id": "rophim",
             "name": "Nguồn RoPhim",
             "description": "Kho phim RoPhim HD/FHD/4K (Vietsub, Lồng Tiếng, Thuyết Minh)",
-            "version": "1.3.2",
+            "version": "1.0.0",
             "author": "Alokillgtv",
             "baseUrl": BASEURL,
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/rophim.png",
@@ -79,7 +79,7 @@ function getManifest() {
         return JSON.stringify({
             "id": "rophim",
             "name": "Nguồn RoPhim",
-            "version": "1.0",
+            "version": "1.0.0",
             "baseUrl": BASEURL,
             "isEnabled": true,
             "type": "MOVIE",

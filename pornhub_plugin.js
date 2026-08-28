@@ -30,7 +30,7 @@ function getManifest() {
         "id": "pornhub",
         "name": "Pornhub",
         "description": "Kho video người lớn lớn nhất thế giới, hỗ trợ HLS Full HD đa chất lượng.",
-        "version": "1.0.1",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://ci.phncdn.com/www-static/favicon.ico",
         "isEnabled": true,

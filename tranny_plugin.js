@@ -33,7 +33,7 @@ function getManifest() {
         "id": "tranny",
         "name": "Tranny.one",
         "description": "Kho video người lớn Trans / Shemale chất lượng cao, hỗ trợ xem trực tiếp MP4 HD/SD.",
-        "version": "1.0.1",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png",
         "isEnabled": true,

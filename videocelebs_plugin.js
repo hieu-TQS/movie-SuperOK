@@ -10,7 +10,7 @@ function getManifest() {
         "id": "videocelebs",
         "name": "VideoCelebs",
         "description": "Kho cảnh nhạy cảm & người nổi tiếng VideoCelebs.net (HD Stream)",
-        "version": "1.0.1",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://videocelebs.net/images/new2/logo.png",
         "isEnabled": true,

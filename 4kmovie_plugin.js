@@ -58,7 +58,7 @@ function getManifest() {
             "id": "4kmovie",
             "name": "Nguồn 4K Movie",
             "description": "Nguồn phim 4K Movie & TV Shows chất lượng cao kèm Vietsub",
-            "version": "1.3.5",
+            "version": "1.0.0",
             "author": "Alokillgtv",
             "baseUrl": BASEURL,
             "iconUrl": "https://vaxplugin.alokillgtv.workers.dev/img/4kmovie.png",
@@ -71,7 +71,7 @@ function getManifest() {
         return JSON.stringify({
             "id": "4kmovie",
             "name": "Nguồn 4K Movie",
-            "version": "1.0",
+            "version": "1.0.0",
             "baseUrl": BASEURL,
             "isEnabled": true,
             "type": "MOVIE"

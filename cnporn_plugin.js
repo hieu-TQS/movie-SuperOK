@@ -6,7 +6,7 @@ function getManifest() {
         "id": "cnporn",
         "name": "Porn Gái Trung",
         "description": "Nguồn XXX Hay",
-        "version": "1.6.1",
+        "version": "1.0.0",
         "BASEURL": "https://cnporn.org",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/cnporn.jpg",
         "isEnabled": true,

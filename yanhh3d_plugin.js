@@ -8,7 +8,7 @@ function getManifest() {
         "id": "yanhh3d",
         "name": "Hoạt Hình 3D Trung Quốc",
         "description": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng cao FHD.",
-        "version": "2.0.0",
+        "version": "1.0.0",
         "baseUrl": "https://phimapi.com",
         "iconUrl": "https://phimimg.com/favicon.ico",
         "isEnabled": true,

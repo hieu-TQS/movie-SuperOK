@@ -5,9 +5,9 @@ function getManifest() {
         "id": "phimchill",          
         "name": "Phim Chill",
         "description": "Phim online",
-        "version": "3.8.2",             
+        "version": "1.0.0",             
         "baseUrl": "https://phimchillhdm.im",
-        "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/motherless_logo.jpgphimchill.ico", 
+        "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/phimchill.ico", 
         "isEnabled": true,
         "type": "MOVIE",
         "playerType": "auto"

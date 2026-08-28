@@ -5,7 +5,7 @@ function getManifest() {
         "id": "chinesporn",          
         "name": "Sex Trung",
         "description": "Nguồn XXX trung quốc Hay",
-        "version": "1.3",             
+        "version": "1.0.0",             
         "BASEURL": "https://ppp.porn",
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/chinesporn.jpg", 
         "isEnabled": true,

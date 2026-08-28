@@ -39,7 +39,7 @@ function getManifest() {
         "id": "porntrex",
         "name": "PornTrex",
         "description": "Kho video người lớn 4K / Full HD chất lượng cao không quảng cáo.",
-        "version": "1.0.1",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://ptx.cdntrex.com/favicon.ico",
         "isEnabled": true,

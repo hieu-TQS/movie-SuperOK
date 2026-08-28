@@ -4,7 +4,7 @@ function getManifest() {
         "id": "trannymovs",          
         "name": "Trannymovs",
         "description": "XXX dành cho người có sở thích đặc biệt",
-        "version": "1.6",             
+        "version": "1.0.0",             
         "baseUrl": "https://www.trannymovs.com",
         "iconUrl": "https://cdn1.tranny.one/trannystatic/v30/common/lib-tr/img/logo-2x.png", 
         "isEnabled": true,

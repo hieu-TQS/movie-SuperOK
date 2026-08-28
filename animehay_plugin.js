@@ -8,7 +8,7 @@ function getManifest() {
         "id": "animehay",
         "name": "Nguồn Animehay",
         "description": "Anime siêu hay.",
-        "version": "1.1.0",
+        "version": "1.0.0",
         "info": "Nguồn phim anime chất lượng cao. Cập nhật khá nhanh.",
         "baseUrl": "https://animehay11.site",
         "iconUrl": "https://animehay11.site/themes/img/logo.png",

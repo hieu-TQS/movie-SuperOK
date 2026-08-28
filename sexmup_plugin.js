@@ -8,7 +8,7 @@ function getManifest() {
         "id": "sexmup",          
         "name": "Sex Múp",
         "description": "Nguồn XXX Hay",
-        "version": "1.3.7",             
+        "version": "1.0.0",             
         "BASEURL": "https://sexmupxinh.net",
         "iconUrl": "https://sexmupxinh.net/favicon.ico", 
         "isEnabled": true,

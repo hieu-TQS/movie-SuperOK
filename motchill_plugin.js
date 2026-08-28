@@ -5,7 +5,7 @@ function getManifest() {
         "id": "motchill",
         "name": "Nguồn Phim Motchill",
         "description": "Motchill Trang Xem Phim.",
-        "version": "1.1.1",
+        "version": "1.0.0",
         "baseUrl": "https://motchillm.fm",
         "iconUrl": "https://motchillu.app/motchill.png",
         "isEnabled": true,

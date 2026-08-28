@@ -7,9 +7,9 @@ function getManifest() {
     return JSON.stringify({
         "id": "vsphim",
         "name": "VSPhim",
-        "version": "1.2.0",
+        "version": "1.0.0",
         "baseUrl": "https://nguon.vsphim.com",
-        "iconUrl": "",
+        "iconUrl": "https://nguon.vsphim.com/vsphim.png",
         "isEnabled": true,
         "type": "MOVIE"
     });

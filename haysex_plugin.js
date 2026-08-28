@@ -7,7 +7,7 @@ function getManifest() {
         "id": "haysex",          
         "name": "HaySex",
         "description": "XXX Hay",
-        "version": "1.1",             
+        "version": "1.0.0",             
         "baseUrl": "https://phimsexsuong3x.net",
         "iconUrl": "https://static.cdnsolutions.media/xh-desktop/images/favicon/favicon-v2-256x256.ico", 
         "isEnabled": true,

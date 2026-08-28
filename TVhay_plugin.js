@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 // https://tvhay.buzz/
 // =============================================================================
 
@@ -10,7 +10,7 @@ function getManifest() {
         "id": "tvhay",
         "name": "TVHAY",
         "description": "Xem phim thuyết minh lồng tiếng TVHAY",
-        "version": "1.0.3",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://tvhay.buzz/favicon.png",
         "isEnabled": true,

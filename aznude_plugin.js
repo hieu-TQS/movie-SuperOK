@@ -12,7 +12,7 @@ function getManifest() {
         "description": "Kho cảnh nhạy cảm & người nổi tiếng AZNude.com (HD/4K Stream)",
         "version": "1.0.0",
         "baseUrl": BASEURL,
-        "iconUrl": "https://cdn.aznude.com/images/logo/v5/main-logo.svg",
+        "iconUrl": "https://cdn.aznude.com/images/favicons/favicon.ico",
         "isEnabled": true,
         "isAdult": true,
         "type": "MOVIE",
