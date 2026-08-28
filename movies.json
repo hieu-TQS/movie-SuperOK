@@ -4,7 +4,7 @@
 
              {
             "id": "kkphim",
-            "name": "KK Phim (ALL)",
+            "name": "KKPhim (ALL)",
             "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/kkphim.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
@@ -34,7 +34,7 @@
 
           {
             "id": "nguoncnew",
-            "name": "Nguon C (WEB)",
+            "name": "Nguồn C (WEB)",
             "version": "1.29",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguoncnew.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/nguonC.png",
@@ -43,7 +43,7 @@
 
           {
             "id": "film4k",
-            "name": "Phim 4K (EXO)",
+            "name": "Film 4K (EXO)",
             "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kmovie_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/youngbi/repo/main/plugins/kkphim.png",
@@ -70,7 +70,7 @@
 
          {
             "id": "vicdn_plugin.js",
-            "name": "vicdn (WEB)",
+            "name": "viCDN (WEB)",
             "version": "1.0.5",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/vicdn_plugin.js",
             "iconUrl": "https://tvhay.buzz/favicon.png",
@@ -81,7 +81,7 @@
 
         {
             "id": "phimhayok",
-            "name": "Phim Hay OK (ALL)",
+            "name": "PhimHayOK (ALL)",
             "version": "1.0.5",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhayok_plugin.js",
             "iconUrl": "https://tvhay.buzz/favicon.png",
