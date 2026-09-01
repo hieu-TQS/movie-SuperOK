@@ -36,7 +36,7 @@
         {
             "id": "film4k",
             "name": "Film 4K (EXO)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kmovie_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/film4k.png",
             "info": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao."
@@ -165,7 +165,7 @@
         {
             "id": "sexlive",
             "name": "SEX live (EXO)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexlive_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
             "info": "Nguồn livestream và video trực tuyến SexLive."
