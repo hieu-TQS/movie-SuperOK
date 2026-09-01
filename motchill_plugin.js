@@ -6,7 +6,7 @@ function getManifest() {
         "name": "Nguồn Phim Motchill",
         "description": "Trang xem phim Motchill phim mới cập nhật liên tục.",
         "info": "Trang xem phim Motchill phim mới cập nhật liên tục.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "baseUrl": " https://motchillw.sh/",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
         "isEnabled": true,
