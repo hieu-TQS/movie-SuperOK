@@ -3,7 +3,7 @@
 // https://film4k.net/
 // =============================================================================
 
-var BASEURL = "https://film4k.net";
+var BASEURL = " https://fiml4k.fun/";
 var _cachedCategories = null;
 
 function getManifest() {
@@ -12,7 +12,7 @@ function getManifest() {
         "name": "Film4K",
         "description": "Nguồn phim Film4K độ nét cao, tốc độ phát nhanh.",
         "info": "Nguồn phim Film4K độ nét cao, tốc độ phát nhanh.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/4kmovies.png",
         "isEnabled": true,
