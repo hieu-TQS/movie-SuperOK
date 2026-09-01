@@ -1,4 +1,4 @@
-BASEURL = "https://phimchillhdm.im";
+BASEURL = "https://phimchillhdl.im/";
 
 function getManifest() {
     return JSON.stringify({
@@ -6,8 +6,8 @@ function getManifest() {
         "name": "Phim Chill",
         "description": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh.",
         "info": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh.",
-        "version": "1.0.0",             
-        "baseUrl": "https://phimchillhdm.im",
+        "version": "1.0.1",             
+        "baseUrl": "https://phimchillhdl.im/",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimchill.png", 
         "isEnabled": true,
         "type": "MOVIE",
