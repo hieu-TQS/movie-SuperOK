@@ -132,7 +132,7 @@
         },
         {
             "id": "animehay",
-            "name": "Anime hay (WEB)",
+            "name": "Anime hay (ALL)",
             "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animehay.png",
