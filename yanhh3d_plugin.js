@@ -1,7 +1,7 @@
 // 
 // CONFIGURATION & METADATA
 // =============================================================================
-var BASEURL = "https://phimapi.com";
+var BASEURL = "https://yanhh3d.nyc/";
 
 function getManifest() {
     return JSON.stringify({
@@ -9,8 +9,8 @@ function getManifest() {
         "name": "Hoạt Hình 3D Trung Quốc",
         "description": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
         "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
-        "version": "1.0.0",
-        "baseUrl": "https://phimapi.com",
+        "version": "1.0.2",
+        "baseUrl": "https://yanhh3d.nyc/",
         "iconUrl": "https://phimimg.com/favicon.ico",
         "isEnabled": true,
         "type": "MOVIE",
