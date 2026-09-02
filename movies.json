@@ -125,7 +125,7 @@
         {
             "id": "yanhh3d",
             "name": "YAN HH3D (ALL)",
-            "version": "1.0.0",
+            "version": "1.0.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/yanhh3d_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/yanhh3d.png",
             "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh."
