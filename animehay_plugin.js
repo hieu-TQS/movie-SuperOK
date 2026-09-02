@@ -1,16 +1,16 @@
 // =============================================================================
 // CONFIGURATION & METADATA
 // =============================================================================
-var BASEURL = "https://animehay11.site"; 
+var BASEURL = "https://animehay12.site"; 
 
 function getManifest() {
     return JSON.stringify({
         "id": "animehay",
         "name": "Nguồn Animehay",
         "description": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "info": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà.",
-        "baseUrl": "https://animehay11.site",
+        "baseUrl": "https://animehay12.site",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animehay.png",
         "isEnabled": true,
         "type": "MOVIE",
