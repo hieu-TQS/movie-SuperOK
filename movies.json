@@ -133,7 +133,7 @@
         {
             "id": "animehay",
             "name": "Anime hay (WEB)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animehay.png",
             "info": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà."
