@@ -1,67 +1,62 @@
-// https://bilutv.asia
-BASEURL = "https://yanhh3d.nyc";
+// 
+// CONFIGURATION & METADATA
+// =============================================================================
+var BASEURL = "https://phimapi.com";
 
 function getManifest() {
     return JSON.stringify({
         "id": "yanhh3d",
-        "name": "Yanhh3d",
-        "description": "Trang xem phim Hoạt Hình siêu hay.",
-      	"info":"Trang này bị nhà mạng chặn nên cần dns để xem. Bạn tải app 1.1.1.1 về dùng hoặc thử bật DNS và DPI trong app này.",
+        "name": "Hoạt Hình 3D Trung Quốc",
+        "description": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
+        "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh.",
         "version": "1.0.0",
-        "baseUrl": "https://yanhh3d.nyc",
-        "iconUrl": "https://bilutv.asia/img/bilutvlogo-ngang.jpg",
+        "baseUrl": "https://phimapi.com",
+        "iconUrl": "https://phimimg.com/favicon.ico",
         "isEnabled": true,
         "type": "MOVIE",
-        "playerType": "auto"
+        "playerType": "exoplayer"
     });
 }
 
 function log(msg) {
     if (typeof nativeLog !== 'undefined') {
-        nativeLog(msg);
+        nativeLog("[yanhh3d] " + msg);
     } else if (typeof console !== 'undefined' && console.log) {
-        console.log(msg);
+        console.log("[yanhh3d] " + msg);
     }
 }
 
-// https://yanhh3d.ac/moi-cap-nhat?page=2
-// https://yanhh3d.ac/moi-cap-nhat?page=2
 function getHomeSections() {
-    try {
-        var listurl = `
-/moi-cap-nhat@@Phim Mới@@true
-`;
-        var menulist = buildMenu(listurl);
-        return JSON.stringify(menulist);
-    } catch (e) {
-        log("getHomeSections[err]:\n " + e);
-        return JSON.stringify([]);
-    }
+    return JSON.stringify([
+        { slug: 'hoat-hinh', title: 'Hoạt Hình 3D Mới Cập Nhật', type: 'Grid', path: 'danh-sach' },
+        { slug: 'trung-quoc', title: 'HH3D Trung Quốc', type: 'Horizontal', path: 'quoc-gia' },
+        { slug: 'tien-hiep', title: 'Tiên Hiệp 3D', type: 'Horizontal', path: 'the-loai' },
+        { slug: 'huyen-huyen', title: 'Huyền Huyễn 3D', type: 'Horizontal', path: 'the-loai' },
+        { slug: 'co-trang', title: 'Cổ Trang 3D', type: 'Horizontal', path: 'the-loai' }
+    ]);
 }
 
 function getPrimaryCategories() {
-    try {
-        var listurl = getLISTmenu();
-        var menulist = buildMenu(listurl);
-        return JSON.stringify(menulist);
-    } catch (e) {
-        log("getPrimaryCategories[err]:\n " + e);
-        return JSON.stringify([]);
-    }
+    return JSON.stringify([
+        { name: 'Hoạt Hình 3D', slug: 'hoat-hinh' },
+        { name: 'Tiên Hiệp', slug: 'the-loai/tien-hiep' },
+        { name: 'Huyền Huyễn', slug: 'the-loai/huyen-huyen' },
+        { name: 'Kiếm Hiệp', slug: 'the-loai/kiem-hiep' },
+        { name: 'Cổ Trang', slug: 'the-loai/co-trang' },
+        { name: 'Xuyên Không', slug: 'the-loai/xuyen-khong' },
+        { name: 'Hành Động', slug: 'the-loai/hanh-dong' },
+        { name: 'Trùng Sinh', slug: 'the-loai/trung-sinh' }
+    ]);
 }
 
-// ĐÃ SỬA: Lỗi cú pháp khai báo biến trong JSON.stringify
 function getFilterConfig() {
-    try {
-        var listurl = getLISTmenu();
-        var menulist = buildMenu(listurl);
-        return JSON.stringify({
-            category: menulist
-        });
-    } catch (e) {
-        log("getFilterConfig[err]:\n " + e);
-        return JSON.stringify({ category: [] });
-    }
+    return JSON.stringify({
+        sort: [
+            { name: 'Mới cập nhật', value: 'modified.time' },
+            { name: 'Năm phát hành', value: 'year' },
+            { name: 'Lượt xem', value: 'view' }
+        ]
+    });
 }
 
 // =============================================================================
@@ -70,445 +65,252 @@ function getFilterConfig() {
 
 function getUrlList(slug, filtersJson) {
     try {
-        log("getUrlList[url]: \n" + slug);
+        var filters = JSON.parse(filtersJson || "{}");
+        var page = filters.page || 1;
+        var limit = filters.limit || 24;
 
-        // 1. Kiểm tra nếu slug là link tuyệt đối (chứa http) và không có bộ lọc thì trả về luôn
-        if ((slug && slug.indexOf("http") > -1) || (slug && slug.indexOf("search") > -1)) {
-            // thường là link search sẽ bị trả về ở đây
-            return slug;
-        }
-        let page = 1;
-        let path = slug || "";
+        var baseUrl = "https://phimapi.com/v1/api";
+        var finalPath = "";
 
-        // 2. Xử lý an toàn filtersJson nếu có truyền vào
-        if (filtersJson) {
-            // Nếu có số trang hoặc có menu categ
-            // Sửa lỗi nếu JSON thiếu dấu ngoặc kép ở key hoặc sai cú pháp cơ bản
-            let fixedJson = filtersJson.replace(/([{,])\s*([a-zA-Z0-9_]+)\s*:/g, '$1"$2":')
-                .replace(/:,/g, ':');
-
-            try {
-                let filters = JSON.parse(fixedJson);
-                page = parseInt(filters.page) || 1;
-
-                // Nếu có category trong JSON, ưu tiên lấy category làm đường dẫn (path)
-                if (filters.category) {
-                    if (Array.isArray(filters.category) && filters.category.length > 0) {
-                        path = filters.category[0].slug;
-                    } else if (typeof filters.category === 'string') {
-                        path = filters.category;
-                    }
-                }
-            } catch (jsonErr) {}
+        if (slug === 'hoat-hinh' || slug === 'phim-bo' || slug === 'phim-le') {
+            finalPath = "/danh-sach/" + slug;
+        } else if (slug === 'trung-quoc') {
+            finalPath = "/quoc-gia/trung-quoc";
+        } else if (slug.indexOf('the-loai/') === 0) {
+            finalPath = "/the-loai/" + slug.replace('the-loai/', '');
+        } else if (slug.indexOf('quoc-gia/') === 0) {
+            finalPath = "/quoc-gia/" + slug.replace('quoc-gia/', '');
+        } else if (filters.category) {
+            finalPath = "/the-loai/" + filters.category;
+        } else {
+            finalPath = "/the-loai/" + slug;
         }
 
-        // 5. Nối chuỗi URL kết quả
-        let resultUrl = BASEURL;
-        if (path) {
-            resultUrl += path;
+        var url = baseUrl + finalPath + "?page=" + page + "&limit=" + limit;
+
+        if (slug !== 'hoat-hinh' && finalPath.indexOf('danh-sach') === -1) {
+            url += "&category=hoat-hinh";
         }
 
-        if (page > 1) {
-            resultUrl += "?page=" + page;
+        if (filters.sort) {
+            url += "&sort_field=" + filters.sort;
         }
 
-        // Trả về kết quả, chỉ gộp dấu // ở phần path, giữ nguyên https://
-        var finalUrl = resultUrl.replace(/([^:]\/)\/+/g, "$1");
-        log("getUrlList[url]: \n" + finalUrl);
-        return finalUrl;
-
+        return url;
     } catch (e) {
-        log("getUrlList[err]:\n " + e);
-        // Trả về URL gốc an toàn nếu có lỗi
-        let fallback = BASEURL + (slug ? "/" + slug : "");
-        var resFallback = fallback.replace(/([^:]\/)\/+/g, "$1");
-        log("getUrlList[url]: \n" + resFallback);
-        return resFallback;
+        return "https://phimapi.com/v1/api/danh-sach/hoat-hinh?page=1&limit=24";
     }
 }
 
 function getUrlSearch(keyword, filtersJson) {
     try {
-        var page = 1;
-        var path = "";
-
-        // 2. Xử lý an toàn filtersJson nếu có truyền vào
-        if (filtersJson) {
-            var fixedJson = filtersJson.replace(/([{,])\s*([a-zA-Z0-9_]+)\s*:/g, '$1"$2":')
-                .replace(/:,/g, ':');
-            try {
-                var filters = JSON.parse(fixedJson);
-                page = parseInt(filters.page) || 1;
-            } catch (jsonErr) {}
-
-            if (page > 1) {
-                var resUrlPage = BASEURL + "/search?keysearch=" + encodeURIComponent(keyword) + "&page=" + page;
-                log("getUrlSearch[url]: \n" + resUrlPage);
-                return resUrlPage;
-            }
-        }
-        var resUrl = BASEURL + "/search?keysearch=" + encodeURIComponent(keyword);
-        log("getUrlSearch[url]: \n" + resUrl);
-        return resUrl;
-
+        var filters = JSON.parse(filtersJson || "{}");
+        var page = filters.page || 1;
+        var limit = filters.limit || 24;
+        return "https://phimapi.com/v1/api/tim-kiem?keyword=" + encodeURIComponent(keyword.trim()) + "&page=" + page + "&limit=" + limit;
     } catch (e) {
-        log("getUrlSearch[err]:\n " + e);
-        var fallbackUrl = BASEURL + "/search?keysearch=" + encodeURIComponent(keyword || "");
-        log("getUrlSearch[url]: \n" + fallbackUrl);
-        return fallbackUrl;
+        return "https://phimapi.com/v1/api/tim-kiem?keyword=" + encodeURIComponent(keyword) + "&page=1&limit=24";
     }
 }
 
 function getUrlDetail(slug) {
-    try {
-        log("getUrlDetail[url]: \n" + slug);
-        if (!slug) return "";
-        if (slug.indexOf('http') === 0) return slug;
-        var resUrl = BASEURL + "/" + slug;
-        log("getUrlDetail[url]: \n" + resUrl);
-        return resUrl;
-    } catch (e) {
-        log("getUrlDetail[err]:\n " + e);
-        return "";
+    var cleanSlug = slug;
+    if (cleanSlug.indexOf("http") === 0) {
+        var parts = cleanSlug.split('/');
+        cleanSlug = parts[parts.length - 1];
     }
+    if (cleanSlug.startsWith("/")) cleanSlug = cleanSlug.substring(1);
+    if (cleanSlug.startsWith("phim/")) cleanSlug = cleanSlug.substring(5);
+
+    return "https://phimapi.com/v1/api/phim/" + cleanSlug;
 }
 
-function getUrlCategories() {
-    try {
-        log("getUrlCategories[url]: \n" + BASEURL);
-        return BASEURL;
-    } catch (e) {
-        log("getUrlCategories[err]:\n " + e);
-        return "";
-    }
-}
-
-function getUrlCountries() {
-    try {
-        return "";
-    } catch (e) {
-        log("getUrlCountries[err]:\n " + e);
-        return "";
-    }
-}
-
-function getUrlYears() {
-    try {
-        return "";
-    } catch (e) {
-        log("getUrlYears[err]:\n " + e);
-        return "";
-    }
-}
+function getUrlCategories() { return "https://phimapi.com/v1/api/the-loai"; }
+function getUrlCountries() { return "https://phimapi.com/v1/api/quoc-gia"; }
+function getUrlYears() { return "https://phimapi.com/v1/api/nam-phat-hanh"; }
 
 // =============================================================================
 // PARSERS
 // =============================================================================
 
-function parseListResponse(html, $url) {
+function parseListResponse(apiResponseJson) {
     try {
-        log("parseListResponse[url]: \n" + $url);
-        var items = [];
+        var response = JSON.parse(apiResponseJson);
+        var data = response.data || {};
+        var items = data.items || [];
+        var params = data.params || {};
+        var pagination = params.pagination || {};
 
-        _$(html).find(".flw-item").each(function () {
-            var year = "";
-            var lang = "";
-            var current = this.find(".tick-rate").text();
-            var href = this.find("a").attr("href");
-            var quality = this.find(".tick-dub").text();
-            var title = this.find("a").attr("title");
-            var src = this.find("img").attr("src");
-            if (src.indexOf("http") == -1) {
-                src = BASEURL + src;
-            }
+        var movies = items.map(function (item) {
+            var poster = item.poster_url || "";
+            var thumb = item.thumb_url || "";
+            if (poster && poster.indexOf("http") !== 0) poster = "https://phimimg.com/" + poster;
+            if (thumb && thumb.indexOf("http") !== 0) thumb = "https://phimimg.com/" + thumb;
 
-            if (href && href.indexOf("http") > -1) {
-                var cleanThumb = src.replace(/&amp;/g, '&');
-
-                items.push({
-                    "id": href,
-                    "title": title.trim(),
-                    "posterUrl": cleanThumb,
-                    "backdropUrl": cleanThumb,
-                    "quality": quality,
-                    "episode_current": current
-                });
-            }
+            return {
+                id: item.slug,
+                title: item.name,
+                posterUrl: poster || thumb,
+                backdropUrl: thumb || poster,
+                year: item.year || 0,
+                quality: item.quality || "FHD",
+                episode_current: item.episode_current || "",
+                lang: item.lang || "Vietsub"
+            };
         });
+
+        var totalItems = pagination.totalItems || movies.length;
+        var perPage = pagination.totalItemsPerPage || 24;
+        var totalPages = pagination.totalPages || Math.ceil(totalItems / perPage) || 1;
 
         return JSON.stringify({
-            "items": items,
-            "pagination": {
-                "currentPage": 1,
-                "totalPages": 999
+            items: movies,
+            pagination: {
+                currentPage: pagination.currentPage || 1,
+                totalPages: totalPages,
+                totalItems: totalItems,
+                itemsPerPage: perPage
             }
         });
-
-    } catch (e) {
-        log("parseListResponse[err]:\n " + e);
-        return JSON.stringify({
-            "items": [{
-                "id": $url,
-                "title": "Lỗi: " + e,
-                "posterUrl": "",
-                "backdropUrl": ""
-            }],
-            "pagination": {
-                "currentPage": 1,
-                "totalPages": 1
-            }
-        });
+    } catch (error) {
+        log("parseListResponse error: " + error);
+        return JSON.stringify({ items: [], pagination: { currentPage: 1, totalPages: 1 } });
     }
 }
 
-function parseSearchResponse(html) {
-    try {
-        return parseListResponse(html);
-    } catch (e) {
-        log("parseSearchResponse[err]:\n " + e);
-        return JSON.stringify({
-            "items": [],
-            "pagination": {
-                "currentPage": 1,
-                "totalPages": 1
-            }
-        });
-    }
+function parseSearchResponse(apiResponseJson) {
+    return parseListResponse(apiResponseJson);
 }
 
-function parseMovieDetail(htmlContent, url) {
+function parseMovieDetail(apiResponseJson) {
     try {
-        log("parseMovieDetail[url]: \n" + url);
-
-        // === BƯỚC 1: ĐỒNG NHẤT ID PHIM BẰNG REGEX META (Y hệt tác giả) ===
-        var idMatch = /<link\s+rel="canonical"\s+href="([^"]+)"/i.exec(htmlContent) ||
-            /<meta\s+property="og:url"\s+content="([^"]+)"/i.exec(htmlContent);
-        var id = idMatch ? idMatch[1] : (url || "");
-
-        var slug = "";
-        if (id) {
-            var slugMatch = /\/phim\/([^/_.]+)/.exec(id);
-            slug = slugMatch ? slugMatch[1] : id;
-        }
-        if (!slug) {
-            var slugMatch2 = /\/phim\/([^/_.]+)/.exec(htmlContent);
-            slug = slugMatch2 ? slugMatch2[1] : "";
-        }
-
-        // === BƯỚC 2: TRÍCH XUẤT THÔNG TIN PHIM ===
-        var lurl = "";
-        var limg = "";
-        var lname = "Đang cập nhật...";
-        var ldes = "Không có mô tả.";
-        var ldirec = "";
-        var lactor = "";
-        var lduran = "";
-        var status = "";
-        var category = "";
-        var episode_current = "";
-        var year = "";
-
-        var rmatch = htmlContent.match(/meta\s+property="og:url"\s+content="([^"]+)"/i);
-        if (rmatch && rmatch[1]) lurl = rmatch[1];
-
-        rmatch = htmlContent.match(/meta\s+property="og:image"\s+content="([^"]+)"/i);
-        if (rmatch && rmatch[1]) limg = rmatch[1];
-
-        rmatch = htmlContent.match(/meta\s+property="og:title"\s+content="([^"]+)"/i);
-        if (rmatch && rmatch[1]) lname = rmatch[1];
-
-        rmatch = htmlContent.match(/meta\s+property="og:description"\s+content="([^"]+)"/i);
-        if (rmatch && rmatch[1]) ldes = rmatch[1];
-
-        rmatch = htmlContent.match(/meta\s+property="video:duration"\s+content="([^"]+)"/i);
-        if (rmatch && rmatch[1]) lduran = rmatch[1];
-
-        status = _$(htmlContent).find("span:content('Trạng thái:')").next().text();
-        year = _$(htmlContent).find("span:content('Năm:')").next().text();
-        category = _$(htmlContent).find("span:content('Thể loại:')").parent().text(", ").replace('Thể loại:, ', '');
-        episode_current = _$(htmlContent).find("span:content('Tập mới nhất:')").next().text();
+        var response = JSON.parse(apiResponseJson);
+        var movie = (response.data && response.data.item) || response.movie || {};
+        var rawEpisodes = (movie && movie.episodes) || response.episodes || [];
 
         var servers = [];
-        var $parent = _$(htmlContent).find('.detail-infor-content');
-        var $child = $parent.find("li");
-        $child.find("a").each(function() {
-            var nameServer = this.text();
-            var idserver = this.attr("href");
-            var items = [];
-            var items4k = [];
-            $parent.find(idserver).find("a").each(function() {
-                var name = this.find("div").text();
-                var item = {
-                    id: this.attr("href"),
-                    name: name,
-                    slug: "tap-" + name.replace(/\s/, "-")
-                };
-                items.push(item);
-                
-                var item4k = {
-                    id: this.attr("href") + "?type=4k",
-                    name: name,
-                    slug: "tap-" + name.replace(/\s/, "-")
-                };
-                items4k.push(item4k);
-            });
-            servers.push({
-                name: nameServer,
-                episodes: items
-            });
-            servers.push({
-                name: nameServer + " [4K]",
-                episodes: items4k
-            });
-        });
-
-        function getEpisodeNumber(name) {
-            const match = name.match(/\d+/);
-            return match ? parseInt(match[0], 10) : 0;
-        }
-
-        // Duyệt qua từng server để sort mảng episodes bên trong
-        servers.forEach(server => {
-            if (server.episodes && Array.isArray(server.episodes)) {
-                server.episodes.sort((a, b) => {
-                    return getEpisodeNumber(a.name) - getEpisodeNumber(b.name);
+        for (var s = 0; s < rawEpisodes.length; s++) {
+            var server = rawEpisodes[s];
+            var episodes = [];
+            if (server.server_data) {
+                for (var e = 0; e < server.server_data.length; e++) {
+                    var ep = server.server_data[e];
+                    var epLink = ep.link_m3u8 || ep.link_embed || "";
+                    if (epLink) {
+                        episodes.push({
+                            id: epLink,
+                            name: ep.name || ("Tập " + (e + 1)),
+                            slug: ep.slug || ("tap-" + (e + 1))
+                        });
+                    }
+                }
+            }
+            if (episodes.length > 0) {
+                servers.push({
+                    name: server.server_name || ("Server " + (s + 1)),
+                    episodes: episodes
                 });
             }
-        });
+        }
 
-        var extra = "";
-        var isPlayPage = /\/tap-/.test(id);
+        var rating = 0;
+        if (movie.tmdb && movie.tmdb.vote_average) {
+            rating = movie.tmdb.vote_average;
+        }
 
-        if (!isPlayPage) {
-            var playBtnMatch = _$(htmlContent).find(".film-buttons").find("a").attr("href");
-            if (playBtnMatch) {
-                extra = playBtnMatch;
+        var categories = [];
+        if (movie.category) {
+            for (var c = 0; c < movie.category.length; c++) {
+                categories.push(movie.category[c].name);
+            }
+        }
+        var countries = [];
+        if (movie.country) {
+            for (var ct = 0; ct < movie.country.length; ct++) {
+                countries.push(movie.country[ct].name);
             }
         }
 
+        var poster = movie.poster_url || "";
+        var thumb = movie.thumb_url || "";
+        if (poster && poster.indexOf("http") !== 0) poster = "https://phimimg.com/" + poster;
+        if (thumb && thumb.indexOf("http") !== 0) thumb = "https://phimimg.com/" + thumb;
+
         return JSON.stringify({
-            id: id,
-            title: lname,
-            posterUrl: limg,
-            backdropUrl: limg,
-            description: ldes,
-            quality: "HD",
-            year: year,
-            rating: 8.5,
-            status: status,
-            category: category,
-            episode_current: episode_current,
+            id: movie.slug,
+            title: movie.name,
+            originName: movie.origin_name || "",
+            posterUrl: poster || thumb,
+            backdropUrl: thumb || poster,
+            description: (movie.content || "").replace(/<[^>]*>/g, ""),
+            year: movie.year || 0,
+            rating: rating || 9.0,
+            quality: movie.quality || "FHD",
             servers: servers,
-            duration: lduran || "",
-            casts: lactor || "",
-            director: ldirec || "",
-            extra: extra
+            episode_current: movie.episode_current || "",
+            episode_total: movie.episode_total || "",
+            lang: movie.lang || "Vietsub",
+            status: movie.status || "",
+            category: categories.join(", "),
+            country: countries.join(", "),
+            director: (movie.director && movie.director.length > 0) ? movie.director.join(", ") : "",
+            casts: (movie.actor && movie.actor.length > 0) ? movie.actor.join(", ") : ""
         });
-
-    } catch (e) {
-        log("parseMovieDetail[err]:\n " + e);
-        return JSON.stringify({
-            id: slug || url || "error",
-            title: "error",
-            servers: []
-        });
+    } catch (error) {
+        log("parseMovieDetail error: " + error);
+        return JSON.stringify({ id: "error", title: "", servers: [] });
     }
 }
 
-function parseDetailResponse(html, url) {
+function parseDetailResponse(apiResponseJson, requestedUrl) {
     try {
-        log("parseDetailResponse[url]: \n" + url);
-        var allLink = [];
-        _$(html).find('div[class*="list-severs"]').find("a").each(function() {
-            var name = this.text();
-            var link = this.attr("data-src");
-            allLink.push({ link: link, name: name });
-        });
+        var streamUrl = requestedUrl || "";
 
-        let selectedLink = null;
-        const pool = { k4: null, hd: null, anyM3u8: null, anyEmbed: null };
-        allLink.forEach((item) => {
-            if (item.name.match(/4k/i) && item.link.endsWith('.m3u8')) {
-                pool.k4 = item.link;
-            } else if (item.name.match(/1080/i) && item.link.endsWith('.m3u8')) {
-                pool.hd = item.link;
-            } else if (item.link.endsWith('.m3u8')) {
-                pool.anyM3u8 = item.link;
-            } else if (item.link.includes('abyss')) {
-                pool.anyEmbed = item.link;
+        if (streamUrl.indexOf("http") === 0) {
+            // Đã là direct stream link
+        } else if (typeof apiResponseJson === 'string' && apiResponseJson.indexOf("http") === 0) {
+            streamUrl = apiResponseJson;
+        } else {
+            var response = JSON.parse(apiResponseJson);
+            var movie = (response.data && response.data.item) || response.movie || {};
+            var episodes = (movie && movie.episodes) || response.episodes || [];
+            if (episodes.length > 0 && episodes[0].server_data && episodes[0].server_data.length > 0) {
+                streamUrl = episodes[0].server_data[0].link_m3u8 || episodes[0].server_data[0].link_embed || "";
             }
-        });
-
-        selectedLink = pool.hd || pool.k4 || pool.anyM3u8 || pool.anyEmbed;
-        if (url.indexOf("type=4k") > -1) {
-            selectedLink = pool.k4 || pool.hd || pool.anyM3u8 || pool.anyEmbed;
-            log("parseDetailResponse[url]: \nĐã chọn 4K: " + selectedLink);
         }
 
-        var streamlink = selectedLink ? selectedLink.replace(/(https?:\/\/[^\/]+)\/[^]+?\/([^\/]+\.m3u8)$/, '$1/stream/m3u8/$2') : "";
-        
         return JSON.stringify({
-            "url": streamlink,
-            "isEmbed": false,
-            "mimeType": "application/x-mpegURL",
-            "headers": {
-                "Referer": BASEURL,
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            url: streamUrl,
+            isEmbed: false,
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Referer": "https://phimapi.com/"
             },
-            "subtitles": []
+            subtitles: []
         });
-
-    } catch (e) {
-        log("parseDetailResponse[err]:\n " + e);
-        return JSON.stringify({ "url": "", "headers": {} });
+    } catch (error) {
+        return JSON.stringify({
+            url: requestedUrl || "",
+            headers: {}
+        });
     }
 }
 
-function sortEpisodesByName(data) {
-    try {
-        data.forEach(server => {
-            if (server.episodes && Array.isArray(server.episodes)) {
-                server.episodes.sort((a, b) => {
-                    const matchA = a.name.match(/Tập\s*(\d+)/i);
-                    const matchB = b.name.match(/Tập\s*(\d+)/i);
+function parsePlayerUrl(apiResponseJson, requestedUrl) {
+    return parseDetailResponse(apiResponseJson, requestedUrl);
+}
 
-                    const numA = matchA ? parseInt(matchA[1], 10) : 0;
-                    const numB = matchB ? parseInt(matchB[1], 10) : 0;
-
-                    return numA - numB;
-                });
-            }
-        });
-        return data;
-    } catch (e) {
-        log("sortEpisodesByName[err]:\n " + e);
-        return data;
-    }
+function parseEpisodePlayer(apiResponseJson, requestedUrl) {
+    return parseDetailResponse(apiResponseJson, requestedUrl);
 }
 
 function parseCategoriesResponse(apiResponseJson) {
     try {
-        var listurl = getLISTmenu();
-        var menulist = buildMenu(listurl);
-        return JSON.stringify(menulist);
-    } catch (e) {
-        log("parseCategoriesResponse[err]:\n " + e);
-        return JSON.stringify([]);
-    }
+        var response = JSON.parse(apiResponseJson);
+        var items = response.data && response.data.items ? response.data.items : [];
+        return JSON.stringify(items.map(function (i) { return { name: i.name, slug: "the-loai/" + i.slug }; }));
+    } catch (e) { return "[]"; }
 }
 
 function parseCountriesResponse(html) { return "[]"; }
 function parseYearsResponse(html) { return "[]"; }
-
-function getLISTmenu() {
-    return `
-/the-loai/huyen-huyen@@Huyền Huyễn
-/the-loai/xuyen-khong@@Xuyên Không
-/the-loai/trung-sinh@@Trùng Sinh
-/the-loai/tien-hiep@@Tiên Hiệp
-/the-loai/co-trang@@Cổ Trang
-/the-loai/hai-huoc@@Hài Hước
-/the-loai/kiem-hiep@@Kiếm Hiệp
-/the-loai/hien-dai@@Hiện Đại
-`;
-}
