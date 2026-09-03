@@ -3,7 +3,7 @@
 // https://film4k.net/
 // =============================================================================
 
-var BASEURL = " https://fiml4k.fun/";
+var BASEURL = "https://film4k.net";
 var _cachedCategories = null;
 
 function getManifest() {
@@ -12,13 +12,13 @@ function getManifest() {
         "name": "Film4K",
         "description": "Nguồn phim Film4K độ nét cao, tốc độ phát nhanh.",
         "info": "Nguồn phim Film4K độ nét cao, tốc độ phát nhanh.",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/4kmovies.png",
         "isEnabled": true,
         "isAdult": false,
         "type": "MOVIE",
-        "playerType": "auto"
+        "playerType": "embed"
     });
 }
 
@@ -407,25 +407,204 @@ function parseDetailResponse(html, url) {
             });
         }
 
-        var isEmbed = false;
-        var mimeType = "video/mp4";
-        if (streamUrl.indexOf(".m3u8") > -1) {
-            mimeType = "application/x-mpegURL";
-        }
+        var customJs = textJS(streamUrl);
         
         return JSON.stringify({
             "url": streamUrl,
-            "isEmbed": isEmbed,
-            "mimeType": mimeType,
+            "isEmbed": true,
             "headers": {
                 "Referer": BASEURL + "/",
                 "Origin": BASEURL,
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Custom-Js": customJs.trim()
             }
         });
     } catch (e) {
-        return JSON.stringify({ "url": url || "", "isEmbed": false, "headers": {} });
+        return JSON.stringify({ "url": url || "", "isEmbed": true, "headers": {} });
     }
+}
+
+function textJS(streamUrl) {
+    return `
+(function() {
+    'use strict';
+    var targetStreamUrl = ${JSON.stringify(streamUrl)} || window.location.href;
+
+    var style = document.createElement('style');
+    style.innerHTML = 'html, body { background: #000 !important; color: #fff; margin: 0; padding: 0; width: 100vw; height: 100vh; overflow: hidden; }' +
+        '#film4k-player-wrap { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 999999; display: flex; align-items: center; justify-content: center; }' +
+        '#film4k-video { width: 100%; height: 100%; object-fit: contain; background: #000; outline: none; }' +
+        '#film4k-loader { position: absolute; width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.2); border-top-color: #5b6cff; border-radius: 50%; animation: f4kspin 1s linear infinite; z-index: 10; pointer-events: none; }' +
+        '@keyframes f4kspin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }';
+    document.head.appendChild(style);
+
+    function initPlayerDOM() {
+        if (document.getElementById('film4k-player-wrap')) return;
+
+        var wrap = document.createElement('div');
+        wrap.id = 'film4k-player-wrap';
+
+        var video = document.createElement('video');
+        video.id = 'film4k-video';
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('webkit-playsinline', 'true');
+
+        var loader = document.createElement('div');
+        loader.id = 'film4k-loader';
+
+        wrap.appendChild(video);
+        wrap.appendChild(loader);
+        document.body.appendChild(wrap);
+
+        video.addEventListener('loadeddata', function() { loader.style.display = 'none'; });
+        video.addEventListener('playing', function() { loader.style.display = 'none'; });
+        video.addEventListener('waiting', function() { loader.style.display = 'block'; });
+        video.addEventListener('error', function() { loader.style.display = 'none'; });
+
+        loadHlsScript(function() {
+            setupHlsPlayback(video, targetStreamUrl, loader);
+        });
+    }
+
+    function loadHlsScript(callback) {
+        if (window.Hls) {
+            callback();
+            return;
+        }
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.17/hls.min.js';
+        s.onload = function() { callback(); };
+        s.onerror = function() {
+            var s2 = document.createElement('script');
+            s2.src = 'https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js';
+            s2.onload = function() { callback(); };
+            document.body.appendChild(s2);
+        };
+        document.body.appendChild(s);
+    }
+
+    function createCustomHlsLoader(HlsClass) {
+        var BaseLoader = HlsClass.DefaultConfig.loader;
+        function CustomLoader(config) {
+            BaseLoader.call(this, config);
+            var originalLoad = this.load.bind(this);
+            this.load = function(context, config, callbacks) {
+                var origOnSuccess = callbacks.onSuccess;
+                callbacks.onSuccess = function(response, stats, context, networkDetails) {
+                    if (response && response.data instanceof ArrayBuffer) {
+                        var u8 = new Uint8Array(response.data);
+                        // Check if starts with fake PNG header (\x89PNG)
+                        if (u8.length > 8 && u8[0] === 0x89 && u8[1] === 0x50 && u8[2] === 0x4E && u8[3] === 0x47) {
+                            var offset = 67;
+                            for (var i = 0; i < Math.min(200, u8.length - 8); i++) {
+                                if (u8[i] === 0x49 && u8[i+1] === 0x45 && u8[i+2] === 0x4E && u8[i+3] === 0x44) {
+                                    offset = i + 8;
+                                    break;
+                                }
+                            }
+                            response.data = response.data.slice(offset);
+                        }
+                    }
+                    origOnSuccess(response, stats, context, networkDetails);
+                };
+                originalLoad(context, config, callbacks);
+            };
+        }
+        CustomLoader.prototype = Object.create(BaseLoader.prototype);
+        CustomLoader.prototype.constructor = CustomLoader;
+        return CustomLoader;
+    }
+
+    function setupHlsPlayback(video, streamUrl, loader) {
+        // TV Remote & Keyboard Controls
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    e.preventDefault();
+                    video.currentTime = Math.max(0, video.currentTime - 10);
+                    break;
+                case 'ArrowRight':
+                    e.preventDefault();
+                    if (video.duration) video.currentTime = Math.min(video.duration, video.currentTime + 10);
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    video.volume = Math.min(1, video.volume + 0.1);
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault();
+                    video.volume = Math.max(0, video.volume - 0.1);
+                    break;
+                case ' ':
+                case 'Enter':
+                case 'k':
+                case 'K':
+                    e.preventDefault();
+                    if (video.paused) video.play();
+                    else video.pause();
+                    break;
+                case 'm':
+                case 'M':
+                    e.preventDefault();
+                    video.muted = !video.muted;
+                    break;
+            }
+        });
+
+        if (window.Hls && window.Hls.isSupported()) {
+            var CustomLoader = createCustomHlsLoader(window.Hls);
+            var hls = new window.Hls({
+                pLoader: CustomLoader,
+                fLoader: CustomLoader,
+                loader: CustomLoader,
+                enableWorker: true,
+                lowLatencyMode: false
+            });
+
+            hls.loadSource(streamUrl);
+            hls.attachMedia(video);
+
+            hls.on(window.Hls.Events.MANIFEST_PARSED, function() {
+                loader.style.display = 'none';
+                video.play().catch(function() {
+                    video.muted = true;
+                    video.play();
+                });
+            });
+
+            hls.on(window.Hls.Events.ERROR, function(event, data) {
+                console.error('HLS Error:', data);
+                if (data.fatal) {
+                    switch (data.type) {
+                        case window.Hls.ErrorTypes.NETWORK_ERROR:
+                            hls.startLoad();
+                            break;
+                        case window.Hls.ErrorTypes.MEDIA_ERROR:
+                            hls.recoverMediaError();
+                            break;
+                        default:
+                            hls.destroy();
+                            break;
+                    }
+                }
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = streamUrl;
+            video.addEventListener('canplay', function() {
+                video.play();
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPlayerDOM);
+    } else {
+        initPlayerDOM();
+    }
+})();
+`;
 }
 
 function parseEpisodePlayer(response, url) {
