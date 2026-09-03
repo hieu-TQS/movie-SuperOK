@@ -46,7 +46,7 @@
         {
             "id": "nguoncnew",
             "name": "Nguồn C (WEB)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguoncnew.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png",
             "info": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo."
