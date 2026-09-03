@@ -53,7 +53,7 @@
         },
         {
             "id": "film4k",
-            "name": "Film 4K (EXO)",
+            "name": "Film 4K (WEB)",
             "version": "1.0.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kmovie_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/film4k.png",
