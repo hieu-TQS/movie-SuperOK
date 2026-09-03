@@ -43,6 +43,16 @@
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/vsmov.png",
             "info": "Kho phim API VSMOV chất lượng cao (HD/4K, Vietsub, Lồng Tiếng)."
         },
+
+         {
+            "id": "hay20",
+            "name": "xem20  (EXO)",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xem20_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xem20.png",
+            "info": "Kho phim chất lượng cao (HD/4K, Vietsub, Lồng Tiếng)."
+        },
+        
         {
             "id": "nguoncnew",
             "name": "Nguồn C (WEB)",
