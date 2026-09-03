@@ -46,7 +46,7 @@
         {
             "id": "nguoncnew",
             "name": "Nguồn C (WEB)",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguoncnew.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png",
             "info": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo."
@@ -55,7 +55,7 @@
             "id": "film4k",
             "name": "Film 4K (WEB)",
             "version": "1.0.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/4kmovie_plugin.js",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/film4k_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/4kmovies.png",
             "info": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao."
         },
