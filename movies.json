@@ -51,14 +51,7 @@
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png",
             "info": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo."
         },
-        {
-            "id": "film4k",
-            "name": "Film 4K (WEB)",
-            "version": "1.0.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/film4k_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/4kmovies.png",
-            "info": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao."
-        },
+
 
         {
             "id": "tvhay",
@@ -181,6 +174,34 @@
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
             "info": "Nguồn livestream và video trực tuyến SexLive."
         },
+
+          {
+            "id": "sexliveporn",
+            "name": "SEX live porn (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexliveporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexliveporn.png",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+
+         {
+            "id": "vnCHICH",
+            "name": "VN chịch (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/vnchich_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/vnchich.png",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+
+        {
+            "id": "xNhau",
+            "name": "Xnhau (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xnhau_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+        
         {
             "id": "archivebate",
             "name": "LIVE record (ALL)",
