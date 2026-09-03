@@ -1,9 +1,9 @@
 // =============================================================================
 // SexLive.cc Plugin (Tương thích 100% Rhino JS & Android TV)
-// https://sexlive.cc/
+// https://sexlive.life//
 // =============================================================================
 
-var BASEURL = "https://sexlive.cc";
+var BASEURL = "https://sexlive.life/";
 var _cachedCategories = null;
 
 function getManifest() {
