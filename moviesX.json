@@ -2,70 +2,7 @@
     "version": 1,
     "plugins": [
         
-        {
-            "id": "shortflix",
-            "name": "shortflix (EXO)",
-            "version": "1.0.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/shortflix_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/shortflix.png",
-            "info": "Phim ngắn Shortflix bản v1.0.0 phát mượt mà hỗ trợ phụ đề tiếng Việt."
-        },
-        {
-            "id": "phimchill",
-            "name": "Phim Chill (EXO)",
-            "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimchill_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimchill.png",
-            "info": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh."
-        },
-        {
-            "id": "onflix",
-            "name": "Onflix (ALL)",
-            "version": "1.0.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/onflix_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/onflix.png",
-            "info": "Kho phim trực tuyến Onflix đa dạng, xem mượt."
-        },
-        {
-            "id": "motchill",
-            "name": "Motchill (ALL)",
-            "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motchill_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
-            "info": "Trang xem phim Motchill phim mới cập nhật liên tục."
-        },
-        {
-            "id": "hh3d",
-            "name": "Hoạt Hình 3D (ALL)",
-            "version": "1.0.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hh3d_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hh3d.png",
-            "info": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng FHD."
-        },
-        {
-            "id": "yanhh3d",
-            "name": "YAN HH3D (ALL)",
-            "version": "1.0.2",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/yanhh3d_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/yanhh3d.png",
-            "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh."
-        },
-        {
-            "id": "animehay",
-            "name": "Anime hay (ALL)",
-            "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animehay.png",
-            "info": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà."
-        },
-        {
-            "id": "animevietsub",
-            "name": "Anime Vietsub (ALL)",
-            "version": "1.0.0",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
-            "info": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất."
-        },
+        
         {
             "id": "aznude",
             "name": "AZ nude (ALL)",
