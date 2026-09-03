@@ -1,0 +1,354 @@
+{
+    "version": 1,
+    "plugins": [
+        
+        {
+            "id": "shortflix",
+            "name": "shortflix (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/shortflix_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/shortflix.png",
+            "info": "Phim ngắn Shortflix bản v1.0.0 phát mượt mà hỗ trợ phụ đề tiếng Việt."
+        },
+        {
+            "id": "phimchill",
+            "name": "Phim Chill (EXO)",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimchill_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimchill.png",
+            "info": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh."
+        },
+        {
+            "id": "onflix",
+            "name": "Onflix (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/onflix_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/onflix.png",
+            "info": "Kho phim trực tuyến Onflix đa dạng, xem mượt."
+        },
+        {
+            "id": "motchill",
+            "name": "Motchill (ALL)",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motchill_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
+            "info": "Trang xem phim Motchill phim mới cập nhật liên tục."
+        },
+        {
+            "id": "hh3d",
+            "name": "Hoạt Hình 3D (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hh3d_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hh3d.png",
+            "info": "Kho phim Hoạt Hình 3D Trung Quốc siêu hay, chất lượng FHD."
+        },
+        {
+            "id": "yanhh3d",
+            "name": "YAN HH3D (ALL)",
+            "version": "1.0.2",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/yanhh3d_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/yanhh3d.png",
+            "info": "Hoạt hình 3D YAN chất lượng cao, cập nhật tập mới nhanh."
+        },
+        {
+            "id": "animehay",
+            "name": "Anime hay (ALL)",
+            "version": "1.0.1",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animehay_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animehay.png",
+            "info": "Nguồn phim Anime Hay Vietsub chất lượng HD mượt mà."
+        },
+        {
+            "id": "animevietsub",
+            "name": "Anime Vietsub (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
+            "info": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất."
+        },
+        {
+            "id": "aznude",
+            "name": "AZ nude (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/aznude_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/aznude.ico",
+            "info": "Kho video giải trí nghệ thuật AZNude."
+        },
+        {
+            "id": "videoceleb",
+            "name": "video celebs (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/videocelebs_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/videoceleb.png",
+            "info": "Kho cảnh người nổi tiếng VideoCelebs HD Stream."
+        },
+        {
+            "id": "sexlive",
+            "name": "SEX live (EXO)",
+            "version": "1.0.2",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexlive_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+
+          {
+            "id": "sexliveporn",
+            "name": "SEX live porn (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexliveporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexliveporn.png",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+
+         {
+            "id": "vnCHICH",
+            "name": "VN chịch (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/vnchich_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/vnchich.png",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+
+        {
+            "id": "xNhau",
+            "name": "Xnhau (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xnhau_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
+            "info": "Nguồn livestream và video trực tuyến SexLive."
+        },
+        
+        {
+            "id": "archivebate",
+            "name": "LIVE record (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/archivebate_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/archivebate.png",
+            "info": "Kho lưu trữ livestream và video Archivebate lớn nhất."
+        },
+        {
+            "id": "pornhub",
+            "name": "PornHUB (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/pornhub_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/pornhub.png",
+            "info": "Nguồn video giải trí người lớn Pornhub Full HD."
+        },
+        {
+            "id": "Xvideos",
+            "name": "Xvideos (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xvideos_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/Xvideos.png",
+            "info": "Kho video người lớn XVideos hỗ trợ HLS Full HD đa chất lượng."
+        },
+        {
+            "id": "trannyone",
+            "name": "TrannyONE (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/tranny_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/trannyone.png",
+            "info": "Kho video Trans / Shemale chất lượng cao Tranny.one hỗ trợ MP4 HD."
+        },
+        {
+            "id": "porntrex",
+            "name": "PorntreX (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/porntrex_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/porntrex.ico",
+            "info": "Nguồn video PornTrex HD xem mượt mà."
+        },
+        {
+            "id": "nguonVS",
+            "name": "Nguồn VSxx (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/nguonVS.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguonVS.png",
+            "info": "Nguồn phim VSPhim tương thích MacCMS/OPhim."
+        },
+        {
+            "id": "avdbapi",
+            "name": "AVDB JAV (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/avdbapi_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/avdbapi.ico",
+            "info": "Kho phim AVDB JAV Nhật Bản cập nhật mới nhất."
+        },
+        {
+            "id": "bemyhole",
+            "name": "Bemyhole XXX (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/bemyhole_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/bemyhole.ico",
+            "info": "Kho video Bemyhole XXX chất lượng cao."
+        },
+        {
+            "id": "chinesporn",
+            "name": "Sex Trung (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/chinesporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/chinesporn.png",
+            "info": "Nguồn phim Sex Trung chất lượng cao."
+        },
+        {
+            "id": "chineseav",
+            "name": "Chinese AV (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/chineseav_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/chineseav.png",
+            "info": "Nguồn phim Chinese AV tuyển chọn đặc sắc."
+        },
+        {
+            "id": "javhd",
+            "name": "JavHD (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/javhd_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/javhd.ico",
+            "info": "Kho phim JavHD Nhật Bản độ nét cao xem mượt."
+        },
+        {
+            "id": "justporn",
+            "name": "Just Porn (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/justporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/justporn.png",
+            "info": "Nguồn video Just Porn tốc độ cao."
+        },
+        {
+            "id": "krx18",
+            "name": "Phim 18+ Hàn (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/krx18_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/krx18.png",
+            "info": "Kho phim 18+ Hàn Quốc đặc sắc, tuyển chọn."
+        },
+        {
+            "id": "koreaporn",
+            "name": "Sex Hàn (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/koreaporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/koreaporn.png",
+            "info": "Nguồn video Sex Hàn Quốc chất lượng cao."
+        },
+        {
+            "id": "letsporn",
+            "name": "Lets Porn (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/letsporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/letsporn.png",
+            "info": "Kho video Lets Porn phong phú, xem mượt mà."
+        },
+        {
+            "id": "superporn",
+            "name": "SuperPorn (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/superporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/superporn.ico",
+            "info": "Nguồn SuperPorn video giải trí đỉnh cao."
+        },
+        {
+            "id": "trannymovs",
+            "name": "Trannymovs (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/trannymovs_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/trannymovs.png",
+            "info": "Kho video Trannymovs chất lượng cao."
+        },
+        {
+            "id": "ashemaletube",
+            "name": "A shemale tube (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/ashemaletube_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/ashemaletube.ico",
+            "info": "Bản v1.0.0: Cập nhật danh mục Channels & Sửa lỗi Tìm kiếm, Giải mã MP4."
+        },
+        {
+            "id": "xhamster",
+            "name": "Xhamster (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xhamster_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xhamster.ico",
+            "info": "Nguồn video Xhamster trực tuyến mượt mà."
+        },
+        {
+            "id": "xxxfiles",
+            "name": "xxxfiles (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xxxfiles_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xxxfiles.png",
+            "info": "Kho video xxxfiles lưu trữ đa dạng thể loại."
+        },
+        {
+            "id": "topxx",
+            "name": "TopXX (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/topxx_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/topxx.ico",
+            "info": "Nguồn video TopXX tốc độ cao Full HD."
+        },
+        {
+            "id": "haysex",
+            "name": "HaySex (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/haysex_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/haysex.ico",
+            "info": "Nguồn video HaySex giải trí chất lượng cao."
+        },
+        {
+            "id": "xasiat",
+            "name": "XXX Châu Á (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xasiat_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xasiat.png",
+            "info": "Kho video XXX Châu Á tổng hợp đa dạng."
+        },
+        {
+            "id": "cnporn",
+            "name": "Porn Gái Trung (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/cnporn_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/cnporn.png",
+            "info": "Nguồn Porn Gái Trung chất lượng HD."
+        },
+        {
+            "id": "sexmup",
+            "name": "SEX Mup (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/sexmup_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexmup.ico",
+            "info": "Kho video Sex Múp chọn lọc hấp dẫn."
+        },
+        {
+            "id": "whoreshub",
+            "name": "XXX Whoreshub 4K (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/whoreshub_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/whoreshub.ico",
+            "info": "Phim chất lượng cao 4K / 1080p Whoreshub."
+        },
+        {
+            "id": "xsexsub",
+            "name": "XSEX sub (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/xsexsub_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xsexsub.png",
+            "info": "Kho phim Sex Vietsub HD cập nhật liên tục."
+        },
+        {
+            "id": "heovl",
+            "name": "Heo VL (WEB)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/heovl_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/heovl.ico",
+            "info": "Kho phim HeoVL phong phú, xem trực tuyến mượt mà."
+        },
+        {
+            "id": "porn00",
+            "name": "porn00 (EXO)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/porn00_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/porn00.png",
+            "info": "Nguồn video Porn00 trực tuyến tốc độ cao."
+        }
+    ]
+}
