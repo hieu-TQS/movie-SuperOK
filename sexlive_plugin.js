@@ -12,7 +12,7 @@ function getManifest() {
         "name": "SexLive",
         "description": "Nguồn livestream và video trực tuyến SexLive.",
         "info": "Nguồn livestream và video trực tuyến SexLive.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/sexlive.ico",
         "isEnabled": true,
