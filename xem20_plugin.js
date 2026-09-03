@@ -25,7 +25,7 @@ function getManifest() {
         "name": "Nguồn Xem20",
         "description": "Kho phim Xem20 chất lượng cao (HD/FHD/4K, Vietsub, Thuyết Minh). Phát trực tiếp ExoPlayer không quảng cáo.",
         "info": "Kho phim Xem20 chất lượng cao, luồng phát HLS m3u8 trực tiếp không quảng cáo, load siêu nhanh trên Android TV.",
-        "version": "2.0.0",
+        "version": "1.0.0",
         "baseUrl": BASEURL,
         "iconUrl": "https://raw.githubusercontent.com/alokillgtv-gif/VAXAPPSCRIPT/main/img/phimchill.ico",
         "isEnabled": true,
