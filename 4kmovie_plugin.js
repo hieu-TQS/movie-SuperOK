@@ -4,7 +4,7 @@
 // =============================================================================
 
 var BASEURL = "https://moviedb.alokillgtv.workers.dev";
-var BASEAPI = "https://fetchvideo.alokillgtv.workers.dev";
+var BASEAPI = "https://vaxplayer.vercel.app";
 
 // Polyfill BASE64 thuần ES5 (Tương thích tuyệt đối Rhino Engine trên Android)
 var BASE64 = {
@@ -59,7 +59,7 @@ function getManifest() {
             "name": "Nguồn 4K Movie",
             "description": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao.",
             "info": "Kho phim chiếu rạp và phim lẻ 4K/FHD chất lượng cao.",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "author": "Alokillgtv",
             "baseUrl": BASEURL,
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/film4k.png",
