@@ -21,7 +21,7 @@
             {
             "id": "hdvnn",
             "name": "HD VNN (EXO)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hdvnn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hdvnn.png",
             "info": "Kho phim Lồng Tiếng, Thuyết Minh."
@@ -30,7 +30,7 @@
          {
             "id": "phimthuyetminh",
             "name": "Phim TM (EXO)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimthuyetminh.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimthuyetminh.png",
             "info": "Kho phim Lồng Tiếng, Thuyết Minh."
