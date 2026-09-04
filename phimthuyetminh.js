@@ -9,7 +9,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "phimthuyetminh",
         "name": "Phim Thuyết Minh",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Nguồn phim thuyết minh, lồng tiếng chất lượng cao Full HD/4K cập nhật liên tục.",
         "info": "Nguồn phim thuyết minh, lồng tiếng chất lượng cao Full HD/4K cập nhật liên tục.",
         "baseUrl": BASEURL,
