@@ -10,7 +10,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -341,16 +341,32 @@ function parseMovieDetail(html, url) {
         while ((epMatch = epRegex.exec(watchHtml)) !== null) {
             var epUrl = epMatch[1];
             if (epUrl.indexOf("http") !== 0) epUrl = BASEURL + (epUrl.indexOf("/") === 0 ? "" : "/") + epUrl;
-            var epName = epMatch[2].replace(/<[^>]*>/g, '').trim();
+            var inner = epMatch[2];
+            var epName = inner.replace(/<[^>]*>/g, '').trim();
 
-            if (!seenEps[epUrl] && epName && epName.indexOf("script") === -1 && epName.indexOf("jwplayer") === -1) {
+            // Bỏ qua nút 'Xem Ngay', 'Xem Phim' hoặc button action
+            if (!epName || epName.toLowerCase().indexOf("xem ngay") !== -1 || epName.toLowerCase().indexOf("xem phim") !== -1) {
+                continue;
+            }
+            if (inner.indexOf("fa-play") !== -1 || epMatch[0].indexOf("button-default") !== -1) {
+                continue;
+            }
+
+            if (!seenEps[epUrl] && epName.indexOf("script") === -1 && epName.indexOf("jwplayer") === -1) {
                 seenEps[epUrl] = true;
+                var isNum = /^\d+$/.test(epName);
                 episodesRaw.push({
                     id: epUrl,
-                    name: epName.indexOf("Tập") === -1 ? ("Tập " + epName) : epName,
-                    slug: "tap-" + epName.replace(/[^\d]/g, '')
+                    name: isNum ? ("Tập " + epName) : epName,
+                    slug: "tap-" + epName.replace(/[^\d]/g, ''),
+                    num: isNum ? parseInt(epName, 10) : 0
                 });
             }
+        }
+
+        // Đảo ngược mảng nếu danh sách tập trên web bị xếp giảm dần (ví dụ 239 -> 1)
+        if (episodesRaw.length > 1 && episodesRaw[0].num > episodesRaw[episodesRaw.length - 1].num) {
+            episodesRaw.reverse();
         }
 
         if (episodesRaw.length === 0 && watchLinks.length > 0) {
@@ -358,9 +374,39 @@ function parseMovieDetail(html, url) {
                 episodesRaw.push({
                     id: watchLinks[k],
                     name: "Tập " + (k + 1),
-                    slug: "tap-" + (k + 1)
+                    slug: "tap-" + (k + 1),
+                    num: k + 1
                 });
             }
+        }
+
+        // Đối với phim lẻ (1 tập), pre-resolve link stream trực tiếp từ watchHtml nếu có
+        var preResolvedUrl = "";
+        if (episodesRaw.length === 1 && watchHtml.indexOf("MovieID") !== -1) {
+            try {
+                var cMatch = watchHtml.match(/name="csrf-token"\s+content="([^"]+)"/i);
+                var cToken = cMatch ? cMatch[1] : "";
+                var mIdMatch = watchHtml.match(/MovieID:\s*(\d+)/i);
+                var eIdMatch = watchHtml.match(/EpisodeID:\s*(\d+)/i);
+                if (mIdMatch && eIdMatch) {
+                    var pBody = "MovieID=" + mIdMatch[1] + "&EpisodeID=" + eIdMatch[1];
+                    var pHeaders = {
+                        "X-CSRF-TOKEN": cToken,
+                        "X-Requested-With": "XMLHttpRequest",
+                        "Referer": episodesRaw[0].id,
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+                    };
+                    var pResp = httpPost(BASEURL + "/server/ajax/player", pBody, pHeaders);
+                    if (pResp) {
+                        var pJson = JSON.parse(pResp);
+                        preResolvedUrl = pJson.src_pt || pJson.src_go || pJson.src_hd || pJson.src_vip || pJson.src_dr || pJson.src_vnn_1 || "";
+                        if (preResolvedUrl) {
+                            episodesRaw[0].id = preResolvedUrl;
+                        }
+                    }
+                }
+            } catch(ex) {}
         }
 
         // Generate server groups
@@ -373,33 +419,36 @@ function parseMovieDetail(html, url) {
                 episodes: episodesRaw
             });
 
-            // Server 2: Direct Google PT
-            var epsPT = [];
-            for (var p = 0; p < episodesRaw.length; p++) {
-                epsPT.push({
-                    id: episodesRaw[p].id + "#server=pt",
-                    name: episodesRaw[p].name,
-                    slug: episodesRaw[p].slug
+            // Chỉ tạo server phụ nếu chưa pre-resolve thành direct URL
+            if (!preResolvedUrl) {
+                // Server 2: Direct Google PT
+                var epsPT = [];
+                for (var p = 0; p < episodesRaw.length; p++) {
+                    epsPT.push({
+                        id: episodesRaw[p].id + "#server=pt",
+                        name: episodesRaw[p].name,
+                        slug: episodesRaw[p].slug
+                    });
+                }
+                servers.push({
+                    name: "Server Google (PT)",
+                    episodes: epsPT
                 });
-            }
-            servers.push({
-                name: "Server Google (PT)",
-                episodes: epsPT
-            });
 
-            // Server 3: Direct Google GO
-            var epsGO = [];
-            for (var g = 0; g < episodesRaw.length; g++) {
-                epsGO.push({
-                    id: episodesRaw[g].id + "#server=go",
-                    name: episodesRaw[g].name,
-                    slug: episodesRaw[g].slug
+                // Server 3: Direct Google GO
+                var epsGO = [];
+                for (var g = 0; g < episodesRaw.length; g++) {
+                    epsGO.push({
+                        id: episodesRaw[g].id + "#server=go",
+                        name: episodesRaw[g].name,
+                        slug: episodesRaw[g].slug
+                    });
+                }
+                servers.push({
+                    name: "Server Google (GO)",
+                    episodes: epsGO
                 });
             }
-            servers.push({
-                name: "Server Google (GO)",
-                episodes: epsGO
-            });
         }
 
         return JSON.stringify({
@@ -439,6 +488,18 @@ function parseDetailResponse(html, url) {
             var parts = reqUrl.split("#server=");
             reqUrl = parts[0];
             serverTag = parts[1];
+        }
+
+        if (reqUrl.indexOf(".m3u8") !== -1 || reqUrl.indexOf(".mp4") !== -1 || reqUrl.indexOf("googleusercontent.com") !== -1) {
+            return JSON.stringify({
+                "url": reqUrl,
+                "isEmbed": false,
+                "headers": {
+                    "Referer": BASEURL + "/",
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                },
+                "subtitles": []
+            });
         }
 
         var pageHtml = html || "";
