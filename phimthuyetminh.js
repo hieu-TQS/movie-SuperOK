@@ -205,18 +205,18 @@ function getUrlDetail(slug) {
     if (!slug) return "";
     var id = slug;
     if (id.indexOf("http") === 0) {
-        if (id.indexOf(BASEURL) === 0) return id;
-        return id;
+        var clean = id.split("?")[0].split("#")[0];
+        if (clean.indexOf("/xem/") > -1) {
+            return id;
+        }
+        if (clean.indexOf("/phim/") > -1) {
+            id = clean.split("/phim/")[1];
+        }
     }
-    if (id.indexOf("/xem/") === 0 || id.indexOf("xem/") === 0) {
-        if (id.charAt(0) !== "/") id = "/" + id;
-        return BASEURL + id;
-    }
-    if (id.indexOf("/phim/") === 0 || id.indexOf("phim/") === 0) {
-        if (id.charAt(0) !== "/") id = "/" + id;
-        return BASEURL + id;
-    }
-    return BASEURL + "/phim/" + id;
+    id = id.replace(/^\/+|\/+$/g, "");
+    if (id.indexOf("xem/") === 0) return BASEURL + "/" + id;
+    if (id.indexOf("phim/") === 0) id = id.substring(5);
+    return BASEURL + "/xem/" + id + "/tap-01";
 }
 
 function getDetailUrl(slug) {
@@ -225,14 +225,19 @@ function getDetailUrl(slug) {
 
 function getUrlEpisodePlayer(slug, episodeSlug, serverName) {
     if (episodeSlug && episodeSlug.indexOf("http") === 0) return episodeSlug;
-    if (slug && slug.indexOf("http") === 0 && slug.indexOf("/xem/") > -1) return slug;
+    if (episodeSlug && episodeSlug.charAt(0) === "/") return BASEURL + episodeSlug;
     var base = slug || "";
-    if (base.indexOf("/phim/") > -1) {
+    if (base.indexOf("http") === 0) {
+        base = base.split("?")[0].split("#")[0];
+    }
+    if (base.indexOf("/xem/") > -1) {
+        var p = base.split("/xem/")[1];
+        base = p.split("/")[0];
+    } else if (base.indexOf("/phim/") > -1) {
         base = base.split("/phim/")[1];
     }
     base = base.replace(/^\/+|\/+$/g, "");
-    var ep = episodeSlug || "tap-1";
-    if (ep.indexOf("/") > -1) ep = ep.split("/").pop();
+    var ep = episodeSlug || "tap-01";
     return BASEURL + "/xem/" + base + "/" + ep;
 }
 
@@ -418,7 +423,7 @@ function parseMovieDetail(html, argUrl) {
                      html.match(/class=["'][^"']*movie-h1[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i) ||
                      html.match(/property=["']og:title["']\s+content=["']([^"']+)["']/i);
         if (tMatch) {
-            title = tMatch[1].replace(/<[^>]+>/g, "").replace(/\s*—\s*TẬP.*$/i, "").replace(/Xem phim\s*/i, "").trim();
+            title = tMatch[1].replace(/<[^>]+>/g, "").replace(/\s*—\s*TẬP[\s\S]*$/i, "").replace(/Xem phim\s*/i, "").trim();
         }
 
         var originName = "";
@@ -481,7 +486,7 @@ function parseMovieDetail(html, argUrl) {
             var epMatch;
             var sEpisodes = [];
             while ((epMatch = epRegex.exec(sBlock)) !== null) {
-                var epHref = epMatch[1].split("?")[0].split("#")[0];
+                var epHref = epMatch[1].split("#")[0].trim();
                 var epName = epMatch[2].replace(/<[^>]+>/g, "").trim();
                 if (epHref.indexOf("http") !== 0) {
                     if (epHref.charAt(0) !== "/") epHref = "/" + epHref;
@@ -513,6 +518,7 @@ function parseMovieDetail(html, argUrl) {
             var isSeries = false;
             var maxEp = 1;
             var baseUrlPart = "";
+            var padDigits = 1;
 
             if (watchHref && watchHref.indexOf("tap-full") === -1 && watchHref.indexOf("tap-Full") === -1 && watchHref.match(/\/tap-/i)) {
                 isSeries = true;
@@ -520,7 +526,9 @@ function parseMovieDetail(html, argUrl) {
                 var epMatchFallback;
                 while ((epMatchFallback = epRegexFallback.exec(html)) !== null) {
                     baseUrlPart = epMatchFallback[1];
-                    var epNum = parseInt(epMatchFallback[2], 10);
+                    var epStr = epMatchFallback[2];
+                    if (epStr.length > padDigits) padDigits = epStr.length;
+                    var epNum = parseInt(epStr, 10);
                     if (epNum > maxEp) maxEp = epNum;
                 }
 
@@ -537,11 +545,17 @@ function parseMovieDetail(html, argUrl) {
 
             if (isSeries && baseUrlPart) {
                 for (var i = 1; i <= maxEp; i++) {
-                    var epUrl = BASEURL + "/xem/" + baseUrlPart + "/tap-" + i;
+                    var epSlugPart = "tap-";
+                    if (padDigits === 2 && i < 10) epSlugPart += "0" + i;
+                    else if (padDigits === 3 && i < 10) epSlugPart += "00" + i;
+                    else if (padDigits === 3 && i < 100) epSlugPart += "0" + i;
+                    else epSlugPart += i;
+
+                    var epUrl = BASEURL + "/xem/" + baseUrlPart + "/" + epSlugPart;
                     episodes.push({
                         "id": epUrl,
                         "name": "Tập " + i,
-                        "slug": "tap-" + i
+                        "slug": epSlugPart
                     });
                 }
             } else if (watchHref) {
@@ -602,6 +616,10 @@ function parseDetailResponse(html, url) {
 
         if (iframeMatch && iframeMatch[1]) {
             var rawSrc = iframeMatch[1].trim();
+
+            if (rawSrc.indexOf("&amp;") > -1) {
+                rawSrc = rawSrc.replace(/&amp;/g, "&");
+            }
 
             // 1. Phimapi player param
             var urlParamMatch = rawSrc.match(/[?&]url=([^&]+)/i);
