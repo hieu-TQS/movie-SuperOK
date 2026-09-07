@@ -1,14 +1,11 @@
-// =============================================================================
-// CONFIGURATION & METADATA
-// =============================================================================
 
 function getManifest() {
     return JSON.stringify({
         "id": "nguoncnew",
-        "name": "NguonC no ads",
-        "version": "1.0.1",
-        "description": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo.",
-        "info": "Nguồn C phim bộ, phim lẻ chất lượng cao đã lọc quảng cáo.",
+        "name": "NguonC",
+        "version": "1.0.2",
+        "description": "Nguồn C phim bộ, phim lẻ chất lượng cao.",
+        "info": "Nguồn C phim bộ, phim lẻ chất lượng cao.",
         "baseUrl": "https://phim.nguonc.com",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/nguoncnew.png",
         "isEnabled": true,
@@ -321,103 +318,8 @@ function textJS() {
     return `
 SCRIPTURL = "https://script.google.com/macros/s/AKfycbwsvLFzWMdxvX9ZH-3wnP3GJzS58v0CtT_0mlEYeOz6cOsgen9IR3c6VPv_EssPXMFzwQ/exec?name=nguoncnew&type=js"; 
 
-// =============================================================================
-// 1. ANTI-ADBLOCK BYPASS & SCRIPT UNBLOCKING
-// =============================================================================
-(function initAntiAdblockBypass() {
-    try {
-        window.popupReady = true;
-        window.popupFailed = false;
-        window.playerBlocked = false;
-        window.hasShownAds = true;
-
-        // Vô hiệu hoá hàm chặn blockPlayer của streamc
-        window.blockPlayer = function() {
-            console.log("[AntiAdblock] Đã chặn kích hoạt cảnh báo chặn quảng cáo.");
-            window.playerBlocked = false;
-            window.popupReady = true;
-        };
-
-        // Chặn sự kiện popup-failed
-        window.addEventListener('popup-failed', function(e) {
-            e.stopImmediatePropagation();
-            e.stopPropagation();
-        }, true);
-
-        // Vô hiệu hoá devtoolsDetector nếu có
-        try {
-            if (window.devtoolsDetector) {
-                window.devtoolsDetector.launch = function() {};
-                window.devtoolsDetector.addListener = function() {};
-            }
-            Object.defineProperty(window, 'devtoolsDetector', {
-                get: function() {
-                    return { launch: function() {}, addListener: function() {}, isLaunch: false, isOpen: false };
-                },
-                set: function() {}
-            });
-        } catch(e) {}
-
-        // Chặn popup quảng cáo mở tab mới
-        window.open = function() {
-            return { closed: true, focus: function(){}, blur: function(){} };
-        };
-
-        // Tự động giải mã data-obf và khởi động player.js
-        function forceStartPlayer() {
-            window.popupReady = true;
-            window.popupFailed = false;
-            window.playerBlocked = false;
-
-            // Xoá màn hình thông báo adblock nếu lỡ xuất hiện
-            var adScreens = document.querySelectorAll('.adblock-screen');
-            for (var i = 0; i < adScreens.length; i++) {
-                adScreens[i].remove();
-            }
-
-            var playerEl = document.getElementById('player');
-            if (playerEl && playerEl.dataset && playerEl.dataset.obf && !window.streamURL) {
-                try {
-                    var streamData = JSON.parse(atob(playerEl.dataset.obf));
-                    var ua = navigator.userAgent;
-                    var isIOS   = /iphone|ipod|ipad/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-                    var isMac   = /macintosh/i.test(ua) && !/windows|android/i.test(ua);
-                    var isApple = isIOS || isMac;
-                    window.streamURL  = '/' + streamData.sUb + (isApple ? '' : '?d=1');
-                    window.videoHash  = streamData.hD;
-                } catch (e) {}
-            }
-
-            if (typeof window.startPlayer === 'function' && !window.playerStarted) {
-                window.startPlayer();
-            } else if (!window.playerStarted && window.streamURL) {
-                window.playerStarted = true;
-                var script = document.createElement('script');
-                script.src = 'player.js?ver=2.1';
-                script.async = false;
-                document.body.appendChild(script);
-            }
-
-            try {
-                window.dispatchEvent(new Event('popup-ready'));
-            } catch (ev) {}
-        }
-
-        forceStartPlayer();
-        setTimeout(forceStartPlayer, 50);
-        setTimeout(forceStartPlayer, 200);
-        setTimeout(forceStartPlayer, 600);
-        setTimeout(forceStartPlayer, 1500);
-        var forceTimer = setInterval(forceStartPlayer, 1000);
-        setTimeout(function() { clearInterval(forceTimer); }, 10000);
-    } catch (e) {
-        console.error('AntiAdblock Bypass error:', e);
-    }
-})();
-
 const style = document.createElement('style');
-var customcss = 'body { background: black !important; overflow: hidden; margin: 0; padding: 0; }' +
-    '.adblock-screen, #_waup2s, script[src*="waust"], iframe[src*="ads"], div[class*="banner"], div[id*="banner"] { display: none !important; opacity: 0 !important; pointer-events: none !important; }';
+var customcss = 'body { background: black !important; overflow: hidden; margin: 0; padding: 0; }';
 style.innerHTML = customcss;
 if (document.head) { document.head.appendChild(style); } else { document.addEventListener('DOMContentLoaded', function() { document.head.appendChild(style); }); }
 
