@@ -9,7 +9,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "phimthuyetminh",
         "name": "Phim Thuyết Minh",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "description": "Nguồn phim thuyết minh, lồng tiếng chất lượng cao Full HD/4K cập nhật liên tục.",
         "info": "Nguồn phim thuyết minh, lồng tiếng chất lượng cao Full HD/4K cập nhật liên tục.",
         "baseUrl": BASEURL,
@@ -612,10 +612,11 @@ function parseDetailResponse(html, url) {
         var iframeMatch = pageHtml.match(/id=["']movie-iframe["'][^>]*src=["']([^"']+)["']/i) ||
                           pageHtml.match(/var\s+linkHPro\s*=\s*["']([^"']+)["']/i) ||
                           pageHtml.match(/var\s+linkSPro\s*=\s*["']([^"']+)["']/i) ||
+                          pageHtml.match(/var\s+link\w*\s*=\s*["']([^"']+)["']/i) ||
                           pageHtml.match(/<iframe[^>]+src=["']([^"']+)["']/i);
 
         if (iframeMatch && iframeMatch[1]) {
-            var rawSrc = iframeMatch[1].trim();
+            var rawSrc = iframeMatch[1].replace(/\\/g, "").trim();
 
             if (rawSrc.indexOf("&amp;") > -1) {
                 rawSrc = rawSrc.replace(/&amp;/g, "&");
