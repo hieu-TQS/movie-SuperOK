@@ -12,7 +12,7 @@ function getManifest() {
         "name": "xNhau (ALL)",
         "description": "Kho clip và phim xNhau hot nhất, cập nhật liên tục.",
         "info": "Nguồn phim xNhau chất lượng cao HD/FHD.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "baseUrl": "https://xnhau.art",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/xnhau.png",
         "isEnabled": true,
@@ -24,16 +24,13 @@ function getManifest() {
 
 function getHomeSections() {
     return JSON.stringify([
-        { "slug": "/movies", "title": "Hàng Mới", "type": "Grid" },
-        { "slug": "/movies?sort=popular", "title": "Phổ Biến", "type": "Horizontal" },
-        { "slug": "/movies?sort=trending", "title": "Xu Hướng", "type": "Horizontal" },
-        { "slug": "/category/tu-quay", "title": "Tự Quay", "type": "Horizontal" },
-        { "slug": "/category/viet-nam", "title": "Việt Nam", "type": "Horizontal" },
-        { "slug": "/category/phim-sex-sinh-vien", "title": "Sinh Viên", "type": "Horizontal" },
-        { "slug": "/category/cap3", "title": "Cấp 3", "type": "Horizontal" },
-        { "slug": "/category/viet69", "title": "Viet69", "type": "Horizontal" },
-        { "slug": "/category/clip-hot", "title": "Clip Hot", "type": "Horizontal" },
-        { "slug": "/category/heovl", "title": "HeoVL", "type": "Horizontal" }
+        { "slug": "/", "title": "Mới Cập Nhật", "type": "Grid", "path": "phim-moi" },
+        { "slug": "/movies", "title": "Tất Cả Video", "type": "Grid", "path": "phim-moi" },
+        { "slug": "/movies?sort=popular", "title": "Phổ Biến", "type": "Horizontal", "path": "popular" },
+        { "slug": "/category/tu-quay", "title": "Tự Quay", "type": "Horizontal", "path": "the-loai" },
+        { "slug": "/category/viet-nam", "title": "Việt Nam", "type": "Horizontal", "path": "the-loai" },
+        { "slug": "/category/phim-sex-sinh-vien", "title": "Sinh Viên", "type": "Horizontal", "path": "the-loai" },
+        { "slug": "/category/clip-hot", "title": "Clip Hot", "type": "Horizontal", "path": "the-loai" }
     ]);
 }
 
@@ -214,56 +211,118 @@ function cleanText(str) {
         .trim();
 }
 
+function titleFromSlug(slug) {
+    if (!slug) return "";
+    var clean = slug.split("?")[0].split("#")[0].replace(/\/+$/, "");
+    var parts = clean.split("/");
+    var last = parts[parts.length - 1] || "";
+    if (last === "watch" || last === "v" || last === "video") {
+        last = parts[parts.length - 2] || "";
+    }
+    last = last.replace(/[-_]/g, " ").trim();
+    if (!last) return "";
+    return last.charAt(0).toUpperCase() + last.slice(1);
+}
+
 function parseListResponse(html, url) {
     try {
+        if (!html) return JSON.stringify({ "items": [], "pagination": { "currentPage": 1, "totalPages": 1 } });
         var items = [];
         var seen = {};
 
-        // Parse HTML cards: <a href="/watch/..." ...>
-        var itemRegex = /<a\s+[^>]*href="(\/watch\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+        // Parse HTML cards matching /watch/, /video/, /v/, /clip/, /phim/
+        var itemRegex = /<a\s+[^>]*href=["']([^"']*(?:\/watch\/|\/video\/|\/v\/|\/clip\/|\/phim\/)[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
         var match;
 
         while ((match = itemRegex.exec(html)) !== null) {
             var href = match[1];
+            if (href.indexOf("${") !== -1) continue;
+
+            if (href.indexOf("http") !== 0) {
+                if (href.charAt(0) !== "/") href = "/" + href;
+                href = BASEURL + href;
+            }
+
             if (seen[href]) continue;
 
             var inner = match[2];
-            var imgMatch = inner.match(/<img[^>]+(?:src|data-src)="([^"]+)"/i);
-            var titleMatch = inner.match(/<p[^>]*class="[^"]*line-clamp[^"]*"[^>]*>([\s\S]*?)<\/p>/i) ||
-                             inner.match(/alt="([^"]+)"/i);
+            var imgMatch = inner.match(/<img[^>]+(?:src|data-src|srcset|data-original)=["']([^"'\s]+)["']/i) ||
+                             html.substring(match.index - 300, match.index).match(/<img[^>]+(?:src|data-src|srcset|data-original)=["']([^"'\s]+)["']/i);
 
-            if (imgMatch || titleMatch) {
-                seen[href] = true;
-                var posterUrl = imgMatch ? imgMatch[1] : "";
-                if (posterUrl.indexOf("/") === 0) {
+            var titleMatch = inner.match(/<p[^>]*class=["'][^"']*line-clamp[^"']*["'][^>]*>([\s\S]*?)<\/p>/i) ||
+                             inner.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i) ||
+                             inner.match(/alt=["']([^"']+)["']/i) ||
+                             inner.match(/title=["']([^"']+)["']/i) ||
+                             match[0].match(/title=["']([^"']+)["']/i);
+
+            var posterUrl = imgMatch ? imgMatch[1] : "";
+            if (posterUrl) {
+                if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
+                else if (posterUrl.indexOf("http") !== 0) {
+                    if (posterUrl.charAt(0) !== "/") posterUrl = "/" + posterUrl;
                     posterUrl = BASEURL + posterUrl;
                 }
+            }
 
-                var title = titleMatch ? cleanText(titleMatch[1]) : "";
-                var viewsMatch = inner.match(/<span>([^<]*lượt xem[^<]*)<\/span>/i);
-                var duration = viewsMatch ? viewsMatch[1].trim() : "Full HD";
+            var title = titleMatch ? cleanText(titleMatch[1]) : "";
+            if (!title) {
+                title = titleFromSlug(href);
+            }
+            if (!title) continue;
 
-                items.push({
-                    "id": href,
-                    "title": title,
-                    "posterUrl": posterUrl,
-                    "backdropUrl": posterUrl,
-                    "duration": duration,
-                    "quality": "HD"
-                });
+            seen[href] = true;
+            var viewsMatch = inner.match(/<span>([^<]*lượt xem[^<]*)<\/span>/i);
+            var duration = viewsMatch ? viewsMatch[1].trim() : "Full HD";
+
+            items.push({
+                "id": href,
+                "title": title,
+                "posterUrl": posterUrl,
+                "backdropUrl": posterUrl,
+                "duration": duration,
+                "quality": "HD"
+            });
+        }
+
+        // Fallback pass: match any card container if items is empty
+        if (items.length === 0) {
+            var cardRegex = /href=["']([^"']*(?:\/watch\/|\/video\/|\/v\/|\/clip\/|\/phim\/)[^"']+)["']/gi;
+            var cMatch;
+            while ((cMatch = cardRegex.exec(html)) !== null) {
+                var cHref = cMatch[1];
+                if (cHref.indexOf("http") !== 0) {
+                    if (cHref.charAt(0) !== "/") cHref = "/" + cHref;
+                    cHref = BASEURL + cHref;
+                }
+                if (seen[cHref]) continue;
+                seen[cHref] = true;
+
+                var cTitle = titleFromSlug(cHref);
+                if (cTitle) {
+                    items.push({
+                        "id": cHref,
+                        "title": cTitle,
+                        "posterUrl": "",
+                        "backdropUrl": "",
+                        "duration": "HD",
+                        "quality": "HD"
+                    });
+                }
             }
         }
 
         // Tinh tong so trang
-        var totalPages = 99;
+        var totalPages = 1;
         var pageMatches = html.match(/page=(\d+)/g);
         if (pageMatches) {
             for (var p = 0; p < pageMatches.length; p++) {
-                var num = parseInt(pageMatches[p].replace("page=", ""));
+                var num = parseInt(pageMatches[p].replace("page=", ""), 10);
                 if (num > totalPages) {
                     totalPages = num;
                 }
             }
+        } else if (items.length >= 10) {
+            totalPages = 99;
         }
 
         return JSON.stringify({
@@ -298,50 +357,53 @@ function parseSearchResponse(html, url) {
 }
 
 function extractStreamUrl(html) {
-    // 1. Kiem tra <source src="...m3u8"
-    var sourceMatch = html.match(/<source[^>]+src="([^"]+)"/i);
+    if (!html) return "";
+
+    // 1. Direct Astro / JSON props: "m3u8_url":"..." or "m3u8_media_url":"..." or "embed_url":"..."
+    var m3u8Match = html.match(/"m3u8_url"\s*:\s*(?:\[0,)?\s*["']([^"']+)["']/i) ||
+                    html.match(/"m3u8_media_url"\s*:\s*(?:\[0,)?\s*["']([^"']+)["']/i) ||
+                    html.match(/"stream_url"\s*:\s*["']([^"']+)["']/i) ||
+                    html.match(/"video_url"\s*:\s*["']([^"']+)["']/i);
+    if (m3u8Match && m3u8Match[1] && m3u8Match[1] !== "null") {
+        var url = m3u8Match[1].replace(/\\/g, "").trim();
+        if (url.indexOf("//") === 0) url = "https:" + url;
+        else if (url.indexOf("http") !== 0 && url.charAt(0) === "/") url = BASEURL + url;
+        if (url.indexOf("http") === 0 || url.indexOf("https") === 0) return url;
+    }
+
+    var embedMatch = html.match(/"embed_url"\s*:\s*(?:\[0,)?\s*["']([^"']+)["']/i);
+    if (embedMatch && embedMatch[1] && embedMatch[1] !== "null") {
+        var embUrl = embedMatch[1].replace(/\\/g, "").trim();
+        if (embUrl.indexOf("//") === 0) embUrl = "https:" + embUrl;
+        else if (embUrl.indexOf("http") !== 0 && embUrl.charAt(0) === "/") embUrl = BASEURL + embUrl;
+        if (embUrl.indexOf("http") === 0 || embUrl.indexOf("https") === 0) return embUrl;
+    }
+
+    // 2. HTML5 <source src="..."> or <video src="...">
+    var sourceMatch = html.match(/<source[^>]+src=["']([^"']+)["']/i) ||
+                      html.match(/<video[^>]+src=["']([^"']+)["']/i);
     if (sourceMatch && sourceMatch[1]) {
-        var src = sourceMatch[1];
-        if (src.indexOf("/") === 0) src = BASEURL + src;
+        var src = sourceMatch[1].trim();
+        if (src.indexOf("//") === 0) src = "https:" + src;
+        else if (src.indexOf("http") !== 0 && src.charAt(0) === "/") src = BASEURL + src;
         return src;
     }
 
-    // 2. Kiem tra iframe src (vi du Blogger player)
-    var iframeMatch = html.match(/<iframe[^>]+src="([^"]+)"/i);
+    // 3. iframe src
+    var iframeMatch = html.match(/<iframe[^>]+src=["']([^"']+)["']/i);
     if (iframeMatch && iframeMatch[1]) {
-        var ifSrc = iframeMatch[1];
-        if (ifSrc.indexOf("http") === 0) return ifSrc;
+        var ifSrc = iframeMatch[1].trim();
+        if (ifSrc.indexOf("//") === 0) ifSrc = "https:" + ifSrc;
+        else if (ifSrc.indexOf("http") !== 0 && ifSrc.charAt(0) === "/") ifSrc = BASEURL + ifSrc;
+        return ifSrc;
     }
 
-    // 3. Kiem tra Astro props streams JSON
-    var streamsMatch = html.match(/"streams":\[1,\[\[0,\{([^}]+)\}\]\]\]/);
-    if (streamsMatch && streamsMatch[1]) {
-        var sBlock = streamsMatch[1];
-        var m3u8Match = sBlock.match(/"m3u8_url":\[0,"([^"]+)"\]/);
-        var mediaMatch = sBlock.match(/"m3u8_media_url":\[0,"([^"]+)"\]/);
-        var embedMatch = sBlock.match(/"embed_url":\[0,"([^"]+)"\]/);
-
-        if (m3u8Match && m3u8Match[1] && m3u8Match[1] !== "null") {
-            var mUrl = m3u8Match[1];
-            if (mUrl.indexOf("/") === 0) mUrl = BASEURL + mUrl;
-            return mUrl;
-        }
-        if (mediaMatch && mediaMatch[1] && mediaMatch[1] !== "null") {
-            var medUrl = mediaMatch[1];
-            if (medUrl.indexOf("/") === 0) medUrl = BASEURL + medUrl;
-            return medUrl;
-        }
-        if (embedMatch && embedMatch[1] && embedMatch[1] !== "null") {
-            return embedMatch[1];
-        }
-    }
-
-    // 4. Regex truc tiep m3u8 hoac mp4
-    var directM3u8 = html.match(/(https?:\/\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i) ||
-                     html.match(/(\/media\/files\/[^\s"'<>]+\.m3u8[^\s"'<>]*)/i);
-    if (directM3u8 && directM3u8[1]) {
-        var dUrl = directM3u8[1];
-        if (dUrl.indexOf("/") === 0) dUrl = BASEURL + dUrl;
+    // 4. Direct regex for .m3u8 or .mp4 or /media/files/
+    var directStream = html.match(/(https?:\/\/[^\s"'<>]+\.(?:m3u8|mp4)[^\s"'<>]*)/i) ||
+                       html.match(/["'](\/media\/files\/[^\s"'<>]+\.(?:m3u8|mp4)[^\s"'<>]*)["']/i);
+    if (directStream && directStream[1]) {
+        var dUrl = directStream[1].replace(/\\/g, "").trim();
+        if (dUrl.indexOf("http") !== 0 && dUrl.charAt(0) === "/") dUrl = BASEURL + dUrl;
         return dUrl;
     }
 
@@ -365,7 +427,8 @@ function parseMovieDetail(html, url) {
         var ogImg = html.match(/property="og:image"\s+content="([^"]+)"/i);
         if (ogImg && ogImg[1]) {
             posterUrl = ogImg[1];
-            if (posterUrl.indexOf("/") === 0) posterUrl = BASEURL + posterUrl;
+            if (posterUrl.indexOf("//") === 0) posterUrl = "https:" + posterUrl;
+            else if (posterUrl.indexOf("http") !== 0 && posterUrl.charAt(0) === "/") posterUrl = BASEURL + posterUrl;
         }
 
         var description = "";
@@ -391,13 +454,15 @@ function parseMovieDetail(html, url) {
 
         // Parse stream / embed URL
         var streamUrl = extractStreamUrl(html);
+        var pageUrl = url || "";
 
         var episodes = [];
-        if (streamUrl) {
+        var epId = streamUrl || pageUrl;
+        if (epId) {
             episodes.push({
                 "name": "Full HD",
-                "slug": streamUrl,
-                "id": streamUrl,
+                "slug": epId,
+                "id": epId,
                 "posterUrl": posterUrl,
                 "thumbnailUrl": posterUrl
             });
@@ -408,10 +473,14 @@ function parseMovieDetail(html, url) {
         var relSeen = {};
         if (url) relSeen[url] = true;
 
-        var relRegex = /<a\s+[^>]*href="(\/watch\/[^"]+)"[^>]*>([\s\S]*?)<\/a>/gi;
+        var relRegex = /<a\s+[^>]*href=["']([^"']*(?:\/watch\/)[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
         var rMatch;
         while ((rMatch = relRegex.exec(html)) !== null && relatedMovies.length < 12) {
             var rHref = rMatch[1];
+            if (rHref.indexOf("http") !== 0) {
+                if (rHref.charAt(0) !== "/") rHref = "/" + rHref;
+                rHref = BASEURL + rHref;
+            }
             if (relSeen[rHref]) continue;
 
             var rInner = rMatch[2];
@@ -422,7 +491,8 @@ function parseMovieDetail(html, url) {
             if (rImgMatch && rTitleMatch) {
                 relSeen[rHref] = true;
                 var rPoster = rImgMatch[1];
-                if (rPoster.indexOf("/") === 0) rPoster = BASEURL + rPoster;
+                if (rPoster.indexOf("//") === 0) rPoster = "https:" + rPoster;
+                else if (rPoster.indexOf("http") !== 0 && rPoster.charAt(0) === "/") rPoster = BASEURL + rPoster;
                 var rTitle = cleanText(rTitleMatch[1]);
 
                 relatedMovies.push({
@@ -468,7 +538,13 @@ function parseDetail(html, url) {
 }
 
 function parseDetailResponse(html, url) {
+    var reqUrl = url || "";
     var streamUrl = extractStreamUrl(html);
+
+    if (!streamUrl) {
+        streamUrl = reqUrl;
+    }
+
     var isEmbed = (streamUrl.indexOf(".m3u8") === -1 && streamUrl.indexOf(".mp4") === -1);
 
     return JSON.stringify({
