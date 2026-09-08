@@ -1,9 +1,12 @@
+// =============================================================================
+// CONFIGURATION & METADATA
+// =============================================================================
 
 function getManifest() {
     return JSON.stringify({
         "id": "nguoncnew",
         "name": "NguonC",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "description": "Nguồn C phim bộ, phim lẻ chất lượng cao.",
         "info": "Nguồn C phim bộ, phim lẻ chất lượng cao.",
         "baseUrl": "https://phim.nguonc.com",
@@ -51,49 +54,35 @@ function getUrlList(slug, filtersJson) {
     try {
         var filters = JSON.parse(filtersJson || "{}");
         var page = filters.page || 1;
-        var sort = filters.sort || "updated"; // updated, view, year
+        var sort = filters.sort || "updated";
 
-        // Handle "Phim Mới Cập Nhật" specially if no filter
         if (slug === 'phim-moi-cap-nhat' && !filters.category && !filters.country && !filters.year) {
             return "https://phim.nguonc.com/api/films/phim-moi-cap-nhat?page=" + page;
         }
 
-        // Priority 1: Category Support //v1/api/the-loai/{slug}
         if (filters.category) {
             return "https://phim.nguonc.com/api/films/the-loai/" + filters.category + "?page=" + page + "&sort=" + sort;
         }
 
-        // Priority 2: Country Support //v1/api/quoc-gia/{slug}
         if (filters.country) {
             return "https://phim.nguonc.com/api/films/quoc-gia/" + filters.country + "?page=" + page + "&sort=" + sort;
         }
 
-        // Priority 3: Year Support //v1/api/nam-phat-hanh/{year}
         if (filters.year) {
             return "https://phim.nguonc.com/api/films/nam-phat-hanh/" + filters.year + "?page=" + page + "&sort=" + sort;
         }
 
-        // --- Slug-based Logic (if no active filter) ---
-
-        // Handle Years (4 digits)
         if (/^\d{4}$/.test(slug)) {
             return "https://phim.nguonc.com/api/films/nam-phat-hanh/" + slug + "?page=" + page + "&sort=" + sort;
         }
 
-        // Handle specific Lists (Danh sách)
         var listSlugs = ['phim-le', 'phim-bo', 'phim-dang-chieu', 'tv-shows', 'subteam'];
-        // Note: 'hoat-hinh' is sometimes a list, sometimes a category. 
-        // On NguonC, 'hoat-hinh' is usually in 'the-loai' but let's check standard lists.
-        // NguonC commonly puts 'phim-hoat-hinh' in lists or 'hoat-hinh' in genres.
-
         if (listSlugs.indexOf(slug) >= 0) {
-            // If slug is 'hoat-hinh', prefer 'the-loai' logic unless we know it's a list
             if (slug !== 'hoat-hinh') {
                 return "https://phim.nguonc.com/api/films/danh-sach/" + slug + "?page=" + page + "&sort=" + sort;
             }
         }
 
-        // Handle Countries (Fallback if slug matches country list)
         var countrySlugs = [
             'au-my', 'anh', 'trung-quoc', 'indonesia', 'viet-nam', 'phap', 'hong-kong',
             'han-quoc', 'nhat-ban', 'thai-lan', 'dai-loan', 'nga', 'ha-lan',
@@ -103,7 +92,6 @@ function getUrlList(slug, filtersJson) {
             return "https://phim.nguonc.com/api/films/quoc-gia/" + slug + "?page=" + page + "&sort=" + sort;
         }
 
-        // Default to Genres (Thể loại)
         return "https://phim.nguonc.com/api/films/the-loai/" + slug + "?page=" + page + "&sort=" + sort;
 
     } catch (e) {
@@ -121,7 +109,6 @@ function getUrlDetail(slug) {
     return "https://phim.nguonc.com/api/film/" + slug;
 }
 
-// Just returning the home page to trigger the parser, which will return hardcoded data
 function getUrlCategories() { return "https://phim.nguonc.com"; }
 function getUrlCountries() { return "https://phim.nguonc.com"; }
 function getUrlYears() { return "https://phim.nguonc.com"; }
@@ -133,7 +120,6 @@ function getUrlYears() { return "https://phim.nguonc.com"; }
 function parseListResponse(apiResponseJson) {
     try {
         var response = JSON.parse(apiResponseJson);
-        // Handle NguonC structure: sometimes data is array directly (search), sometimes an object (list)
         var data = response.data || {};
         var items = [];
 
@@ -145,8 +131,6 @@ function parseListResponse(apiResponseJson) {
             items = data.items;
         }
 
-        // Handle NguonC 'paginate' structure
-        // User provided: "paginate": { "current_page": 1, ... }
         var paginate = response.paginate || response.pagination || (data.params && data.params.pagination) || {};
 
         var movies = items.map(function (item) {
@@ -157,19 +141,15 @@ function parseListResponse(apiResponseJson) {
                 backdropUrl: getImageUrl(item.poster_url),
                 year: item.year || 0,
                 quality: item.quality || "",
-                // Handle different field names for current episode
                 episode_current: item.current_episode || item.episode_current || "",
-                // Handle different field names for language
                 lang: item.language || item.lang || ""
             };
         });
 
-        // Determine pagination values
         var currentPage = paginate.current_page || paginate.currentPage || 1;
         var totalItems = paginate.total_items || paginate.totalItems || 0;
         var itemsPerPage = paginate.items_per_page || paginate.itemsPerPage || paginate.totalItemsPerPage || 24;
 
-        // Calculate total pages if not provided directly
         var totalPages = paginate.total_page || paginate.totalPages || 0;
         if (totalPages === 0 && itemsPerPage > 0) {
             totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -197,11 +177,8 @@ function parseSearchResponse(apiResponseJson) {
 function parseMovieDetail(apiResponseJson) {
     try {
         var response = JSON.parse(apiResponseJson);
-        // Normalize movie object (supports standard and potential variants)
-        var movie = response.movie || response.data?.item || response.data || {};
-
-        // Normalize episodes
-        var rawEpisodes = movie.episodes || response.episodes || response.data?.item?.episodes || [];
+        var movie = response.movie || (response.data && response.data.item) || response.data || {};
+        var rawEpisodes = movie.episodes || response.episodes || (response.data && response.data.item && response.data.item.episodes) || [];
 
         var servers = [];
         if (Array.isArray(rawEpisodes)) {
@@ -214,8 +191,6 @@ function parseMovieDetail(apiResponseJson) {
                         var embed = ep.embed || ep.link_embed || "";
                         var m3u8 = ep.m3u8 || ep.link_m3u8 || "";
 
-                        // Use Embed URL as ID to allow scraping Referer/M3u8 details
-                        // If no embed, use m3u8 directly.
                         var link = embed || m3u8;
 
                         if (link) {
@@ -237,12 +212,8 @@ function parseMovieDetail(apiResponseJson) {
             });
         }
 
-        // Helper to extract category/country/year
-        // Handles both { "1": { group: ..., list: [...] } } AND typical arrays
         var extractGroup = function (categoryObj, groupName) {
             if (!categoryObj) return "";
-
-            // If it's an object with keys "1", "2"...
             for (var key in categoryObj) {
                 var group = categoryObj[key];
                 if (group && group.group && group.group.name === groupName && group.list && group.list.length > 0) {
@@ -266,7 +237,7 @@ function parseMovieDetail(apiResponseJson) {
             servers: servers,
             episode_current: movie.current_episode || movie.episode_current || "",
             lang: movie.language || movie.lang || "",
-            casts: movie.casts || movie.actor || "", // Fallback to 'actor' if casts is missing
+            casts: movie.casts || movie.actor || "",
             director: movie.director || "",
             category: extractGroup(movie.category, "Thể loại"),
             country: extractGroup(movie.category, "Quốc gia"),
@@ -278,6 +249,19 @@ function parseMovieDetail(apiResponseJson) {
     }
 }
 
+function decodeBase64(input) {
+    if (!input) return "";
+    if (typeof atob === 'function') {
+        try { return atob(input); } catch (e) {}
+    }
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+    var str = String(input).replace(/=+$/, '');
+    var output = '';
+    for (var bc = 0, bs, buffer, idx = 0; buffer = str.charAt(idx++); ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer, bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) {
+        buffer = chars.indexOf(buffer);
+    }
+    return output;
+}
 
 function parseDetailResponse(html, url) {
     try {
@@ -291,19 +275,14 @@ function parseDetailResponse(html, url) {
         var customjs = textJS();
         return JSON.stringify({
             "url": url,
+            "isEmbed": true,
             "headers": {
                 "Referer": "https://phim.nguonc.com/",
                 "Origin": hostOrigin,
-                "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-                // Đánh lừa thuật toán Client Hints của tường lửa
-                "Sec-Ch-Ua": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-                "Sec-Ch-Ua-Mobile": "?1",
-                "Sec-Ch-Ua-Platform": '"Android"',
-                
-                // Khai báo kiểu dữ liệu được chấp nhận giống như trình duyệt thật
+                "Bypass-AdBlock": "true",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
                 "Accept": "*/*",
                 "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
-                "X-Requested-With": "com.android.chrome",
                 "Custom-Js": customjs.trim()
             },
             "subtitles": []
@@ -316,712 +295,388 @@ function parseDetailResponse(html, url) {
 
 function textJS() {
     return `
-SCRIPTURL = "https://script.google.com/macros/s/AKfycbwsvLFzWMdxvX9ZH-3wnP3GJzS58v0CtT_0mlEYeOz6cOsgen9IR3c6VPv_EssPXMFzwQ/exec?name=nguoncnew&type=js"; 
-
-const style = document.createElement('style');
-var customcss = 'body { background: black !important; overflow: hidden; margin: 0; padding: 0; }';
-style.innerHTML = customcss;
-if (document.head) { document.head.appendChild(style); } else { document.addEventListener('DOMContentLoaded', function() { document.head.appendChild(style); }); }
-
-/* BUILD VIDEO BEGIN*/
-// "version": "1.0.0"
-
-function runVideo(){
+(function() {
     'use strict';
-    var DEVELOPE = false;
-    
-    function GetlinkVideo() {
-        var originalVideo = document.querySelector('video');
-        if (!originalVideo) {
-            console.log("❌ Không tìm thấy thẻ video gốc trên trang!");
-            return;
-        }
 
-        var playlist = scanSources();
-        var stream1 = originalVideo.src || '';
-        var stream2 = window.location.href;
-        
-        try {
-            buildVideoWithOriginal(originalVideo, stream1, stream2, playlist);
-        } catch(e) {
-            console.error("Lỗi khi build custom player, fallback video gốc:", e);
-            if (originalVideo.paused) {
-                originalVideo.play().catch(function() {
-                    originalVideo.muted = true;
-                    originalVideo.play();
-                });
-            }
-        }
-    }
-
-    // ─── QUÉT NGUỒN PHÁT VÀ PLAYLIST ───
-    function scanSources() {
-        var activeSrc = '';
-        var servers = [];
-        var episodes = [];
-        var seen = new Set();
-        var els = document.querySelectorAll('[class*="video"], [class*="player"], video, iframe');
-        for (var i = 0; i < els.length; i++) {
-            var el = els[i];
-            var src = el.src || el.getAttribute('data-src') || '';
-            if (!src) {
-                var s = el.querySelector('source');
-                if (s) src = s.src || s.getAttribute('src') || '';
-            }
-            if (src && (src.indexOf('.mp4') > -1 || src.indexOf('.m3u8') > -1 || src.indexOf('embed') > -1)) {
-                if (!activeSrc) activeSrc = src;
-                if (!seen.has(src)) {
-                    seen.add(src);
-                    var lbl = 'Server ' + (servers.length + 1);
-                    if (src.indexOf('embed') > -1) lbl = 'Nhúng ' + (servers.length + 1);
-                    servers.push({ label: lbl, src: src, type: 'server' });
-                }
-            }
-        }
-        var allLinks = document.querySelectorAll('a, button, [role="button"], [data-link]');
-        for (var k = 0; k < allLinks.length; k++) {
-            var el2 = allLinks[k];
-            var href = el2.href || el2.getAttribute('href') || el2.getAttribute('data-src') || el2.getAttribute('data-link') || '';
-            var txt = (el2.textContent || el2.innerText || '').trim();
-            if (!href || href === '#' || href === window.location.href || seen.has(href)) continue;
-            if (/(server|sv|nguồn|source|embed|link)/i.test(txt + ' ' + el2.className)) {
-                if (href.indexOf('.mp4') > -1 || href.indexOf('.m3u8') > -1 || href.indexOf('embed') > -1) {
-                    seen.add(href);
-                    servers.push({ label: txt || 'Server ' + (servers.length + 1), src: href, type: 'server' });
-                }
-            }
-        }
-        var aTags = document.querySelectorAll('a');
-        for (var j = 0; j < aTags.length; j++) {
-            var a = aTags[j];
-            var aHref = a.href || a.getAttribute('href');
-            var aTxt = (a.textContent || a.innerText || '').trim();
-            if (!aHref || aHref === '#' || aHref === window.location.href) continue;
-            var isEpisode = false;
-            if (/(tập|tap|ep|episode|chap|part)\s*(\d+|[ivx]+)/i.test(aTxt)) isEpisode = true;
-            if (/(tập|tap|ep|episode|chap|part)[-\s]?(\d+|[ivx]+)/i.test(aHref)) isEpisode = true;
-            if (a.className && /(^|\s)(ep|episode|tap|chapter|part|tapphim)(\d+|$)/i.test(a.className)) isEpisode = true;
-            if (isEpisode) {
-                episodes.push({ label: aTxt || 'Tập ' + (episodes.length + 1), src: aHref, type: 'episode' });
-            }
-        }
-        return { activeSrc: activeSrc, servers: servers, episodes: episodes };
-    }
-
-    // ─── HÀM TOAST CHỮ CHẠY GÕ PHÍM ───
-    globalThis.toastScrollQueue = globalThis.toastScrollQueue || [];
-    globalThis.isToastScrollRunning = globalThis.isToastScrollRunning || false;
-    globalThis.showToast = function(message, duration, check, scroll) {
-        if (typeof duration === 'undefined') duration = 7000;
-        if (typeof check === 'undefined') check = true;
-        if (typeof scroll === 'undefined') scroll = false;
-        if (check === false) return;
-        
-        if (scroll) {
-            globalThis.toastScrollQueue.push({ message, duration });
-            function processScrollQueue() {
-                if (globalThis.isToastScrollRunning || globalThis.toastScrollQueue.length === 0) return;
-                globalThis.isToastScrollRunning = true;
-                var current = globalThis.toastScrollQueue.shift();
-                var topContainer = document.getElementById('global-toast-top-container');
-                if (!topContainer) {
-                    topContainer = document.createElement('div');
-                    topContainer.id = 'global-toast-top-container';
-                    topContainer.style.cssText = 'position:fixed;top:0;left:0;width:100%;z-index:9999999;background:rgba(0,0,0,0.75);color:#fff;font-family:sans-serif;font-size:13px;padding:6px 15px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-height:28px;box-shadow:0 2px 10px rgba(0,0,0,0.3);opacity:0;transition:opacity 0.3s ease;';
-                    document.body.appendChild(topContainer);
-                }
-                topContainer.innerHTML = '';
-                topContainer.style.opacity = '1';
-                var textEl = document.createElement('span');
-                textEl.style.cssText = 'white-space:nowrap;border-right:2px solid transparent;letter-spacing:0.5px;';
-                topContainer.appendChild(textEl);
-                var fullText = current.message;
-                var charIndex = 0;
-                var typingTimer;
-                function typeWriter() {
-                    if (charIndex < fullText.length) {
-                        textEl.innerHTML += fullText.charAt(charIndex);
-                        charIndex++;
-                        typingTimer = setTimeout(typeWriter, 40);
-                    } else {
-                        setTimeout(function() {
-                            topContainer.style.opacity = '0';
-                            setTimeout(function() {
-                                topContainer.remove();
-                                globalThis.isToastScrollRunning = false;
-                                processScrollQueue();
-                            }, 300);
-                        }, 10000);
-                    }
-                }
-                typeWriter();
-            }
-            processScrollQueue();
-            return;
-        }
-        
-        var container = document.getElementById('global-toast-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'global-toast-container';
-            container.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999999;display:flex;flex-direction:column;gap:10px;';
-            document.body.appendChild(container);
-        }
-        var toastEl = document.createElement('div');
-        toastEl.innerHTML = message;
-        toastEl.style.cssText = 'background:rgba(50,50,50,0.95);color:#fff;padding:12px 24px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.2);font-family:sans-serif;font-size:14px;min-width:200px;transition:all 0.3s ease;transform:translateX(120%);opacity:0;';
-        container.appendChild(toastEl);
-        setTimeout(function() {
-            toastEl.style.transform = 'translateX(0)';
-            toastEl.style.opacity = '1';
-        }, 10);
-        setTimeout(function() {
-            toastEl.style.transform = 'translateX(120%)';
-            toastEl.style.opacity = '0';
-            setTimeout(function() {
-                toastEl.remove();
-                if (container.childElementCount === 0) container.remove();
-            }, 300);
-        }, duration);
+    // 1. Defeat Anti-Adblock checks & fake window.open
+    var fakeWin = {
+        closed: false,
+        focus: function(){},
+        blur: function(){},
+        close: function(){ this.closed = true; },
+        location: { href: 'about:blank', replace: function(){}, assign: function(){}, reload: function(){} },
+        document: {
+            write: function(){},
+            writeln: function(){},
+            open: function(){},
+            close: function(){},
+            createElement: function(){ return document.createElement('div'); },
+            body: { appendChild: function(){} }
+        },
+        opener: window, parent: window, top: window, self: window, window: window
     };
 
-    // ─── HÀM KHỞI DỰNG PLAYER CUSTOM ĐÈ LÊN GIAO DIỆN GỐC ───
-    function buildVideoWithOriginal(video, stream1, stream2, playlistData) {
-        if (document.getElementById('custom-video-player')) {
-            return;
-        }
+    try {
+        Object.defineProperty(window, 'open', {
+            get: function() { return function() { return fakeWin; }; },
+            set: function() {},
+            configurable: true
+        });
+    } catch(e) {
+        window.open = function() { return fakeWin; };
+    }
 
-        video.id = 'main-video';
-        video.style.cssText = 'width:100%;height:100%;object-fit:contain;cursor:pointer;background:#000;outline:none;border:none;box-shadow:none;transition: all 0.2s ease;';
-        video.controls = false;
-        
-        var container = document.createElement('div');
-        container.id = 'custom-video-player';
-        container.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;font-family:Segoe UI,Roboto,sans-serif;user-select:none;-webkit-user-select:none;outline:none;border:none;box-shadow:none;overflow:hidden;';
+    // Mock ad libraries & global variables
+    window._wau = window._wau || [];
+    window._wau.push = function() {};
+    window.waust = window.waust || {};
+    window.popCash = window.popCash || {};
+    window.ExoLoader = window.ExoLoader || {};
 
-        var spinner = document.createElement('div');
-        spinner.id = 'video-spinner';
-        spinner.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;border:4px solid rgba(255,255,255,0.3);border-top:4px solid #fff;border-radius:50%;animation:spin 1s linear infinite;z-index:10;pointer-events:none;display:none;';
-        var spinStyle = document.createElement('style');
-        spinStyle.textContent = '@keyframes spin{0%{transform:translate(-50%,-50%) rotate(0deg);}100%{transform:translate(-50%,-50%) rotate(360deg);}}';
-        document.head.appendChild(spinStyle);
-
-        var controls = document.createElement('div');
-        controls.id = 'video-controls';
-        controls.style.cssText = 'position:absolute;bottom:0;left:0;width:100%;background:linear-gradient(transparent,rgba(0,0,0,0.85));padding:12px 16px 20px;box-sizing:border-box;transition:opacity 0.3s;opacity:0;z-index:20;';
-        var progressWrap = document.createElement('div');
-        progressWrap.style.cssText = 'width:100%;height:6px;background:rgba(255,255,255,0.3);border-radius:3px;cursor:pointer;position:relative;margin-bottom:12px;';
-        var progressBar = document.createElement('div');
-        progressBar.style.cssText = 'height:100%;background:#e74c3c;width:0%;border-radius:3px;position:relative;pointer-events:none;';
-        var progressHandle = document.createElement('div');
-        progressHandle.style.cssText = 'position:absolute;right:-6px;top:-4px;width:14px;height:14px;background:#e74c3c;border-radius:50%;opacity:0;transition:opacity 0.2s;pointer-events:none;';
-        progressBar.appendChild(progressHandle);
-        progressWrap.appendChild(progressBar);
-        
-        progressWrap.onmouseenter = function() { progressHandle.style.opacity = '1'; };
-        progressWrap.onmouseleave = function() { progressHandle.style.opacity = '0'; };
-        
-        var btnRow = document.createElement('div');
-        btnRow.style.cssText = 'display:flex;align-items:center;gap:12px;';
-
-        var btnPlay = createBtn('⏸', 'Phát / Tạm dừng');
-        var btnMute = createBtn('🔊', 'Tắt / Bật âm lượng');
-        var timeDisplay = document.createElement('span');
-        timeDisplay.style.cssText = 'color:#fff;font-size:13px;min-width:100px;';
-        timeDisplay.textContent = '0:00 / 0:00';
-        var btnReload = createBtn('🔄', 'Tải lại nguồn video');
-        var spacer = document.createElement('div');
-        spacer.style.cssText = 'flex:1;';
-        var speedIndicator = document.createElement('span');
-        speedIndicator.style.cssText = 'color:#fff;font-size:12px;opacity:0.8;';
-        speedIndicator.textContent = '1.0x';
-        
-        var btnFullscreen = createBtn('⛶', 'Kích thước trình phát: Co giãn (Mặc định)');
-        var btnPlaylist = createBtn('☰', 'Danh sách phát / Server');
-
-        btnRow.appendChild(btnPlay);
-        btnRow.appendChild(btnMute);
-        btnRow.appendChild(timeDisplay);
-        btnRow.appendChild(spacer);
-        btnRow.appendChild(speedIndicator);
-        btnRow.appendChild(btnReload);
-        btnRow.appendChild(btnFullscreen);
-
-        controls.appendChild(progressWrap);
-        controls.appendChild(btnRow);
-        
-        var bigPlayBtn = document.createElement('div');
-        bigPlayBtn.id = 'big-play-btn';
-        bigPlayBtn.textContent = '▶';
-        bigPlayBtn.style.cssText = 'text-indent:10px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;background:rgba(0,0,0,0.6);border-radius:50%;display:none;align-items:center;justify-content:center;color:#fff;font-size:36px;cursor:pointer;z-index:15;';
-
-        var seekOverlay = document.createElement('div');
-        seekOverlay.id = 'seek-overlay';
-        seekOverlay.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.7);color:#fff;padding:12px 24px;border-radius:8px;font-size:18px;font-weight:bold;pointer-events:none;opacity:0;transition:opacity 0.3s;z-index:30;';
-        
-        var playlistPanel = document.createElement('div');
-        playlistPanel.id = 'playlist-panel';
-        playlistPanel.style.cssText = 'position:fixed;top:0;right:0;width:300px;max-width:80%;height:100%;background:rgba(15,15,15,0.97);z-index:40;transform:translateX(100%);transition:transform 0.25s ease;overflow-y:auto;padding:20px;box-sizing:border-box;color:#fff;font-family:Segoe UI,Roboto,sans-serif;';
-        var plHeader = document.createElement('div');
-        plHeader.style.cssText = 'display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.2);';
-        plHeader.innerHTML = '<span style="font-size:16px;font-weight:bold;">📋 Playlist</span>';
-        var plClose = document.createElement('button');
-        plClose.textContent = '✕';
-        plClose.style.cssText = 'background:none;border:none;color:#fff;font-size:18px;cursor:pointer;';
-        plClose.onclick = function(e) { if (e) e.stopPropagation(); playlistPanel.style.transform = 'translateX(100%)'; };
-        plHeader.appendChild(plClose);
-        playlistPanel.appendChild(plHeader);
-
-        var plContent = document.createElement('div');
-        plContent.id = 'playlist-content';
-        playlistPanel.appendChild(plContent);
-        
-        var playlistState = {
-            servers: (playlistData && playlistData.servers) ? playlistData.servers.slice() : [],
-            episodes: (playlistData && playlistData.episodes) ? playlistData.episodes.slice() : []
-        };
-        
-        function buildSection(title, items, onClick, parent) {
-            if (!items || items.length === 0) return;
-            var sec = document.createElement('div');
-            sec.style.cssText = 'margin-bottom:20px;';
-            var secTitle = document.createElement('div');
-            secTitle.textContent = title;
-            secTitle.style.cssText = 'font-size:13px;text-transform:uppercase;opacity:0.6;margin-bottom:10px;';
-            sec.appendChild(secTitle);
-            for (var i = 0; i < items.length; i++) {
-                (function(item) {
-                    var btn = document.createElement('button');
-                    btn.textContent = item.label;
-                    btn.style.cssText = 'display:block;width:100%;text-align:left;padding:10px 12px;margin-bottom:6px;background:rgba(255,255,255,0.08);border:none;border-radius:6px;color:#fff;font-size:14px;cursor:pointer;transition:background 0.2s;';
-                    btn.onmouseenter = function() { btn.style.background = 'rgba(231,76,60,0.3)'; };
-                    btn.onmouseleave = function() { btn.style.background = 'rgba(255,255,255,0.08)'; };
-                    btn.onclick = function(e) { if (e) e.stopPropagation(); onClick(item); };
-                    sec.appendChild(btn);
-                })(items[i]);
-            }
-            parent.appendChild(sec);
-        }
-
-        function renderPlaylist() {
-            plContent.innerHTML = '';
-            var hasAny = false;
-            if (playlistState.servers.length > 1) {
-                buildSection('🎥 Chuyển Server', playlistState.servers, function(item) { switchSource(item.src); }, plContent);
-                hasAny = true;
-            }
-            if (playlistState.episodes.length > 0) {
-                buildSection('📁 Tập phim', playlistState.episodes, function(item) { savePosition(); window.location.href = item.src; }, plContent);
-                hasAny = true;
-            }
-            if (hasAny) {
-                if (!btnPlaylist.parentNode) btnRow.appendChild(btnPlaylist);
-                if (!playlistPanel.parentNode) container.appendChild(playlistPanel);
-            } else {
-                if (btnPlaylist.parentNode) btnPlaylist.parentNode.removeChild(btnPlaylist);
-            }
-        }
-
-        // Đóng gói các thành phần giao diện Player mới
-        container.appendChild(video);
-        container.appendChild(spinner);
-        container.appendChild(bigPlayBtn);
-        container.appendChild(seekOverlay);
-        container.appendChild(controls);
-        container.appendChild(playlistPanel);
-
-        // Đẩy trình phát custom vào body
-        document.body.appendChild(container);
-        document.title = 'Phim NguonC';
-
-        var isPlaying = false;
-        var isMuted = false;
-        var currentSpeed = 1.0;
-        var controlsTimeout = null;
-        var isDraggingProgress = false;
-        var isDraggingVideo = false;
-        var isHoveringControls = false;
-        var lastSaveTime = 0;
-        
-        var currentResizeMode = 0; // 0: Co giãn, 1: Fill, 2: Ngang, 3: Dọc
-
-        function generateVideoKey() {
-            if (!video || !video.duration || isNaN(video.duration)) return null;
-            var totalSeconds = Math.floor(video.duration);
-            var hours = Math.floor(totalSeconds / 3600);
-            var minutes = Math.floor((totalSeconds % 3600) / 60);
-            var seconds = totalSeconds % 60;
-            var pad = function(num) { return num < 10 ? '0' + num : num; };
-            return 'VIDEO_' + pad(hours) + '_' + pad(minutes) + '_' + pad(seconds);
-        }
-        
-        function savePosition() {
-            if (!video || video.ended || !video.currentTime || isNaN(video.currentTime)) return;
-            var saveKey = generateVideoKey();
-            if (!saveKey) return;
-            var now = Date.now();
-            if (now - lastSaveTime < 4000) return;
-            lastSaveTime = now;
+    // Lock anti-adblock flags
+    var falseProps = ['playerBlocked', 'popupFailed', 'isAdBlockActive', 'adBlockDetected', 'adblock', 'adBlocker', 'adsBlocked'];
+    for (var i = 0; i < falseProps.length; i++) {
+        (function(p) {
             try {
-                if (video.currentTime > 5 && (video.currentTime < video.duration - 5)) {
-                    localStorage.setItem(saveKey, JSON.stringify({ time: video.currentTime, duration: video.duration, savedAt: now }));
-                }
-            } catch (e) {}
-        }
-        
-        function clearSavedPosition() {
-            try {
-                var saveKey = generateVideoKey();
-                if (saveKey) localStorage.removeItem(saveKey);
-            } catch (e) {}
-        }
-        
-        function restorePosition() {
-            try {
-                var saveKey = generateVideoKey();
-                if (!saveKey) return false;
-                var saved = localStorage.getItem(saveKey);
-                if (saved) {
-                    var data = JSON.parse(saved);
-                    if (data && data.time && data.time > 5) {
-                        if (data.time >= video.duration - 5) return false;
-                        video.currentTime = data.time;
-                        return true;
-                    }
-                }
-            } catch (e) {}
-            return false;
-        }
-
-        function switchSource(newSrc) {
-            var wasPlaying = !video.paused;
-            var prevTime = video.currentTime;
-            stream1 = newSrc;
-            video.src = newSrc;
-            video.load();
-            spinner.style.display = 'block';
-            video.onloadeddata = function() {
-                spinner.style.display = 'none';
-                if (!restorePosition() && prevTime > 0) video.currentTime = prevTime;
-                if (wasPlaying) video.play();
-                showToast('Đã chuyển nguồn phát');
-            };
-            video.onerror = function() {
-                spinner.style.display = 'none';
-                showToast('Không thể phát nguồn này!');
-            };
-            playlistPanel.style.transform = 'translateX(100%)';
-        }
-
-        function createBtn(icon, title) {
-            var btn = document.createElement('button');
-            btn.textContent = icon;
-            btn.title = title;
-            btn.style.cssText = 'background:none;border:none;color:#fff;font-size:18px;cursor:pointer;padding:4px 8px;border-radius:4px;transition:background 0.2s;outline:none;';
-            btn.onmouseenter = function() { btn.style.background = 'rgba(255,255,255,0.2)'; };
-            btn.onmouseleave = function() { btn.style.background = 'none'; };
-            return btn;
-        }
-
-        function showSeekOverlay(text) {
-            seekOverlay.textContent = text;
-            seekOverlay.style.opacity = '1';
-            clearTimeout(seekOverlay._timer);
-            seekOverlay._timer = setTimeout(function() { seekOverlay.style.opacity = '0'; }, 800);
-        }
-
-        function formatTime(sec) {
-            if (!sec || isNaN(sec)) return '0:00';
-            var m = Math.floor(sec / 60);
-            var s = Math.floor(sec % 60);
-            return m + ':' + (s < 10 ? '0' + s : s);
-        }
-
-        function updateProgress() {
-            if (video.duration && !isNaN(video.duration) && !isDraggingProgress) {
-                var pct = (video.currentTime / video.duration) * 100;
-                progressBar.style.width = pct + '%';
-            }
-            timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
-        }
-
-        function seekVideo(seconds) {
-            var newTime = video.currentTime + seconds;
-            if (newTime < 0) newTime = 0;
-            if (video.duration && !isNaN(video.duration) && newTime > video.duration) newTime = video.duration;
-            video.currentTime = newTime;
-            showSeekOverlay((seconds > 0 ? '+' : '') + seconds + 's');
-        }
-
-        function togglePlay() {
-            if (video.paused) {
-                video.play().then(function() {
-                    isPlaying = true; btnPlay.textContent = '⏸'; bigPlayBtn.style.display = 'none'; spinner.style.display = 'none';
-                }).catch(function(e) {
-                    video.muted = true;
-                    video.play().then(function() { isMuted = true; btnMute.textContent = '🔇'; isPlaying = true; btnPlay.textContent = '⏸'; bigPlayBtn.style.display = 'none'; spinner.style.display = 'none'; });
+                window[p] = false;
+                Object.defineProperty(window, p, {
+                    get: function() { return false; },
+                    set: function() {},
+                    configurable: true
                 });
-            } else {
-                video.pause(); isPlaying = false; btnPlay.textContent = '▶'; bigPlayBtn.style.display = 'flex';
-            }
-        }
-
-        function toggleMute() {
-            video.muted = !video.muted;
-            isMuted = video.muted;
-            btnMute.textContent = isMuted ? '🔇' : '🔊';
-            showToast(isMuted ? 'Đã tắt tiếng' : 'Đã bật tiếng');
-        }
-
-        function reloadVideo() {
-            spinner.style.display = 'block';
-            var currentTime = video.currentTime;
-            var wasPlaying = !video.paused;
-            video.src = stream1 + (stream1.indexOf('?') > -1 ? '&' : '?') + '_reload=' + Date.now();
-            video.load();
-            video.onloadeddata = function() {
-                spinner.style.display = 'none';
-                video.currentTime = currentTime;
-                restorePosition();
-                if (wasPlaying) video.play();
-                showToast('Đã tải lại nguồn video');
-            };
-            video.onerror = function() {
-                spinner.style.display = 'none';
-                if (stream2 && stream2 !== stream1) {
-                    showToast('Nguồn 1 lỗi, thử nguồn dự phòng...');
-                    stream1 = stream2;
-                    video.src = stream1;
-                    video.load();
-                } else {
-                    showToast('Lỗi tải video! Kiểm tra nguồn.');
-                }
-            };
-        }
-
-        function changeVideoSize() {
-            video.style.removeProperty('width');
-            video.style.removeProperty('height');
-            video.style.removeProperty('object-fit');
-            
-            if (currentResizeMode === 0) {
-                video.style.cssText += 'width:100%;height:100%;object-fit:contain;';
-                btnFullscreen.textContent = '⛶';
-                btnFullscreen.title = 'Kích thước: Co giãn phù hợp thiết bị (Mặc định)';
-            } else if (currentResizeMode === 1) {
-                video.style.cssText += 'width:100%;height:100%;object-fit:fill;';
-                btnFullscreen.textContent = '🔲';
-                btnFullscreen.title = 'Kích thước: Tràn viền toàn màn hình';
-            } else if (currentResizeMode === 2) {
-                video.style.cssText += 'width:100vw;height:auto;object-fit:contain;';
-                btnFullscreen.textContent = '↔';
-                btnFullscreen.title = 'Kích thước: Khớp chuẩn chiều ngang';
-            } else if (currentResizeMode === 3) {
-                video.style.cssText += 'width:auto;height:100vh;object-fit:contain;';
-                btnFullscreen.textContent = '↕';
-                btnFullscreen.title = 'Kích thước: Khớp chuẩn chiều dọc';
-            }
-        }
-
-        function showControls() {
-            controls.style.opacity = '1';
-            clearTimeout(controlsTimeout);
-            controlsTimeout = setTimeout(function() { 
-                if (!isDraggingProgress && !isHoveringControls) {
-                    controls.style.opacity = '0'; 
-                }
-            }, 3000);
-        }
-
-        controls.onmouseenter = function() {
-            isHoveringControls = true;
-            controls.style.opacity = '1';
-            clearTimeout(controlsTimeout);
-        };
-        controls.onmouseleave = function() {
-            isHoveringControls = false;
-            showControls();
-        };
-
-        video.addEventListener('loadeddata', function() {
-            spinner.style.display = 'none';
-            updateProgress();
-            if (isMuted && video.muted) { video.muted = false; isMuted = false; btnMute.textContent = '🔊'; }
-            restorePosition();
-            changeVideoSize();
-        });
-        video.addEventListener('loadedmetadata', function() { restorePosition(); });
-        video.addEventListener('waiting', function() { spinner.style.display = 'block'; });
-        video.addEventListener('playing', function() { spinner.style.display = 'none'; bigPlayBtn.style.display = 'none'; });
-        video.addEventListener('error', function() { spinner.style.display = 'none'; btnPlay.textContent = '▶'; bigPlayBtn.style.display = 'flex'; });
-        video.addEventListener('timeupdate', function() { updateProgress(); savePosition(); });
-        video.addEventListener('ended', function() { btnPlay.textContent = '▶'; bigPlayBtn.style.display = 'flex'; isPlaying = false; clearSavedPosition(); });
-        
-        var lastClickTime = 0;
-        var clickTimer = null;
-        
-        video.addEventListener('click', function(e) {
-            e.stopPropagation();
-            showControls();
-            if (isDraggingVideo) { isDraggingVideo = false; return; }
-            
-            var currentTime = Date.now();
-            var clickDelay = currentTime - lastClickTime;
-            var width = window.innerWidth;
-            var x = e.clientX;
-            
-            if (clickDelay < 300) {
-                clearTimeout(clickTimer);
-                if (x < width * 0.3) {
-                    seekVideo(-10);
-                } else if (x > width * 0.7) {
-                    seekVideo(10);
-                } else {
-                    togglePlay();
-                }
-            } else {
-                clickTimer = setTimeout(function() {
-                    togglePlay();
-                }, 250);
-            }
-            lastClickTime = currentTime;
-        });
-
-        video.addEventListener('mousemove', showControls);
-        container.addEventListener('mousemove', showControls);
-        container.addEventListener('click', showControls);
-
-        video.addEventListener('volumechange', function() { btnMute.textContent = video.muted || video.volume === 0 ? '🔇' : '🔊'; });
-        btnPlay.addEventListener('click', function(e) { e.stopPropagation(); togglePlay(); });
-        btnMute.addEventListener('click', function(e) { e.stopPropagation(); toggleMute(); });
-        btnReload.addEventListener('click', function(e) { e.stopPropagation(); reloadVideo(); });
-        
-        btnFullscreen.addEventListener('click', function(e) { 
-            e.stopPropagation(); 
-            currentResizeMode = (currentResizeMode + 1) % 4;
-            changeVideoSize();
-        });
-        
-        btnPlaylist.addEventListener('click', function(e) { e.stopPropagation(); playlistPanel.style.transform = 'translateX(0)'; });
-        
-        progressWrap.addEventListener('click', function(e) {
-            e.stopPropagation();
-            var rect = progressWrap.getBoundingClientRect();
-            var pct = (e.clientX - rect.left) / rect.width;
-            if (video.duration && !isNaN(video.duration)) video.currentTime = pct * video.duration;
-            updateProgress();
-        });
-        progressWrap.addEventListener('mousedown', function(e) { isDraggingProgress = true; showControls(); });
-        document.addEventListener('mousemove', function(e) {
-            if (isDraggingProgress && video.duration && !isNaN(video.duration)) {
-                var rect = progressWrap.getBoundingClientRect();
-                var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-                progressBar.style.width = (pct * 100) + '%';
-                video.currentTime = pct * video.duration;
-                updateProgress();
-            }
-        });
-        document.addEventListener('mouseup', function() { isDraggingProgress = false; });
-        bigPlayBtn.addEventListener('click', function(e) { e.stopPropagation(); togglePlay(); });
-
-        // BỘ PHÍM TẮT ĐIỀU KHIỂN
-        document.addEventListener('keydown', function(e) {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            showControls();
-            switch (e.key) {
-                case 'ArrowLeft': e.preventDefault(); e.shiftKey ? seekVideo(-30) : (e.ctrlKey || e.altKey) ? seekVideo(-5) : seekVideo(-10); break;
-                case 'ArrowRight': e.preventDefault(); e.shiftKey ? seekVideo(30) : (e.ctrlKey || e.altKey) ? seekVideo(5) : seekVideo(10); break;
-                case ' ': case 'k': case 'K': e.preventDefault(); togglePlay(); break;
-                case 'ArrowUp': e.preventDefault(); video.volume = Math.min(1, video.volume + 0.1); break;
-                case 'ArrowDown': e.preventDefault(); video.volume = Math.max(0, video.volume - 0.1); break;
-                case 'm': case 'M': e.preventDefault(); toggleMute(); break;
-                case 'f': case 'F': 
-                    e.preventDefault(); 
-                    currentResizeMode = (currentResizeMode + 1) % 4;
-                    changeVideoSize();
-                    break;
-                case 'r': case 'R': e.preventDefault(); reloadVideo(); break;
-                case 'Home': e.preventDefault(); video.currentTime = 0; break;
-                case 'End': e.preventDefault(); if (video.duration && !isNaN(video.duration)) video.currentTime = video.duration - 1; break;
-                case '>': case '.': e.preventDefault(); currentSpeed = Math.min(4, currentSpeed + 0.25); video.playbackRate = currentSpeed; speedIndicator.textContent = currentSpeed.toFixed(1) + 'x'; break;
-                case '<': case ',': e.preventDefault(); currentSpeed = Math.max(0.25, currentSpeed - 0.25); video.playbackRate = currentSpeed; speedIndicator.textContent = currentSpeed.toFixed(1) + 'x'; break;
-                case '0': e.preventDefault(); video.currentTime = 0; break;
-                case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': e.preventDefault(); if (video.duration && !isNaN(video.duration)) video.currentTime = video.duration * (parseInt(e.key) / 10); break;
-            }
-        });
-
-        if (video.paused) {
-            video.play().then(function() {
-                isPlaying = true; btnPlay.textContent = '⏸';
-            }).catch(function() {
-                video.muted = true; isMuted = true; btnMute.textContent = '🔇';
-                video.play();
-            });
-        } else {
-            isPlaying = true;
-            btnPlay.textContent = '⏸';
-        }
-
-        renderPlaylist();
-        showControls();
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', GetlinkVideo);
-    } else {
-        GetlinkVideo();
-    }
-}
-
-function checkResume() {
-    var checkCount = 0;
-    var checkInterval = setInterval(function() {
-        checkCount++;
-        var videoElement = document.querySelector('video');
-        var skipButton = document.getElementById("resumeBtn");
-
-        if (skipButton) {
-            try {
-                skipButton.click();
             } catch(e) {}
+        })(falseProps[i]);
+    }
+
+    var trueProps = ['popupReady', 'hasShownAds', 'canRunAds', 'hasLoadedAds'];
+    for (var j = 0; j < trueProps.length; j++) {
+        (function(p) {
+            try {
+                window[p] = true;
+                Object.defineProperty(window, p, {
+                    get: function() { return true; },
+                    set: function() {},
+                    configurable: true
+                });
+            } catch(e) {}
+        })(trueProps[j]);
+    }
+
+    // Lock blockPlayer
+    try {
+        window.blockPlayer = function() {};
+        Object.defineProperty(window, 'blockPlayer', {
+            get: function() { return function() {}; },
+            set: function() {},
+            configurable: true
+        });
+    } catch(e) {}
+
+    // Suppress adblock failure events
+    var blockEvents = ['popup-failed', 'adblock-detected', 'adblock', 'block-player'];
+    for (var k = 0; k < blockEvents.length; k++) {
+        window.addEventListener(blockEvents[k], function(e) {
+            if (e) {
+                if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+                if (typeof e.stopPropagation === 'function') e.stopPropagation();
+                if (typeof e.preventDefault === 'function') e.preventDefault();
+            }
+        }, true);
+    }
+
+    // Deceive bait elements check (offsetWidth, offsetHeight, getComputedStyle)
+    try {
+        var origGetComputedStyle = window.getComputedStyle;
+        window.getComputedStyle = function(el, pseudo) {
+            var res = origGetComputedStyle.apply(this, arguments);
+            var cls = ((el && el.className) || '') + ' ' + ((el && el.id) || '');
+            if (/(ad|banner|sponsor|adsbox|popup|detector)/i.test(cls)) {
+                return new Proxy(res, {
+                    get: function(target, prop) {
+                        if (prop === 'display') {
+                            var d = target.display;
+                            return (d === 'none') ? 'block' : d;
+                        }
+                        if (prop === 'visibility') {
+                            var v = target.visibility;
+                            return (v === 'hidden') ? 'visible' : v;
+                        }
+                        if (prop === 'opacity') {
+                            var o = target.opacity;
+                            return (o === '0') ? '1' : o;
+                        }
+                        return target[prop];
+                    }
+                });
+            }
+            return res;
+        };
+    } catch(e) {}
+
+    try {
+        var origOffsetHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight');
+        Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+            get: function() {
+                var cls = (this.className || '') + ' ' + (this.id || '');
+                if (/(ad|banner|sponsor|adsbox|popup|detector)/i.test(cls)) {
+                    return 250;
+                }
+                if (origOffsetHeight && origOffsetHeight.get) {
+                    return origOffsetHeight.get.call(this);
+                }
+                return 250;
+            },
+            configurable: true
+        });
+        var origOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth');
+        Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+            get: function() {
+                var cls = (this.className || '') + ' ' + (this.id || '');
+                if (/(ad|banner|sponsor|adsbox|popup|detector)/i.test(cls)) {
+                    return 300;
+                }
+                if (origOffsetWidth && origOffsetWidth.get) {
+                    return origOffsetWidth.get.call(this);
+                }
+                return 300;
+            },
+            configurable: true
+        });
+    } catch(e) {}
+
+    // Inject styles: ensure player & video take 100vw/100vh, preserve controlbar/timeline
+    var style = document.createElement('style');
+    style.innerHTML = 'body, html { background: black !important; overflow: hidden !important; margin: 0; padding: 0; width: 100vw; height: 100vh; }' +
+        '#player, #video-container, video, iframe[src*="stream"] { display: flex !important; visibility: visible !important; opacity: 1 !important; width: 100vw !important; height: 100vh !important; }' +
+        '.jw-controls, .jw-controlbar, .vjs-control-bar, .plyr__controls, [class*="controlbar"], [class*="controls"] { z-index: 10000 !important; }';
+    if (document.head) { document.head.appendChild(style); } else { document.addEventListener('DOMContentLoaded', function() { document.head.appendChild(style); }); }
+
+    // Helper: Safe base64 decode
+    function safeAtob(str) {
+        if (!str) return "";
+        if (typeof atob === 'function') {
+            try { return atob(str); } catch(e) {}
+        }
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        var strNorm = String(str).replace(/=+$/, '');
+        var output = '';
+        for (var bc = 0, bs, buffer, idx = 0; buffer = strNorm.charAt(idx++); ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer, bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) {
+            buffer = chars.indexOf(buffer);
+        }
+        return output;
+    }
+
+    // Extract stream URL from data-obf attribute
+    function extractStreamFromDom() {
+        var playerEl = document.getElementById('player') || document.querySelector('[data-obf]');
+        if (playerEl) {
+            var obf = playerEl.getAttribute('data-obf') || (playerEl.dataset ? playerEl.dataset.obf : '');
+            if (obf && !window.streamURL) {
+                try {
+                    var jsonStr = safeAtob(obf);
+                    if (jsonStr) {
+                        var streamData = JSON.parse(jsonStr);
+                        if (streamData && streamData.sUb) {
+                            var subPath = streamData.sUb;
+                            if (subPath.indexOf('/') !== 0 && subPath.indexOf('http') !== 0) {
+                                subPath = '/' + subPath;
+                            }
+                            var fullUrl = (subPath.indexOf('http') === 0) ? subPath : (location.origin + subPath);
+                            if (fullUrl.indexOf('?d=1') === -1 && fullUrl.indexOf('&d=1') === -1) {
+                                fullUrl += (fullUrl.indexOf('?') > -1 ? '&' : '?') + 'd=1';
+                            }
+                            window.streamURL = fullUrl;
+                            window.videoHash = streamData.hD || '';
+                        }
+                    }
+                } catch(e) {}
+            }
+        }
+    }
+
+    // Connect video events to Native AndroidBridge
+    function hookVideoBridge(video) {
+        if (!video || video._bridgeHooked) return;
+        video._bridgeHooked = true;
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'contain';
+        video.controls = true;
+
+        function reportPlay() {
+            if (window.AndroidBridge && typeof window.AndroidBridge.onVideoPlaying === 'function') {
+                window.AndroidBridge.onVideoPlaying();
+            }
+        }
+        function reportPause() {
+            if (window.AndroidBridge && typeof window.AndroidBridge.onVideoPaused === 'function') {
+                window.AndroidBridge.onVideoPaused();
+            }
+        }
+        function reportEnded() {
+            if (window.AndroidBridge && typeof window.AndroidBridge.onVideoEnded === 'function') {
+                window.AndroidBridge.onVideoEnded();
+            }
+        }
+        function reportError() {
+            if (window.AndroidBridge && typeof window.AndroidBridge.onVideoError === 'function') {
+                window.AndroidBridge.onVideoError();
+            }
+        }
+        function reportTime() {
+            if (window.AndroidBridge && typeof window.AndroidBridge.onTimeUpdate === 'function' && video.duration) {
+                window.AndroidBridge.onTimeUpdate(video.currentTime, video.duration);
+            }
         }
 
-        if (videoElement) {
-            clearInterval(checkInterval);
-            runVideo();
+        video.addEventListener('play', reportPlay);
+        video.addEventListener('playing', reportPlay);
+        video.addEventListener('pause', reportPause);
+        video.addEventListener('ended', reportEnded);
+        video.addEventListener('error', reportError);
+        video.addEventListener('timeupdate', reportTime);
+        video.addEventListener('loadeddata', function() {
+            video.controls = true;
+            if (video.paused) {
+                video.play().catch(function() { video.muted = true; video.play(); });
+            }
+        });
+
+        if (!video.paused) reportPlay();
+    }
+
+    // Load Hls.js script dynamically
+    function ensureHlsJs(callback) {
+        if (typeof window.Hls !== 'undefined') {
+            callback();
+            return;
+        }
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/hls.js@latest';
+        script.async = false;
+        script.onload = function() { callback(); };
+        script.onerror = function() { callback(); };
+        (document.head || document.documentElement).appendChild(script);
+    }
+
+    // Fallback direct playback using HLS.js
+    function triggerDirectPlayback(srcUrl) {
+        if (window._directVideoAttached) return;
+        var targetSrc = srcUrl || window.streamURL;
+        if (!targetSrc) return;
+
+        var video = document.querySelector('video');
+        if (!video) {
+            video = document.createElement('video');
+            video.id = 'direct-streamc-video';
+            video.autoplay = true;
+            video.controls = true;
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            video.style.cssText = 'width:100%;height:100%;object-fit:contain;background:#000;';
+            var container = document.getElementById('player') || document.body;
+            container.appendChild(video);
+        }
+        window._directVideoAttached = true;
+        hookVideoBridge(video);
+
+        ensureHlsJs(function() {
+            if (window.Hls && window.Hls.isSupported && window.Hls.isSupported()) {
+                try {
+                    if (window._hlsInstance) {
+                        window._hlsInstance.destroy();
+                    }
+                    var hls = new window.Hls({
+                        enableWorker: false,
+                        lowLatencyMode: false,
+                        xhrSetup: function(xhr, url) {
+                            xhr.withCredentials = false;
+                        }
+                    });
+                    window._hlsInstance = hls;
+                    hls.loadSource(targetSrc);
+                    hls.attachMedia(video);
+                    hls.on(window.Hls.Events.MANIFEST_PARSED, function() {
+                        video.play().catch(function(){ video.muted = true; video.play(); });
+                    });
+                } catch(e) {
+                    video.src = targetSrc;
+                    video.play().catch(function(){ video.muted = true; video.play(); });
+                }
+            } else {
+                video.src = targetSrc;
+                video.play().catch(function(){ video.muted = true; video.play(); });
+            }
+        });
+    }
+
+    // Main execution cycle
+    function checkAndRun() {
+        extractStreamFromDom();
+
+        // Check if a video element already exists on page
+        var v = document.querySelector('video');
+        if (v) {
+            hookVideoBridge(v);
+            if (v.paused) {
+                v.play().catch(function() { v.muted = true; v.play(); });
+            }
             return;
         }
 
-        // Tự động kiểm tra JWPlayer
-        if (typeof jwplayer === 'function') {
+        // Auto click resume button if present
+        var resumeBtn = document.getElementById('resumeBtn');
+        if (resumeBtn) {
+            try { resumeBtn.click(); } catch(e) {}
+        }
+
+        // Try JWPlayer play if available
+        if (typeof window.jwplayer === 'function') {
             try {
-                var jw = jwplayer('player') || jwplayer();
+                var jw = window.jwplayer('player') || window.jwplayer();
                 if (jw && typeof jw.play === 'function') {
                     jw.play();
                 }
             } catch(e) {}
         }
 
-        if (checkCount >= 30) {
+        // Purge any adblock warning screen (except Turnstile container)
+        var adScreens = document.querySelectorAll('.adblock-screen, div[class*="adblock"], div[id*="adblock"], div[class*="ad-block"], div[id*="ad-block"]');
+        for (var m = 0; m < adScreens.length; m++) {
+            try {
+                if (adScreens[m] && adScreens[m].id !== 'block-player' && adScreens[m].parentNode) {
+                    adScreens[m].parentNode.removeChild(adScreens[m]);
+                }
+            } catch(e) {}
+        }
+    }
+
+    // Run periodic checks
+    var checkCount = 0;
+    var checkInterval = setInterval(function() {
+        checkCount++;
+        checkAndRun();
+
+        // If after 3 seconds (6 checks) no video is playing and we have streamURL, force HLS.js
+        if (checkCount >= 6 && !document.querySelector('video') && window.streamURL && !window._directVideoAttached) {
+            triggerDirectPlayback(window.streamURL);
+        }
+
+        if (checkCount >= 20) {
             clearInterval(checkInterval);
-            var v = document.querySelector('video');
-            if (v) {
-                runVideo();
-            }
         }
     }, 500);
-}
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkResume);
-} else {
-    checkResume();
-}
-
+    // Immediate check
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', checkAndRun);
+    } else {
+        checkAndRun();
+    }
+})();
 `;
 }
 
-// Hardcoded Categories (Genres)
 function parseCategoriesResponse(apiResponseJson) {
     var genres = [
         { name: "Hành Động", slug: "hanh-dong" },
@@ -1050,7 +705,6 @@ function parseCategoriesResponse(apiResponseJson) {
     return JSON.stringify(genres);
 }
 
-// Hardcoded Countries
 function parseCountriesResponse(apiResponseJson) {
     var countries = [
         { name: "Âu Mỹ", value: "au-my" },
@@ -1073,7 +727,6 @@ function parseCountriesResponse(apiResponseJson) {
     return JSON.stringify(countries);
 }
 
-// Hardcoded Years
 function parseYearsResponse(apiResponseJson) {
     var years = [];
     for (var i = 2026; i >= 2004; i--) {
@@ -1085,6 +738,5 @@ function parseYearsResponse(apiResponseJson) {
 function getImageUrl(path) {
     if (!path) return "";
     if (path.indexOf("http") === 0) return path;
-    // Base image URL for NguonC
     return "https://img.phimapi.com/" + path;
 }

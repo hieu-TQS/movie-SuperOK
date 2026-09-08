@@ -9,7 +9,7 @@ function getManifest() {
     return JSON.stringify({
         "id": "phimthuyetminh",
         "name": "Phim Thuyết Minh",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "description": "Nguồn phim thuyết minh, lồng tiếng chất lượng cao Full HD/4K cập nhật liên tục.",
         "info": "Nguồn phim thuyết minh, lồng tiếng chất lượng cao Full HD/4K cập nhật liên tục.",
         "baseUrl": BASEURL,
@@ -659,32 +659,62 @@ function parseDetailResponse(html, url) {
         }
 
         if (streamUrl) {
+            var headers = {
+                "Referer": BASEURL + "/",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
+            };
+
+            if (streamUrl.indexOf("streamc.xyz") > -1) {
+                var hostOrigin = "https://embed.streamc.xyz";
+                var parts = streamUrl.split("/");
+                if (parts.length >= 3) {
+                    hostOrigin = parts[0] + "//" + parts[2];
+                }
+                headers["Referer"] = "https://phim.nguonc.com/";
+                headers["Origin"] = hostOrigin;
+                headers["Bypass-AdBlock"] = "true";
+                isEmbed = true;
+            }
+
             return JSON.stringify({
                 "url": streamUrl,
                 "isEmbed": isEmbed,
                 "mimeType": streamUrl.indexOf(".m3u8") > -1 ? "application/x-mpegURL" : "video/mp4",
-                "headers": {
-                    "Referer": BASEURL + "/",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-                }
+                "headers": headers
             });
         }
 
         // If no stream found in current HTML (e.g. called on /phim/ detail HTML instead of /xem/ watch HTML),
         // return isEmbed: true so the app fetches the watch page URL and calls parseEmbedResponse
+        var fallbackHeaders = {
+            "Referer": BASEURL + "/",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36"
+        };
+        if (url && url.indexOf("streamc.xyz") > -1) {
+            var hostOrigin = "https://embed.streamc.xyz";
+            var parts = url.split("/");
+            if (parts.length >= 3) {
+                hostOrigin = parts[0] + "//" + parts[2];
+            }
+            fallbackHeaders["Referer"] = "https://phim.nguonc.com/";
+            fallbackHeaders["Origin"] = hostOrigin;
+            fallbackHeaders["Bypass-AdBlock"] = "true";
+        }
         return JSON.stringify({
             "url": url || "",
             "isEmbed": true,
-            "headers": {
-                "Referer": BASEURL + "/",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            }
+            "headers": fallbackHeaders
         });
     } catch (e) {
+        var errHeaders = { "Referer": BASEURL + "/" };
+        if (url && url.indexOf("streamc.xyz") > -1) {
+            errHeaders["Referer"] = "https://phim.nguonc.com/";
+            errHeaders["Bypass-AdBlock"] = "true";
+        }
         return JSON.stringify({
             "url": url || "",
             "isEmbed": true,
-            "headers": { "Referer": BASEURL + "/" }
+            "headers": errHeaders
         });
     }
 }
