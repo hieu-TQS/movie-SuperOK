@@ -3,7 +3,7 @@
 // Tương thích 100% Mozilla Rhino JS & Android TV (SuperOK / SmartTube)
 // =============================================================================
 
-var BASE_URL = "https://phimhayok5.site";
+var BASE_URL = "https://phimhayok6.site";
 var API_URL = "https://api-client.phimhayok.net/api/movies";
 
 function getManifest() {
@@ -12,7 +12,7 @@ function getManifest() {
         "name": "PhimHayOK",
         "description": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại.",
         "info": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại.",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "baseUrl": BASE_URL,
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimhayok.png",
         "isEnabled": true,
