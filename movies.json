@@ -107,7 +107,7 @@
         {
             "id": "phimchill",
             "name": "Phim Chill (EXO)",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimchill_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimchill.png",
             "info": "Nguồn phim Phim Chill online chất lượng cao, cập nhật nhanh."
@@ -123,7 +123,7 @@
         {
             "id": "motchill",
             "name": "Motchill (ALL)",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motchill_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
             "info": "Trang xem phim Motchill phim mới cập nhật liên tục."
