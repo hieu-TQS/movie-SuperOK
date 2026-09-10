@@ -1,16 +1,16 @@
 // =============================================================================
 // CONFIGURATION & METADATA
 // =============================================================================
-var BASEURL = "https://animevietsub.gg";
+var BASEURL = "https://dpluss.nl";
 
 function getManifest() {
     return JSON.stringify({
         "id": "animevietsub",
         "name": "AnimeVietSub",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất.",
         "info": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất.",
-        "baseUrl": "https://animevietsub.gg",
+        "baseUrl": "https://dpluss.nl",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
         "isEnabled": true,
         "type": "MOVIE",
