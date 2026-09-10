@@ -1,4 +1,4 @@
-BASEURL = " https://motchillw.sh/";
+BASEURL = "https://motchillr.mx/";
 
 function getManifest() {
     return JSON.stringify({
@@ -6,8 +6,8 @@ function getManifest() {
         "name": "Nguồn Phim Motchill",
         "description": "Trang xem phim Motchill phim mới cập nhật liên tục.",
         "info": "Trang xem phim Motchill phim mới cập nhật liên tục.",
-        "version": "1.0.1",
-        "baseUrl": " https://motchillw.sh/",
+        "version": "1.0.2",
+        "baseUrl": "https://motchillr.mx/",
         "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
         "isEnabled": true,
         "type": "MOVIE",
