@@ -75,7 +75,7 @@
         {
             "id": "phimhayok",
             "name": "PhimHayOK (ALL)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhayok_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimhayok.png",
             "info": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại."
@@ -155,7 +155,7 @@
         {
             "id": "animevietsub",
             "name": "Anime Vietsub (ALL)",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/animevietsub_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/animevietsub.png",
             "info": "Kho phim Anime Vietsub tổng hợp phong phú và cập nhật mới nhất."
