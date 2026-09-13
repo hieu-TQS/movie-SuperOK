@@ -73,14 +73,6 @@
         },
 
         {
-            "id": "phimhayok",
-            "name": "PhimHayOK (ALL)",
-            "version": "1.0.1",
-            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/phimhayok_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/phimhayok.png",
-            "info": "Nguồn phim PhimHayOK tổng hợp đa dạng thể loại."
-        },
-        {
             "id": "gamomephim",
             "name": "Gà Mờ Mê Phim (WEB)",
             "version": "1.0.0",
@@ -123,7 +115,7 @@
         {
             "id": "motchill",
             "name": "Motchill (ALL)",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/motchill_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/motchill.png",
             "info": "Trang xem phim Motchill phim mới cập nhật liên tục."
