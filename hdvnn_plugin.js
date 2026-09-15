@@ -1,16 +1,12 @@
-// =============================================================================
-// HDvnn Plugin (Tương thích 100% Mozilla Rhino JS & Android TV SuperOK)
-// Website: https://hdvnn.xyz/
-// Hỗ trợ: Phim Chiếu Rạp, Phim Lẻ, Phim Bộ, Anime, Hoạt Hình, Phim Hàn, Trung, Mỹ...
-// =============================================================================
 
 var BASEURL = "https://hdvnn.xyz";
+var USER_COOKIE = "PHPSESSID=480877ab58947c50be5d37b2478fe272; tokentime=%7B%221d6f84c58f7f653b8781edf32141b088%22%3A%221d6f84c58f7f653b8781edf32141b088%22%7D;";
 
 function getManifest() {
     return JSON.stringify({
         "id": "hdvnn",
         "name": "HDvnn",
-        "version": "1.0.2",
+        "version": "1.0.3",
         "description": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "info": "Kho phim HDvnn.xyz Thuyết Minh, Lồng Tiếng, Vietsub chất lượng HD/FHD.",
         "baseUrl": BASEURL,
@@ -30,40 +26,46 @@ function log(msg) {
 function httpGet(url, headers) {
     try {
         if (typeof com !== 'undefined' && com.liskovsoft && com.liskovsoft.smartyoutubetv2) {
-            var map = null;
+            var client = com.liskovsoft.smartyoutubetv2.common.plugin.api.PluginApiClient.INSTANCE;
             if (headers) {
-                if (typeof java !== 'undefined' && java.util && java.util.HashMap) {
-                    map = new java.util.HashMap();
+                try {
+                    var map = new java.util.HashMap();
                     for (var k in headers) {
-                        if (headers.hasOwnProperty(k)) map.put(k, headers[k]);
+                        if (headers.hasOwnProperty(k)) map.put(String(k), String(headers[k]));
                     }
-                } else {
-                    map = headers;
+                    return String(client.fetchContentString(url, map) || "");
+                } catch(me) {
+                    return String(client.fetchContentString(url, null) || "");
                 }
             }
-            return String(com.liskovsoft.smartyoutubetv2.common.plugin.api.PluginApiClient.INSTANCE.fetchContentString(url, map) || "");
+            return String(client.fetchContentString(url, null) || "");
         }
-    } catch(e) {}
+    } catch(e) {
+        log("httpGet error: " + e);
+    }
     return "";
 }
 
 function httpPost(url, postBody, headers) {
     try {
         if (typeof com !== 'undefined' && com.liskovsoft && com.liskovsoft.smartyoutubetv2) {
-            var map = null;
+            var client = com.liskovsoft.smartyoutubetv2.common.plugin.api.PluginApiClient.INSTANCE;
             if (headers) {
-                if (typeof java !== 'undefined' && java.util && java.util.HashMap) {
-                    map = new java.util.HashMap();
+                try {
+                    var map = new java.util.HashMap();
                     for (var k in headers) {
-                        if (headers.hasOwnProperty(k)) map.put(k, headers[k]);
+                        if (headers.hasOwnProperty(k)) map.put(String(k), String(headers[k]));
                     }
-                } else {
-                    map = headers;
+                    return String(client.fetchContentPost(url, postBody, map) || "");
+                } catch(me) {
+                    return String(client.fetchContentPost(url, postBody, null) || "");
                 }
             }
-            return String(com.liskovsoft.smartyoutubetv2.common.plugin.api.PluginApiClient.INSTANCE.fetchContentPost(url, postBody, map) || "");
+            return String(client.fetchContentPost(url, postBody, null) || "");
         }
-    } catch(e) {}
+    } catch(e) {
+        log("httpPost error: " + e);
+    }
     return "";
 }
 
@@ -314,11 +316,19 @@ function parseMovieDetail(html, url) {
         var yearMatch = html.match(/(\d{4})/);
         var year = yearMatch ? parseInt(yearMatch[1], 10) : 2026;
 
+        var detailHtml = html || "";
+        if (detailHtml.indexOf("xem-phim") === -1 && USER_COOKIE && id && id.indexOf("http") === 0) {
+            var authDetail = httpGet(id, { "Cookie": USER_COOKIE });
+            if (authDetail && authDetail.indexOf("xem-phim") !== -1) {
+                detailHtml = authDetail;
+            }
+        }
+
         // Fetch watch page to get episode list & server details
         var watchLinks = [];
         var watchRegex = /href="([^"]*xem-phim[^"]*)"/gi;
         var wMatch;
-        while ((wMatch = watchRegex.exec(html)) !== null) {
+        while ((wMatch = watchRegex.exec(detailHtml)) !== null) {
             var wUrl = wMatch[1];
             if (wUrl.indexOf("http") !== 0) wUrl = BASEURL + (wUrl.indexOf("/") === 0 ? "" : "/") + wUrl;
             if (watchLinks.indexOf(wUrl) === -1) {
@@ -326,9 +336,10 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        var watchHtml = html;
-        if (watchLinks.length > 0 && html.indexOf("EpisodeID") === -1) {
-            var fetchedWatch = httpGet(watchLinks[0]);
+        var watchHtml = detailHtml;
+        if (watchLinks.length > 0 && detailHtml.indexOf("EpisodeID") === -1) {
+            var watchHeaders = USER_COOKIE ? { "Cookie": USER_COOKIE } : null;
+            var fetchedWatch = httpGet(watchLinks[0], watchHeaders);
             if (fetchedWatch) watchHtml = fetchedWatch;
         }
 
@@ -380,75 +391,99 @@ function parseMovieDetail(html, url) {
             }
         }
 
-        // Đối với phim lẻ (1 tập), pre-resolve link stream trực tiếp từ watchHtml nếu có
-        var preResolvedUrl = "";
-        if (episodesRaw.length === 1 && watchHtml.indexOf("MovieID") !== -1) {
-            try {
-                var cMatch = watchHtml.match(/name="csrf-token"\s+content="([^"]+)"/i);
-                var cToken = cMatch ? cMatch[1] : "";
-                var mIdMatch = watchHtml.match(/MovieID:\s*(\d+)/i);
-                var eIdMatch = watchHtml.match(/EpisodeID:\s*(\d+)/i);
-                if (mIdMatch && eIdMatch) {
-                    var pBody = "MovieID=" + mIdMatch[1] + "&EpisodeID=" + eIdMatch[1];
-                    var pHeaders = {
-                        "X-CSRF-TOKEN": cToken,
-                        "X-Requested-With": "XMLHttpRequest",
-                        "Referer": episodesRaw[0].id,
-                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-                    };
-                    var pResp = httpPost(BASEURL + "/server/ajax/player", pBody, pHeaders);
-                    if (pResp) {
-                        var pJson = JSON.parse(pResp);
-                        preResolvedUrl = pJson.src_pt || pJson.src_go || pJson.src_hd || pJson.src_vip || pJson.src_dr || pJson.src_vnn_1 || "";
-                        if (preResolvedUrl) {
-                            episodesRaw[0].id = preResolvedUrl;
-                        }
-                    }
-                }
-            } catch(ex) {}
-        }
-
         // Generate server groups
         var servers = [];
 
-        // Server 1: Default / Auto
         if (episodesRaw.length > 0) {
+            // Server 1: Tự động
             servers.push({
                 name: "HDvnn (Tự Động)",
                 episodes: episodesRaw
             });
 
-            // Chỉ tạo server phụ nếu chưa pre-resolve thành direct URL
-            if (!preResolvedUrl) {
-                // Server 2: Direct Google PT
-                var epsPT = [];
-                for (var p = 0; p < episodesRaw.length; p++) {
-                    epsPT.push({
-                        id: episodesRaw[p].id + "#server=pt",
-                        name: episodesRaw[p].name,
-                        slug: episodesRaw[p].slug
-                    });
-                }
-                servers.push({
-                    name: "Server Google (PT)",
-                    episodes: epsPT
-                });
-
-                // Server 3: Direct Google GO
-                var epsGO = [];
-                for (var g = 0; g < episodesRaw.length; g++) {
-                    epsGO.push({
-                        id: episodesRaw[g].id + "#server=go",
-                        name: episodesRaw[g].name,
-                        slug: episodesRaw[g].slug
-                    });
-                }
-                servers.push({
-                    name: "Server Google (GO)",
-                    episodes: epsGO
+            // Server 2: VNN 1 (Embed)
+            var epsVNN1 = [];
+            for (var v1 = 0; v1 < episodesRaw.length; v1++) {
+                epsVNN1.push({
+                    id: episodesRaw[v1].id + "#server=vnn_1",
+                    name: episodesRaw[v1].name,
+                    slug: episodesRaw[v1].slug
                 });
             }
+            servers.push({
+                name: "Server VNN 1",
+                episodes: epsVNN1
+            });
+
+            // Server 3: VNN 2 (Embed)
+            var epsVNN2 = [];
+            for (var v2 = 0; v2 < episodesRaw.length; v2++) {
+                epsVNN2.push({
+                    id: episodesRaw[v2].id + "#server=vnn_2",
+                    name: episodesRaw[v2].name,
+                    slug: episodesRaw[v2].slug
+                });
+            }
+            servers.push({
+                name: "Server VNN 2",
+                episodes: epsVNN2
+            });
+
+            // Server 4: Abyss (HY)
+            var epsHY = [];
+            for (var h = 0; h < episodesRaw.length; h++) {
+                epsHY.push({
+                    id: episodesRaw[h].id + "#server=hy",
+                    name: episodesRaw[h].name,
+                    slug: episodesRaw[h].slug
+                });
+            }
+            servers.push({
+                name: "Server Abyss (HY)",
+                episodes: epsHY
+            });
+
+            // Server 5: VK
+            var epsVK = [];
+            for (var vk = 0; vk < episodesRaw.length; vk++) {
+                epsVK.push({
+                    id: episodesRaw[vk].id + "#server=vk",
+                    name: episodesRaw[vk].name,
+                    slug: episodesRaw[vk].slug
+                });
+            }
+            servers.push({
+                name: "Server VK",
+                episodes: epsVK
+            });
+
+            // Server 6: Google (PT)
+            var epsPT = [];
+            for (var p = 0; p < episodesRaw.length; p++) {
+                epsPT.push({
+                    id: episodesRaw[p].id + "#server=pt",
+                    name: episodesRaw[p].name,
+                    slug: episodesRaw[p].slug
+                });
+            }
+            servers.push({
+                name: "Server Google (PT)",
+                episodes: epsPT
+            });
+
+            // Server 7: Google (GO)
+            var epsGO = [];
+            for (var g = 0; g < episodesRaw.length; g++) {
+                epsGO.push({
+                    id: episodesRaw[g].id + "#server=go",
+                    name: episodesRaw[g].name,
+                    slug: episodesRaw[g].slug
+                });
+            }
+            servers.push({
+                name: "Server Google (GO)",
+                episodes: epsGO
+            });
         }
 
         return JSON.stringify({
@@ -478,11 +513,56 @@ function parseDetail(html, url) {
     return parseMovieDetail(html, url);
 }
 
+// ===== DIRECT STREAM EXTRACTORS =====
+
+function decodeBase64(input) {
+    if (!input) return "";
+    try {
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        var str = String(input).replace(/=+$/, '');
+        var output = '';
+        if (str.length % 4 === 1) return '';
+        for (var bc = 0, bs, buffer, idx = 0; buffer = str.charAt(idx++); ~buffer && (bs = bc % 4 ? bs * 64 + buffer : buffer, bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) {
+            buffer = chars.indexOf(buffer);
+        }
+        return String(output);
+    } catch(ex) {
+        return "";
+    }
+}
+
+function extractDirectVideoFromVnnHtml(html) {
+    if (!html) return "";
+    var directMatch = html.match(/https:\/\/lh3\.googleusercontent\.com\/[^\s"'<>\\]+/);
+    if (directMatch) return String(directMatch[0]);
+
+    var b64Regex = /aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29t[A-Za-z0-9+/=_-]+/g;
+    var match;
+    var m22Url = "";
+    var m37Url = "";
+    var anyUrl = "";
+    while ((match = b64Regex.exec(html)) !== null) {
+        var rawB64 = match[0];
+        var decoded = decodeBase64(rawB64);
+        if (decoded && decoded.indexOf("googleusercontent.com") !== -1) {
+            if (decoded.indexOf("=m22") !== -1) {
+                m22Url = String(decoded);
+            } else if (decoded.indexOf("=m37") !== -1) {
+                m37Url = String(decoded);
+            } else if (!anyUrl) {
+                anyUrl = String(decoded);
+            }
+        }
+    }
+    var res = m22Url || m37Url || anyUrl || "";
+    return String(res);
+}
+
 // ===== PARSE PLAYER & STREAM RESPONSE =====
 
 function parseDetailResponse(html, url) {
     try {
-        var reqUrl = url || "";
+        var reqUrl = url ? String(url) : "";
         var serverTag = "";
         if (reqUrl.indexOf("#server=") !== -1) {
             var parts = reqUrl.split("#server=");
@@ -490,31 +570,31 @@ function parseDetailResponse(html, url) {
             serverTag = parts[1];
         }
 
-        if (reqUrl.indexOf(".m3u8") !== -1 || reqUrl.indexOf(".mp4") !== -1 || reqUrl.indexOf("googleusercontent.com") !== -1) {
+        if (reqUrl.indexOf(".m3u8") !== -1 || reqUrl.indexOf(".mp4") !== -1 || reqUrl.indexOf("lh3.googleusercontent.com") !== -1) {
             return JSON.stringify({
                 "url": reqUrl,
                 "isEmbed": false,
                 "headers": {
-                    "Referer": BASEURL + "/",
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
                 },
                 "subtitles": []
             });
         }
 
-        var pageHtml = html || "";
+        var pageHtml = html ? String(html) : "";
         if (pageHtml.indexOf("MovieID") === -1 && reqUrl && reqUrl.indexOf("http") === 0) {
-            pageHtml = httpGet(reqUrl);
+            var getHeaders = USER_COOKIE ? { "Cookie": USER_COOKIE } : null;
+            pageHtml = httpGet(reqUrl, getHeaders);
         }
 
         var csrfMatch = pageHtml.match(/name="csrf-token"\s+content="([^"]+)"/i);
         var csrfToken = csrfMatch ? csrfMatch[1] : "";
 
-        var movieIDMatch = pageHtml.match(/MovieID:\s*(\d+)/i);
-        var episodeIDMatch = pageHtml.match(/EpisodeID:\s*(\d+)/i) || reqUrl.match(/episode-id-(\d+)\.html/i);
+        var movieIDMatch = pageHtml.match(/MovieID:\s*(\d+)/i) || pageHtml.match(/MovieID\s*=\s*['"]?(\d+)['"]?/i);
+        var episodeIDMatch = pageHtml.match(/EpisodeID:\s*(\d+)/i) || pageHtml.match(/EpisodeID\s*=\s*['"]?(\d+)['"]?/i) || reqUrl.match(/episode-id-(\d+)\.html/i);
 
-        var movieId = movieIDMatch ? movieIDMatch[1] : "";
-        var episodeId = episodeIDMatch ? episodeIDMatch[1] : "";
+        var movieId = movieIDMatch ? String(movieIDMatch[1]) : "";
+        var episodeId = episodeIDMatch ? String(episodeIDMatch[1]) : "";
 
         if (!movieId || !episodeId) {
             return JSON.stringify({
@@ -532,6 +612,9 @@ function parseDetailResponse(html, url) {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
         };
+        if (USER_COOKIE) {
+            headers["Cookie"] = USER_COOKIE;
+        }
 
         var respStr = httpPost(BASEURL + "/server/ajax/player", postData, headers);
         if (!respStr) {
@@ -543,22 +626,28 @@ function parseDetailResponse(html, url) {
         var isEmbed = false;
 
         if (serverTag && json["src_" + serverTag]) {
-            streamUrl = json["src_" + serverTag];
-            if (serverTag === "vnn_1" || serverTag === "vnn_2" || serverTag === "hy" || serverTag === "vk" || serverTag === "ok") {
+            streamUrl = String(json["src_" + serverTag]);
+            if (serverTag === "vnn_1" || serverTag === "vnn_2" || serverTag === "hy" || serverTag === "vk" || serverTag === "ok" || serverTag === "on" || serverTag === "lt_1" || serverTag === "lt_2") {
                 isEmbed = true;
             }
         }
 
         if (!streamUrl) {
-            if (json.src_pt) streamUrl = json.src_pt;
-            else if (json.src_go) streamUrl = json.src_go;
-            else if (json.src_hd) streamUrl = json.src_hd;
-            else if (json.src_vip) streamUrl = json.src_vip;
-            else if (json.src_dr) streamUrl = json.src_dr;
-            else if (json.src_vnn_1) { streamUrl = json.src_vnn_1; isEmbed = true; }
-            else if (json.src_vnn_2) { streamUrl = json.src_vnn_2; isEmbed = true; }
-            else if (json.src_hy) { streamUrl = json.src_hy; isEmbed = true; }
-            else if (json.src_vk) { streamUrl = json.src_vk; isEmbed = true; }
+            // Ưu tiên VNN (có thể bóc tách link direct MP4 sang ExoPlayer)
+            if (json.src_vnn_1) { streamUrl = String(json.src_vnn_1); isEmbed = true; }
+            else if (json.src_vnn_2) { streamUrl = String(json.src_vnn_2); isEmbed = true; }
+            else if (json.src_hy) { streamUrl = String(json.src_hy); isEmbed = true; }
+            else if (json.src_vk) { streamUrl = String(json.src_vk); isEmbed = true; }
+            else if (json.src_ok) { streamUrl = String(json.src_ok); isEmbed = true; }
+            else if (json.src_on) { streamUrl = String(json.src_on); isEmbed = true; }
+            else if (json.src_lt_1) { streamUrl = String(json.src_lt_1); isEmbed = true; }
+            else if (json.src_lt_2) { streamUrl = String(json.src_lt_2); isEmbed = true; }
+            else if (json.src_pt) { streamUrl = String(json.src_pt); isEmbed = false; }
+            else if (json.src_go) { streamUrl = String(json.src_go); isEmbed = false; }
+            else if (json.src_hd) { streamUrl = String(json.src_hd); isEmbed = false; }
+            else if (json.src_vip) { streamUrl = String(json.src_vip); isEmbed = false; }
+            else if (json.src_dr) { streamUrl = String(json.src_dr); isEmbed = false; }
+            else if (json.src_lt_3) { streamUrl = String(json.src_lt_3); isEmbed = false; }
         }
 
         if (!streamUrl) {
@@ -566,9 +655,27 @@ function parseDetailResponse(html, url) {
             isEmbed = true;
         }
 
+        // Tự động giải mã trực tiếp stream MP4 từ cdn.hdvideo.homes nếu là server VNN
+        if (streamUrl.indexOf("cdn.hdvideo.homes") !== -1) {
+            var vnnHtml = httpGet(streamUrl, { "Referer": BASEURL + "/" });
+            if (vnnHtml) {
+                var directMp4 = extractDirectVideoFromVnnHtml(vnnHtml);
+                if (directMp4) {
+                    return JSON.stringify({
+                        "url": String(directMp4),
+                        "isEmbed": false,
+                        "headers": {
+                            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                        },
+                        "subtitles": []
+                    });
+                }
+            }
+        }
+
         return JSON.stringify({
-            "url": streamUrl,
-            "isEmbed": isEmbed,
+            "url": String(streamUrl),
+            "isEmbed": Boolean(isEmbed),
             "headers": {
                 "Referer": BASEURL + "/",
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -578,11 +685,40 @@ function parseDetailResponse(html, url) {
     } catch(e) {
         log("parseDetailResponse error: " + e);
         return JSON.stringify({
-            "url": url || "",
+            "url": url ? String(url) : "",
             "isEmbed": true,
             "headers": { "Referer": BASEURL + "/" }
         });
     }
+}
+
+function parseEmbedResponse(html, url) {
+    try {
+        var pageHtml = html ? String(html) : "";
+        var reqUrl = url ? String(url) : "";
+        if (pageHtml && (pageHtml.indexOf("cdn.hdvideo.homes") !== -1 || reqUrl.indexOf("cdn.hdvideo.homes") !== -1 || pageHtml.indexOf("aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29t") !== -1)) {
+            var directMp4 = extractDirectVideoFromVnnHtml(pageHtml);
+            if (directMp4) {
+                return JSON.stringify({
+                    "url": String(directMp4),
+                    "isEmbed": false,
+                    "headers": {
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                    },
+                    "subtitles": []
+                });
+            }
+        }
+    } catch(e) {}
+    return JSON.stringify({
+        "url": url ? String(url) : "",
+        "isEmbed": true,
+        "headers": { "Referer": BASEURL + "/" }
+    });
+}
+
+function parseEmbedPlayer(html, url) {
+    return parseEmbedResponse(html, url);
 }
 
 function parsePlayerUrl(html, url) {
