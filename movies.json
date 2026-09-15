@@ -21,7 +21,7 @@
             {
             "id": "hdvnn",
             "name": "HD VNN (EXO)",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/hdvnn_plugin.js",
             "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/hdvnn.png",
             "info": "Kho phim Lồng Tiếng, Thuyết Minh."
