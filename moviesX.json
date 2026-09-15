@@ -12,13 +12,24 @@
             "info": "Kho video giải trí nghệ thuật AZNude."
         },
         {
-            "id": "videoceleb",
-            "name": "video celebs (ALL)",
+            "id": "cosplaytele",
+            "name": "Cosplay Tele (ALL)",
             "version": "1.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/videocelebs_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/videoceleb.png",
-            "info": "Kho cảnh người nổi tiếng VideoCelebs HD Stream."
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/cosplaytele.png",
+            "info": "Kho video cosplay, anime & game cosplayers chất lượng cao cao.",
+
         },
+
+              {
+            "id": "aznude",
+            "name": "AZ nude (ALL)",
+            "version": "1.0.0",
+            "scriptUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/aznude_plugin.js",
+            "iconUrl": "https://raw.githubusercontent.com/hieu-TQS/movie-SuperOK/refs/heads/main/icons/aznude.ico",
+            "info": "Kho video giải trí nghệ thuật AZNude."
+        },
+        
         {
             "id": "sexlive",
             "name": "SEX live (EXO)",
